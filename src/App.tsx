@@ -155,7 +155,7 @@ function App() {
             <div className="text-sm text-gray-400">
               <p><strong>Endereço:</strong> Rua F, 210 - Anápolis, GO</p>
               <p><strong>Telefone:</strong> (62) 98584-9729</p>
-              <p><strong>Email:</strong> contato@henriquesilvadev.com</p>
+              <p><strong>Email:</strong> contato@henriquesilva.dev</p>
             </div>
           </div>
 
