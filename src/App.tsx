@@ -186,14 +186,14 @@ function App() {
                 className="flex-1 border px-2 py-1 rounded"
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               />
-              <button onClick={handleSend} disabled={loading} className="bg-[#F25C05] text-white px-4 rounded">
+              <button onClick={handleSend} disabled={loading} className="bg-[#727272] text-white px-4 rounded">
                 {loading ? '...' : 'Enviar'}
               </button>
             </div>
           </div>
         )}
         {!chatOpen && (
-          <button onClick={() => setChatOpen(true)} className="bg-[#F25C05] text-white rounded-full p-4 shadow-lg hover:scale-105 transition">
+          <button onClick={() => setChatOpen(true)} className="bg-[#ff1440] text-white rounded-full p-4 shadow-lg hover:scale-105 transition">
             <MessageCircle size={28} />
           </button>
         )}
