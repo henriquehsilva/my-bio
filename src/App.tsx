@@ -113,7 +113,7 @@ function App() {
             Transformando ideias em soluções digitais extraordinárias
           </h1>
           <p className="text-xl mb-8 max-w-2xl">
-            Desenvolvimento de software com excelência técnica e inovação para impulsionar seu negócio ao próximo nível
+            Desenvolvimento de software com inovação orientada pelo design, excelência em engenharia e entrega de software com IA em primeiro lugar
           </p>
           <button 
             onClick={() => setChatOpen(true)} 
@@ -173,8 +173,7 @@ function App() {
               <p><strong>Email:</strong> contato@henriquesilva.dev</p>
             </div>
           </div>
-
-          
+        
           <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
             © {new Date().getFullYear()} Henrique Silva Dev. Todos os direitos reservados.
           </div>
