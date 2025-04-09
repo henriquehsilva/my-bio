@@ -123,13 +123,28 @@ function App() {
         </div>
       </header>
 
+      <section className="py-10 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="aspect-w-16 aspect-h-9">
+            <iframe
+              className="w-full h-[400px] rounded-xl shadow-lg"
+              src="https://www.youtube.com/embed/rEuh7Z7QSyU"
+              title="Vídeo de Apresentação"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-12 text-center">Nossos Serviços</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ServiceCard icon={<Code2 size={32} />} title="Desenvolvimento" description="Soluções personalizadas com as melhores práticas e tecnologias modernas" />
             <ServiceCard icon={<Brain size={32} />} title="Consultoria" description="Orientação estratégica para transformação digital e inovação" />
-            <ServiceCard icon={<Users size={32} />} title="Metodologia Ágil" description="Gestão de projetos que enfatiza a flexibilidade, a colaboração e a entrega iterativa e incremental" />
+            <ServiceCard icon={<Users size={32} />} title="Metodologia Ágil" description="Abordagem de gestão de projetos que enfatiza a flexibilidade, a colaboração e a entrega iterativa e incremental." />
             <ServiceCard icon={<Briefcase size={32} />} title="Soluções Enterprise" description="Arquiteturas robustas para grandes organizações" />
           </div>
         </div>
@@ -137,31 +152,13 @@ function App() {
 
       <footer className="bg-[#23232f] text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            {/* Logo ou nome da empresa */}
-            <div>
-              <h2 className="text-2xl font-bold mb-2">HENRIQUE SILVA DEV</h2>
-              <p className="text-sm text-gray-400">Transformando ideias em código.</p>
-            </div>
-
-            {/* Links rápidos */}
-            <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="text-2xl font-bold mb-4 md:mb-0">HENRIQUE SILVA DEV</div>
+            <div className="flex gap-8">
               <a href="#" className="hover:text-[#ff1440]">Sobre</a>
               <a href="#" className="hover:text-[#ff1440]">Serviços</a>
               <a href="#" className="hover:text-[#ff1440]">Contato</a>
             </div>
-
-            {/* Informações de contato */}
-            <div className="text-sm text-gray-400">
-              <p><strong>Endereço:</strong> Rua F, 210 - Anápolis, GO</p>
-              <p><strong>Telefone:</strong> (62) 98584-9729</p>
-              <p><strong>Email:</strong> contato@henriquesilva.dev</p>
-            </div>
-          </div>
-
-          {/* Linha de separação */}
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
-            © {new Date().getFullYear()} Henrique Silva Dev. Todos os direitos reservados.
           </div>
         </div>
       </footer>
@@ -189,14 +186,14 @@ function App() {
                 className="flex-1 border px-2 py-1 rounded"
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               />
-              <button onClick={handleSend} disabled={loading} className="bg-[#727272] text-white px-4 rounded">
+              <button onClick={handleSend} disabled={loading} className="bg-[#F25C05] text-white px-4 rounded">
                 {loading ? '...' : 'Enviar'}
               </button>
             </div>
           </div>
         )}
         {!chatOpen && (
-          <button onClick={() => setChatOpen(true)} className="bg-[#ff1440] rounded-full p-2 shadow-lg hover:scale-105 transition">
+          <button onClick={() => setChatOpen(true)} className="bg-[#F25C05] text-white rounded-full p-4 shadow-lg hover:scale-105 transition">
             <MessageCircle size={28} />
           </button>
         )}
