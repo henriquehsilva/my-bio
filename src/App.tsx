@@ -152,13 +152,31 @@ function App() {
 
       <footer className="bg-[#23232f] text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-2xl font-bold mb-4 md:mb-0">HENRIQUE SILVA DEV</div>
-            <div className="flex gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+            {/* Logo ou nome da empresa */}
+            <div>
+              <h2 className="text-2xl font-bold mb-2">HENRIQUE SILVA DEV</h2>
+              <p className="text-sm text-gray-400">Transformando ideias em código.</p>
+            </div>
+
+            {/* Links rápidos */}
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8">
               <a href="#" className="hover:text-[#ff1440]">Sobre</a>
               <a href="#" className="hover:text-[#ff1440]">Serviços</a>
               <a href="#" className="hover:text-[#ff1440]">Contato</a>
             </div>
+
+            {/* Informações de contato */}
+            <div className="text-sm text-gray-400">
+              <p><strong>Endereço:</strong> Rua F, 210 - Anápolis, GO</p>
+              <p><strong>Telefone:</strong> (62) 98584-9729</p>
+              <p><strong>Email:</strong> contato@henriquesilva.dev</p>
+            </div>
+          </div>
+
+          {/* Linha de separação */}
+          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
+            © {new Date().getFullYear()} Henrique Silva Dev. Todos os direitos reservados.
           </div>
         </div>
       </footer>
