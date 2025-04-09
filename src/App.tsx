@@ -113,7 +113,7 @@ function App() {
             Transformando ideias em soluções digitais extraordinárias
           </h1>
           <p className="text-xl mb-8 max-w-2xl">
-            Desenvolvimento de software com excelência técnica e inovação para impulsionar seu negócio ao próximo nível.
+            Desenvolvimento de software com excelência técnica e inovação para impulsionar seu negócio ao próximo nível
           </p>
           <button 
             onClick={() => setChatOpen(true)} 
@@ -144,7 +144,7 @@ function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <ServiceCard icon={<Code2 size={32} />} title="Desenvolvimento" description="Soluções personalizadas com as melhores práticas e tecnologias modernas" />
             <ServiceCard icon={<Brain size={32} />} title="Consultoria" description="Orientação estratégica para transformação digital e inovação" />
-            <ServiceCard icon={<Users size={32} />} title="Metodologia Ágil" description="Abordagem de gestão de projetos que enfatiza a flexibilidade, a colaboração e a entrega iterativa e incremental." />
+            <ServiceCard icon={<Users size={32} />} title="Metodologia Ágil" description="Gestão de projetos que enfatiza a flexibilidade, a colaboração e a entrega iterativa e incremental" />
             <ServiceCard icon={<Briefcase size={32} />} title="Soluções Enterprise" description="Arquiteturas robustas para grandes organizações" />
           </div>
         </div>
@@ -153,20 +153,20 @@ function App() {
       <footer className="bg-[#23232f] text-white py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            {/* Logo ou nome da empresa */}
+            
             <div>
               <h2 className="text-2xl font-bold mb-2">HENRIQUE SILVA DEV</h2>
               <p className="text-sm text-gray-400">Transformando ideias em código.</p>
             </div>
 
-            {/* Links rápidos */}
+            
             <div className="flex flex-col md:flex-row gap-4 md:gap-8">
               <a href="#" className="hover:text-[#ff1440]">Sobre</a>
               <a href="#" className="hover:text-[#ff1440]">Serviços</a>
               <a href="#" className="hover:text-[#ff1440]">Contato</a>
             </div>
 
-            {/* Informações de contato */}
+          
             <div className="text-sm text-gray-400">
               <p><strong>Endereço:</strong> Rua F, 210 - Anápolis, GO</p>
               <p><strong>Telefone:</strong> (62) 98584-9729</p>
@@ -174,7 +174,7 @@ function App() {
             </div>
           </div>
 
-          {/* Linha de separação */}
+          
           <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-500">
             © {new Date().getFullYear()} Henrique Silva Dev. Todos os direitos reservados.
           </div>
@@ -190,7 +190,7 @@ function App() {
             <h2 className="text-lg font-bold mb-2">DORA</h2>
             <div className="flex flex-col gap-2 h-64 overflow-y-auto border rounded p-2 mb-2 bg-gray-50">
               {messages.map((msg, i) => (
-                <div key={i} className={`text-sm px-2 py-1 rounded ${msg.from === 'dora' ? 'bg-[#f5f5f5] text-black self-start' : 'bg-[#F25C05] text-white self-end'}`}>
+                <div key={i} className={`text-sm px-2 py-1 rounded ${msg.from === 'dora' ? 'bg-[#f5f5f5] text-black self-start' : 'bg-[#ff1440] text-white self-end'}`}>
                   {msg.text}
                 </div>
               ))}
