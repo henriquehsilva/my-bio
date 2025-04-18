@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Youtube, Bot, Code, Brain, ExternalLink, X, MessageCircle } from 'lucide-react';
+import { Github, Linkedin, Youtube, X, MessageCircle } from 'lucide-react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
@@ -20,13 +20,9 @@ function App() {
     setLoading(true);
 
     try {
-      // 1. Envia para OpenAI para resposta
       const systemPrompt = {
         role: 'system',
-        content: `Você é a DORA, uma assistente virtual do site do Henrique. 
-        Seja empática, faça perguntas úteis, e ajude a entender o projeto do visitante. 
-        Se o visitante mencionar nome, e-mail ou o tipo de projeto, ajude a registrar essas 
-        informações com gentileza. Não invente respostas. Seja objetiva, profissional e simpática.`,
+        content: `Você é a DORA, uma assistente virtual do site do Henrique. Seja empática, faça perguntas úteis, e ajude a entender o projeto do visitante. Se o visitante mencionar nome, e-mail ou o tipo de projeto, ajude a registrar essas informações com gentileza. Não invente respostas. Seja objetiva, profissional e simpática.`,
       };
 
       const chatMessages = [
@@ -54,12 +50,10 @@ function App() {
       const reply = data.choices?.[0]?.message?.content || 'Desculpe, algo deu errado.';
       setMessages([...newMessages, { from: 'dora', text: reply }]);
 
-      // 2. Extração de dados do lead com IA
       const extractPrompt = [
         {
           role: 'system',
-          content: `Extraia nome, email e interesse a partir da conversa. Responda APENAS com JSON no formato:
-{ "nome": "...", "email": "...", "interesse": "..." }`
+          content: `Extraia nome, email e interesse a partir da conversa. Responda APENAS com JSON no formato: { "nome": "...", "email": "...", "interesse": "..." }`
         },
         {
           role: 'user',
@@ -92,7 +86,6 @@ function App() {
           fullChat: newMessages,
         });
       }
-
     } catch (err) {
       console.error('Erro ao processar conversa:', err);
       setMessages([...newMessages, { from: 'dora', text: 'Ops! Algo deu errado.' }]);
@@ -100,85 +93,56 @@ function App() {
       setLoading(false);
     }
   };
+
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col md:flex-row items-start justify-center p-40 gap-8">
-      {/* Coluna Principal */}
-      <div className="max-w-2xl w-full space-y-8 text-center">
-        {/* Avatar Section */}
-        <div className="relative mx-auto w-50 h-40">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] rounded-full animate-pulse opacity-40">
-            <h1 className="text-3xl pl-10 pt-20 pb-10 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2a2a2a] to-[#2a2a2a]">
-              Henrique Silva Developer
-            </h1>
-          </div>
-          <div className="relative w-40 h-40 bg-[#2a2a2a] rounded-full border-2 border-[#8B5CF6]/20 flex items-center justify-center overflow-hidden">
-            <img src='/profile_bio.jpeg' alt="Henrique Silva" className='w-25' />
-          </div>
-        </div>
-  
-        {/* About Section */}
-        <div className="space-y-4 border-2 border-[#8B5CF6]/20 rounded-lg p-6 bg-[#2a2a2a] shadow-[0_0_15px_rgba(139,92,246,0.3)]">
-          <p className="text-gray-300 text-justify leading-relaxed max-w-lg mx-auto">
-            Sou Henrique Silva, <span className="text-[#8B5CF6]">desenvolvedor focado em design de sistemas e arquitetura de software</span>.
-            Atuo na <span className="text-[#8B5CF6]">criação de aplicações robustas e evolutivas</span>, com ênfase em práticas <span className="text-[#8B5CF6]">ágeis, refatoração contínua e valor real para times de desenvolvimento</span>.
-            Estudo padrões de <span className="text-[#8B5CF6]">arquitetura e processos</span> que tornam o desenvolvimento mais eficaz. 
-            Meu trabalho se baseia em <span className="text-[#8B5CF6]">aprender, conectar ideias relevantes e aplicá-las com clareza e propósito</span>.
-          </p>
-        </div>
-  
-        {/* Social Icons */}
-        <div className="flex justify-center space-x-6">
-          {[
-            { Icon: Github, href: "https://github.com/henriquehsilva" },
-            { Icon: Linkedin, href: "https://www.linkedin.com/in/henriquesilvadev/" },
-            { Icon: Youtube, href: "https://www.youtube.com/@henriquesilvadev" }
-          ].map(({ Icon, href }, index) => (
-            <a
-              key={index}
-              href={href}
-              className="transform transition-all duration-300 hover:scale-110"
-            >
-              <Icon 
-                className="w-8 h-8 text-gray-400 hover:text-[#8B5CF6]"
-                strokeWidth={1.5}
-              />
-            </a>
-          ))}
-        </div>
-  
-        <div className="z-50">
-          {/* Action Button */}
-          {/* <a href='https://elixir.henriquesilva.dev' className="px-28 py-4 bg-[#8B5CF6] text-white rounded-lg font-medium 
-            transform transition-all duration-300 hover:scale-105 hover:bg-[#6D28D9]
-            shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.5)]" target='_blank'>
-            <ExternalLink className="inline mr-1" size={14} />
-            A Jornada Elixir
-          </a> */}
-        </div>
-      </div>
-  
-      {/* Coluna do Livro */}
-      <div className="w-full md:w-80 mt-8 md:mt-0 flex justify-center">
-        <div className="bg-[#2a2a2a] rounded-xl p-4 border-2 border-[#8B5CF6]/20 shadow-[0_0_25px_rgba(139,92,246,0.2)]">
-        <a href="https://elixir.henriquesilva.dev"
-          target="_blank"
-          className="block w-full max-w-xs mx-auto transition-transform transform hover:scale-105"
-          >
-            <div className="relative rounded-lg overflow-hidden shadow-lg transition-all duration-500 hover:shadow-[0_0_40px_rgba(139,92,246,0.7)] hover:ring-4 hover:ring-[#8B5CF6]">
-              <img
-                src="https://elixir.henriquesilva.dev/grimorio-capa.png"
-                alt="Livro recomendado"
-                className="w-full h-auto rounded-lg"
-              />
+    <div className="min-h-screen bg-[#0f0f0f] p-6 md:p-12 flex flex-col items-center">
+      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* Coluna de perfil */}
+        <div className="md:col-span-2 space-y-8">
+          <div className="text-center">
+            <div className="w-32 h-32 mx-auto rounded-full border-4 border-purple-600 overflow-hidden">
+              <img src="/profile_bio.jpeg" alt="Henrique Silva" className="object-cover w-full h-full" />
             </div>
+            <h1 className="mt-4 text-3xl font-bold text-white">Henrique Silva</h1>
+            <p className="text-sm text-gray-400">Developer & Software Architect</p>
+          </div>
+
+          <div className="bg-[#1a1a1a] border border-[#333] rounded-xl p-6 shadow-lg">
+            <p className="text-gray-300 text-justify text-lg leading-relaxed">
+              Sou Henrique Silva, <span className="text-purple-400">desenvolvedor focado em design de sistemas e arquitetura de software</span>. Atuo na
+              <span className="text-purple-400"> criação de aplicações robustas e evolutivas</span>, com ênfase em práticas <span className="text-purple-400">ágeis, refatoração contínua e valor real para times de desenvolvimento</span>.
+              Estudo padrões de <span className="text-purple-400">arquitetura e processos</span> que tornam o desenvolvimento mais eficaz. Meu trabalho se baseia em <span className="text-purple-400">aprender, conectar ideias relevantes e aplicá-las com clareza e propósito</span>.
+            </p>
+          </div>
+
+          <div className="flex justify-center gap-6">
+            {[{ href: 'https://github.com/henriquehsilva', icon: Github }, { href: 'https://linkedin.com/in/henriquesilvadev', icon: Linkedin }, { href: 'https://youtube.com/@henriquesilvadev', icon: Youtube }].map(({ href, icon: Icon }, i) => (
+              <a key={i} href={href} target="_blank" className="text-gray-400 hover:text-purple-400 transition">
+                <Icon className="w-6 h-6" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Coluna do Livro */}
+        <div className="w-full flex flex-col items-center">
+          <a
+            href="https://elixir.henriquesilva.dev"
+            target="_blank"
+            className="relative rounded-xl overflow-hidden transition-all duration-300 hover:ring-4 hover:ring-purple-500"
+          >
+            <img
+              src="https://elixir.henriquesilva.dev/grimorio-capa.png"
+              alt="Livro A Jornada Elixir"
+              className="rounded-xl shadow-lg w-full max-w-xs"
+            />
           </a>
-          <p className="text-sm text-center text-gray-400 mt-4">
-            Tutorial com minha jornada estudando elixir: <br />
-            <span className="text-purple-400 font-medium">“A Jornada Elixir”</span>
+          <p className="mt-4 text-sm text-center text-gray-400">
+            Conheça o projeto: <span className="text-purple-400 font-medium">“A Jornada Elixir”</span>
           </p>
         </div>
       </div>
-  
+
       {/* Chat DORA */}
       <div className="fixed bottom-6 right-6 z-50">
         {chatOpen && (
@@ -215,7 +179,6 @@ function App() {
       </div>
     </div>
   );
-  
 }
 
 export default App;
