@@ -106,6 +106,14 @@ function App() {
             <h1 className="mt-4 text-3xl font-bold text-white">Henrique Silva</h1>
             <p className="text-sm text-gray-400">Developer & Software Architect</p>
           </div>
+          <div className="flex justify-center gap-6">
+            {[{ href: 'https://github.com/henriquehsilva', icon: Github }, { href: 'https://linkedin.com/in/henriquesilvadev', icon: Linkedin }, { href: 'https://youtube.com/@henriquesilvadev', icon: Youtube }].map(({ href, icon: Icon }, i) => (
+              <a key={i} href={href} target="_blank" className="text-gray-400 hover:text-purple-400 transition">
+                <Icon className="w-6 h-6" />
+              </a>
+            ))}
+          </div>
+
 
           <div className="bg-[#1a1a1a] border border-[#333] rounded-xl p-6 shadow-lg">
             <p className="text-gray-300 text-justify text-lg leading-relaxed">
@@ -113,14 +121,6 @@ function App() {
               <span className="text-purple-400"> criação de aplicações robustas e evolutivas</span>, com ênfase em práticas <span className="text-purple-400">ágeis, refatoração contínua e valor real para times de desenvolvimento</span>.
               Estudo padrões de <span className="text-purple-400">arquitetura e processos</span> que tornam o desenvolvimento mais eficaz. Meu trabalho se baseia em <span className="text-purple-400">aprender, conectar ideias relevantes e aplicá-las com clareza e propósito</span>.
             </p>
-          </div>
-
-          <div className="flex justify-center gap-6">
-            {[{ href: 'https://github.com/henriquehsilva', icon: Github }, { href: 'https://linkedin.com/in/henriquesilvadev', icon: Linkedin }, { href: 'https://youtube.com/@henriquesilvadev', icon: Youtube }].map(({ href, icon: Icon }, i) => (
-              <a key={i} href={href} target="_blank" className="text-gray-400 hover:text-purple-400 transition">
-                <Icon className="w-6 h-6" />
-              </a>
-            ))}
           </div>
         </div>
 
