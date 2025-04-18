@@ -143,13 +143,15 @@ function App() {
             </a>
           ))}
         </div>
-
+        <div className="z-50">
         {/* Action Button */}
-        <button className="px-8 py-4 bg-[#8B5CF6] text-white rounded-lg font-medium 
+        <a href='https://elixir.henriquesilva.dev' className="px-28 py-4 bg-[#8B5CF6] text-white rounded-lg font-medium 
           transform transition-all duration-300 hover:scale-105 hover:bg-[#6D28D9]
-          shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.5)]">
-          Plataforma de Estudos
-        </button>
+          shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.5)]" target='_blank'>
+          <ExternalLink className="inline mr-1" size={14} />
+          A Jornada Elixir
+        </a>
+        </div>
       </div>
 
       <div className="fixed bottom-6 right-6 z-50">
