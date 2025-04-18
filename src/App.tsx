@@ -101,21 +101,23 @@ function App() {
     }
   };
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#1a1a1a] flex flex-col md:flex-row items-start justify-center p-40 gap-8">
+      {/* Coluna Principal */}
       <div className="max-w-2xl w-full space-y-8 text-center">
         {/* Avatar Section */}
-        <div className="relative mx-auto w-40 h-40">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] rounded-full animate-pulse opacity-20"></div>
+        <div className="relative mx-auto w-50 h-40">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] rounded-full animate-pulse opacity-40">
+            <h1 className="text-3xl pl-10 pt-20 pb-10 font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2a2a2a] to-[#2a2a2a]">
+              Henrique Silva Developer
+            </h1>
+          </div>
           <div className="relative w-40 h-40 bg-[#2a2a2a] rounded-full border-2 border-[#8B5CF6]/20 flex items-center justify-center overflow-hidden">
-            <img src='/me.png' alt="Henrique Silva" />
+            <img src='/profile_bio.jpeg' alt="Henrique Silva" className='w-25' />
           </div>
         </div>
-
+  
         {/* About Section */}
         <div className="space-y-4 border-2 border-[#8B5CF6]/20 rounded-lg p-6 bg-[#2a2a2a] shadow-[0_0_15px_rgba(139,92,246,0.3)]">
-          <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#6D28D9]">
-            Henrique Silva Developer
-          </h1>
           <p className="text-gray-300 text-justify leading-relaxed max-w-lg mx-auto">
             Sou Henrique Silva, <span className="text-[#8B5CF6]">desenvolvedor focado em design de sistemas e arquitetura de software</span>.
             Atuo na <span className="text-[#8B5CF6]">criação de aplicações robustas e evolutivas</span>, com ênfase em práticas <span className="text-[#8B5CF6]">ágeis, refatoração contínua e valor real para times de desenvolvimento</span>.
@@ -123,7 +125,7 @@ function App() {
             Meu trabalho se baseia em <span className="text-[#8B5CF6]">aprender, conectar ideias relevantes e aplicá-las com clareza e propósito</span>.
           </p>
         </div>
-
+  
         {/* Social Icons */}
         <div className="flex justify-center space-x-6">
           {[
@@ -143,17 +145,41 @@ function App() {
             </a>
           ))}
         </div>
+  
         <div className="z-50">
-        {/* Action Button */}
-        <a href='https://elixir.henriquesilva.dev' className="px-28 py-4 bg-[#8B5CF6] text-white rounded-lg font-medium 
-          transform transition-all duration-300 hover:scale-105 hover:bg-[#6D28D9]
-          shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.5)]" target='_blank'>
-          <ExternalLink className="inline mr-1" size={14} />
-          A Jornada Elixir
-        </a>
+          {/* Action Button */}
+          {/* <a href='https://elixir.henriquesilva.dev' className="px-28 py-4 bg-[#8B5CF6] text-white rounded-lg font-medium 
+            transform transition-all duration-300 hover:scale-105 hover:bg-[#6D28D9]
+            shadow-[0_0_15px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.5)]" target='_blank'>
+            <ExternalLink className="inline mr-1" size={14} />
+            A Jornada Elixir
+          </a> */}
         </div>
       </div>
-
+  
+      {/* Coluna do Livro */}
+      <div className="w-full md:w-80 mt-8 md:mt-0 flex justify-center">
+        <div className="bg-[#2a2a2a] rounded-xl p-4 border-2 border-[#8B5CF6]/20 shadow-[0_0_25px_rgba(139,92,246,0.2)]">
+        <a href="https://elixir.henriquesilva.dev"
+          target="_blank"
+          className="block w-full max-w-xs mx-auto transition-transform transform hover:scale-105"
+          >
+            <div className="relative rounded-lg overflow-hidden shadow-lg transition-all duration-500 hover:shadow-[0_0_40px_rgba(139,92,246,0.7)] hover:ring-4 hover:ring-[#8B5CF6]">
+              <img
+                src="https://elixir.henriquesilva.dev/grimorio-capa.png"
+                alt="Livro recomendado"
+                className="w-full h-auto rounded-lg"
+              />
+            </div>
+          </a>
+          <p className="text-sm text-center text-gray-400 mt-4">
+            Tutorial com minha jornada estudando elixir: <br />
+            <span className="text-purple-400 font-medium">“A Jornada Elixir”</span>
+          </p>
+        </div>
+      </div>
+  
+      {/* Chat DORA */}
       <div className="fixed bottom-6 right-6 z-50">
         {chatOpen && (
           <div className="bg-white text-black w-80 p-4 rounded-2xl shadow-xl relative flex flex-col">
@@ -189,6 +215,7 @@ function App() {
       </div>
     </div>
   );
+  
 }
 
 export default App;
