@@ -16,7 +16,7 @@ const ProfileInfo: React.FC = () => {
         </p>
       </div>
       
-      <div className="text-[#d0d0d0] space-y-4 max-w-2xl">
+      <div className="text-[#d0d0d0] space-y-4 max-w-2xl text-justify">
         <p className="leading-relaxed">
           Henrique Silva é graduando em Matemática Aplicada e Computacional pela Universidade 
           Federal de Goiás (UFG) e atua como desenvolvedor com foco em design de sistemas e 
