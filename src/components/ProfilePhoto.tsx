@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfilePhoto: React.FC = () => {
   // Using a placeholder image - in a real application, replace with actual image path
-  const profileImage = "https://henriquesilva.dev/profile_bio.jpeg?auto=compress&cs=tinysrgb&w=700";
+  const profileImage = "/profile_bio.jpeg?auto=compress&cs=tinysrgb&w=700";
 
   return (
     <div className="flex-shrink-0 transition-transform duration-700 ease-out transform translate-y-8 opacity-0 animate-appear">
