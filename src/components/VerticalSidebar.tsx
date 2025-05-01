@@ -6,7 +6,7 @@ const VerticalSidebar: React.FC = () => {
       {/* Mobile (horizontal, centralizado) */}
       <div className="block md:hidden text-center">
         <span className="block text-sm tracking-widest text-[#d0d0d0] font-light">
-          DATA SCIENTIST
+          SOFTWARE ENGINEER
         </span>
         <span className="block text-xs tracking-wider text-[#d0d0d0]/70">
           Decisões Baseadas em Dados
