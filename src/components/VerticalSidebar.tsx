@@ -18,7 +18,7 @@ const VerticalSidebar: React.FC = () => {
         <div className="transform -rotate-90 whitespace-nowrap">
           <div className="flex flex-col items-center gap-1">
             <span className="text-sm tracking-widest text-[#d0d0d0] font-light">
-              DATA SCIENTIST
+              SOFTWARE ENGINEER
             </span>
             <span className="text-xs tracking-wider text-[#d0d0d0]/70">
               Decisões Baseadas em Dados

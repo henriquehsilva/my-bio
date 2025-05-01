@@ -9,7 +9,7 @@ const ProfileInfo: React.FC = () => {
       
       <div className="text-[#d0d0d0] mb-6 space-y-1">
         <p className="text-lg md:text-xl">
-          Estudante de Matemática Aplicada e Computacional na UFG
+          Engenharia de Software - Full Stack & DevSecops na FIAP
         </p>
         <p className="text-lg md:text-xl">
           Desenvolvedor de Software com foco em Design e Arquitetura
@@ -18,8 +18,8 @@ const ProfileInfo: React.FC = () => {
       
       <div className="text-[#d0d0d0] space-y-4 max-w-2xl text-justify">
         <p className="leading-relaxed">
-          Henrique Silva é graduando em Matemática Aplicada e Computacional pela Universidade 
-          Federal de Goiás (UFG) e atua como desenvolvedor com foco em design de sistemas e 
+          Henrique Silva é graduando em Engenharia de Software - Full Stack & DevSecops pela FIAP 
+          e atua como desenvolvedor com foco em design de sistemas e 
           arquitetura de software. Trabalha na criação de aplicações robustas e evolutivas, 
           com ênfase em práticas ágeis, refatoração contínua e entrega de valor real para 
           times de desenvolvimento.
