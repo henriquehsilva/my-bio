@@ -6,7 +6,7 @@ const ProfilePhoto: React.FC = () => {
 
   return (
     <div className="flex-shrink-0 transition-transform duration-700 ease-out transform translate-y-8 opacity-0 animate-appear">
-      <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-white/10 shadow-lg">
+      <div className="w-48 h-48 md:w-56 md:h-56 lg:w-30 lg:h-64 rounded-full overflow-hidden border-4 border-white/10 shadow-lg">
         <img 
           src={profileImage} 
           alt="Henrique Silva" 

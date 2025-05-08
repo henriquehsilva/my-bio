@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Youtube, Github } from 'lucide-react';
+import { Linkedin, Youtube, Github, Instagram } from 'lucide-react';
 import ProfilePhoto from '../components/ProfilePhoto';
 import ProfileInfo from '../components/ProfileInfo';
 import VerticalSidebar from '../components/VerticalSidebar';
@@ -7,7 +7,7 @@ import VerticalSidebar from '../components/VerticalSidebar';
 const AboutPage: React.FC = () => {
   return (
     <div className="bg-[#191919] min-h-screen text-white relative overflow-hidden flex flex-col">
-      <div className="container mx-auto px-4 md:px-6 py-16 md:py-24 flex-1">
+      <div className="container mx-auto px-4 ml-[250px] md:px-6 py-16 md:py-24 flex-1">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 lg:gap-16">
           <ProfilePhoto />
           {/* Texto justificado sempre */}
@@ -39,18 +39,26 @@ const AboutPage: React.FC = () => {
               >
                 <Github size={24} />
               </a>
+              <a
+                href="https://www.instagram.com/henriquesilvadev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                <Instagram size={24} />
+              </a>
             </div>
           </div>
         </div>
       </div>
 
       {/* Sidebar vertical (direita, apenas desktop) */}
-      <div className="hidden md:flex absolute right-0 top-0 h-full items-center pr-4">
+      {/* <div className="hidden md:flex absolute right-0 top-0 h-full items-center pr-4">
         <VerticalSidebar />
-      </div>
+      </div> */}
 
       {/* Sidebar no rodapé (mobile) */}
-      <div className="block md:hidden w-full py-6 border-t border-white/10">
+      <div className="block w-full py-6 border-t border-white/10">
         <div className="flex justify-center">
           <VerticalSidebar />
         </div>
