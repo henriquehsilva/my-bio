@@ -18,7 +18,7 @@ const ProfileInfo: React.FC = () => {
       
       <div className="text-[#d0d0d0] space-y-4 max-w-2xl text-justify">
         <p className="leading-relaxed">
-          Henrique Silva é graduando em Matemática Aplicada e Computacional pela UFG 
+          Sou graduando em Matemática Aplicada e Computacional pela UFG 
           e atua como desenvolvedor com foco em design de sistemas e 
           arquitetura de software. Trabalha na criação de aplicações robustas e evolutivas, 
           com ênfase em práticas ágeis, refatoração contínua e entrega de valor real para 
@@ -26,7 +26,7 @@ const ProfileInfo: React.FC = () => {
         </p>
         
         <p className="leading-relaxed">
-          Sua dedicação está voltada ao estudo de padrões de arquitetura, processos e 
+          Minha dedicação está voltada ao estudo de padrões de arquitetura, processos e 
           estratégias que tornam o desenvolvimento mais eficaz e sustentável. Seu trabalho 
           se baseia em aprender continuamente, conectar ideias relevantes e aplicá-las com 
           clareza e propósito.
