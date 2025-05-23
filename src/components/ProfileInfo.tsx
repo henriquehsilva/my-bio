@@ -18,18 +18,23 @@ const ProfileInfo: React.FC = () => {
       
       <div className="text-[#d0d0d0] space-y-4 max-w-2xl text-justify">
         <p className="leading-relaxed">
-          Sou graduando em Matemática Aplicada e Computacional pela UFG 
-          atuo como desenvolvedor com foco em design de sistemas e 
-          arquitetura de software. Trabalho na criação de aplicações robustas e evolutivas, 
-          com ênfase em práticas ágeis, refatoração contínua e entrega de valor real para 
-          times de desenvolvimento.
-        </p>
+          Sou graduando em Matemática Aplicada e Computacional pela UFG, 
+          com atuação em desenvolvimento de software voltada à criação de 
+          sistemas robustos, sustentáveis e evolutivos. Me interesso profundamente 
+          por modelagem matemática, arquitetura de software e ciência de dados 
+          aplicada — especialmente onde esses domínios se cruzam para resolver 
+          problemas reais com impacto prático.        </p>
         
         <p className="leading-relaxed">
-          Minha dedicação está voltada ao estudo de padrões de arquitetura, processos e 
-          estratégias que tornam o desenvolvimento mais eficaz e sustentável. Meu trabalho 
-          se baseia em aprender continuamente, conectar ideias relevantes e aplicá-las com 
-          clareza e propósito.
+          Minha abordagem combina rigor analítico com princípios de design e práticas ágeis. 
+          Tenho um olhar atento para padrões arquiteturais, processos de desenvolvimento eficazes 
+          e estratégias que tornam equipes mais produtivas e o código mais expressivo. 
+          Não me considero um inventor de ideias originais, mas sou eficaz em reconhecer boas ideias,
+          conectá-las e aplicá-las com propósito.
+        </p>
+
+        <p className="leading-relaxed">
+          Acredito que desenvolvimento de software é, acima de tudo, um processo de aprendizado contínuo — e é isso que me move.
         </p>
       </div>
     </div>
