@@ -19,7 +19,7 @@ const ProfileInfo: React.FC = () => {
       <div className="text-[#d0d0d0] space-y-4 max-w-2xl text-justify">
         <p className="leading-relaxed">
           Sou graduando em Matemática Aplicada e Computacional pela UFG 
-          e atua como desenvolvedor com foco em design de sistemas e 
+          atuo como desenvolvedor com foco em design de sistemas e 
           arquitetura de software. Trabalho na criação de aplicações robustas e evolutivas, 
           com ênfase em práticas ágeis, refatoração contínua e entrega de valor real para 
           times de desenvolvimento.
