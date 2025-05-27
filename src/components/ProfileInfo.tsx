@@ -9,7 +9,7 @@ const ProfileInfo: React.FC = () => {
       
       <div className="text-[#d0d0d0] mb-6 space-y-1">
         <p className="text-lg md:text-xl">
-          Matemática Aplicada e Computacional - UFG
+        Bacharelando em Matemática Aplicada e Computacional - UFG
         </p>
         <p className="text-lg md:text-xl">
           Desenvolvedor de Software com foco em Design e Arquitetura
