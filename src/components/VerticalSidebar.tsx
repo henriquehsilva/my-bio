@@ -6,10 +6,10 @@ const VerticalSidebar: React.FC = () => {
       {/* Mobile (horizontal, centralizado) */}
       <div className="block md:hidden text-center">
         <span className="block text-sm tracking-widest text-[#d0d0d0] font-light">
-          © 2025 Henrique Silva. Todos os Direitos Reservados.
+          © 2025 Henrique Silva. All Rights Reserved.
         </span>
         <span className="block text-xs tracking-wider text-[#d0d0d0]/70">
-          Decisões Baseadas em Dados
+          Data-Driven Decisions
         </span>
       </div>
 
@@ -17,12 +17,11 @@ const VerticalSidebar: React.FC = () => {
       <div className="hidden md:flex h-full items-center justify-center">
         <div className="transform whitespace-nowrap">
           <div className="flex flex-col items-center gap-1">
-            <span className="text-sm tracking-widest text-[#d0d0d0] font-light">
-              
-              © 2025 Henrique Silva. Todos os Direitos Reservados.
+            <span className="text-sm tracking-widest text-[#d0d0d0] font-light">              
+              © 2025 Henrique Silva. All Rights Reserved.
             </span>
             <span className="text-xs tracking-wider text-[#d0d0d0]/70">
-              Decisões Baseadas em Dados
+              Data-Driven Decisions
             </span>
           </div>
         </div>
