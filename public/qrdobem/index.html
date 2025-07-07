@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVP Projeto QR Code Solidário</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f5f5f5; }
+    h1 { color: #363432; }
+    h2 { color: #595439; }
+    .card { background: #fff; padding: 20px; border-radius: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    .image-placeholder { width: 100%; max-width: 300px; height: 200px; background: #ddd; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Projeto QR Code Solidário - MVP</h1>
+
+  <div class="card">
+    <h2>Objetivo</h2>
+    <p>Criar um sistema simples para facilitar doações e gestão de créditos para pessoas em situação de rua, usando QR Codes aplicados em camisetas e cartões de papel.</p>
+  </div>
+
+  <div class="card">
+    <h2>Como funciona</h2>
+    <ul>
+      <li><strong>Doação:</strong> Qualquer pessoa pode escanear o QR code da camiseta ou do cartão e fazer um PIX rápido de R$ 5,00.</li>
+      <li><strong>Uso do crédito:</strong> A pessoa em situação de rua pode apresentar um QR code de débito de R$ 15,00 que será validado em pontos parceiros (padarias, lavanderias, albergues).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Protótipos</h2>
+    <h3>Camiseta - QR Doação</h3>
+    <br/><br/>
+    <div class="image-placeholder">
+        <img src="camiseta-doacao.png" alt="Camiseta com QR Code" style="width: 100%; height: auto;">
+    </div><br />
+    <p>QR Code estampado com link direto para doação via PIX.</p>
+
+    <h3>Cartão de papel - QR Doação</h3>
+    <br/><br/>
+    <div class="image-placeholder">
+        <img src="cartao-doacao.png" alt="Cartão de papel QR Doação" style="width: 100%; height: auto;">
+    </div><br />
+    <p>Distribuído junto à camiseta para uso individual.</p>
+
+    <h3>Cartão de papel - QR Débito</h3>
+    <br/><br/>
+    <div class="image-placeholder">
+        <img src="cartao-debito.png" alt="Cartão de papel QR Débito" style="width: 100%; height: auto;">
+    </div>
+    <br />
+    <p>Usado para solicitar serviços ou produtos em pontos conveniados.</p>
+  </div>
+
+  <div class="card">
+    <h2>Fluxo do MVP</h2>
+    <ol>
+      <li>Gerar chaves PIX dinâmicas para cada pessoa com limite de R$5,00 por transação.</li>
+      <li>Imprimir camisetas com QR code e cartões de papel personalizados.</li>
+      <li>Distribuir os kits para um grupo piloto (ex: 10 pessoas).</li>
+      <li>Estabelecer parceria com 1 ou 2 pontos de uso do débito.</li>
+      <li>Monitorar recargas, transações e feedback dos beneficiários e doadores.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Segurança e transparência</h2>
+    <p>Cada QR pode redirecionar para uma página intermediária que mostra a identificação do beneficiário e o comprovante da transação.</p>
+  </div>
+
+</body>
+</html>
