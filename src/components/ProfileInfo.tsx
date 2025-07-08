@@ -29,7 +29,10 @@ const ProfileInfo: React.FC = () => {
         <p className="leading-relaxed">
           🚀 Atuo com metodologias ágeis, cultura de dados e times multidisciplinares — sempre buscando aprender, compartilhar e construir produtos que façam a diferença.
         </p>
-
+        <p className="leading-relaxed">
+          🌍 Estou aqui para trocar ideias, colaborar em projetos inovadores e contribuir para um futuro mais inclusivo e sustentável. Vamos juntos criar coisas que se importam com pessoas?
+        </p>
+        <br />
         <b>Projetos</b>
         <ul className="list-disc pl-5">
           <li>
