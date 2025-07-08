@@ -30,20 +30,20 @@ const ProfileInfo: React.FC = () => {
           🚀 Atuo com metodologias ágeis, cultura de dados e times multidisciplinares — sempre buscando aprender, compartilhar e construir produtos que façam a diferença.
         </p>
 
-        <h3>Projetos</h3>
+        <b>Projetos</b>
         <ul className="list-disc pl-5">
           <li>
-            <a href="https://www.tiorick.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+            <a href="https://curso.henriquesilva.dev" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
               Curso de Programação do Tio Rick
             </a> - Uma jornada prática e acessível para aprender a programar com propósito, usando tecnologia para resolver problemas reais..
           </li>
           <li>
-            <a href="https://www.qrdobem.com.br" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+            <a href="https://benfeitoria.com/projeto/qr-do-bem-1zy6" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
               QR do Bem
             </a> - Sistema de microdoações via QR Code que conecta doadores a pessoas em situação de rua, com uso social controlado e transparente.
           </li>
           <li>
-            <a href="https://www.codelabcomunitario.com.br" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+            <a href="https://youtu.be/nYn63zLyd04?si=1TLy1lw8UqMb37E7" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
               Code Lab Comunitário
             </a> - Espaço de aprendizagem tecnológica em condomínios, promovendo inclusão digital, criatividade e inovação local.
           </li>
