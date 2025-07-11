@@ -11,8 +11,7 @@ const AboutPage: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 lg:gap-16">
           <ProfilePhoto />
           {/* Texto justificado sempre */}
-          <div className="w-full text-justify">
-            <ProfileInfo />
+          <div className="w-full text-justify">            
             {/* Social icons */}
             <div className="mt-8 flex gap-6 text-[#d0d0d0] justify-center md:justify-start">
               <a
@@ -48,6 +47,7 @@ const AboutPage: React.FC = () => {
                 <Instagram size={24} />
               </a>
             </div>
+            <ProfileInfo />
           </div>
         </div>
       </div>
