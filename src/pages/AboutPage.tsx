@@ -1,8 +1,9 @@
 import React from 'react';
-import { Linkedin, Youtube, Github, Instagram } from 'lucide-react';
+import { Linkedin, Youtube, Github, Instagram, Calendar } from 'lucide-react';
 import ProfilePhoto from '../components/ProfilePhoto';
 import ProfileInfo from '../components/ProfileInfo';
 import VerticalSidebar from '../components/VerticalSidebar';
+
 
 const AboutPage: React.FC = () => {
   return (
@@ -21,6 +22,15 @@ const AboutPage: React.FC = () => {
                 Dev Sênior | Empreendedor e Pensador Social | Inovação com alma
               </p>
             </div>
+            <a
+              href="https://calendly.com/henriquesilvadev/vamos-conversar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-md"
+            >
+              <Calendar className="w-5 h-5" />
+              Vamos Conversar?
+            </a>
           </div>
 
           <div className="w-full text-justify">            

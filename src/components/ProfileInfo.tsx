@@ -31,6 +31,11 @@ const ProfileInfo: React.FC = () => {
             </a> - Uma jornada prática e acessível para aprender a programar com propósito, usando tecnologia para resolver problemas reais..
           </li>
           <li>
+            <a href="https://storge.me" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+              Storge.me
+            </a> - Uma plataforma de histórias curtas e envolventes, criadas especialmente para criar momentos únicos entre pais e filhos."Histórias que conectam. Amor que se conta."
+          </li>
+          <li>
             <a href="https://benfeitoria.com/projeto/qr-do-bem-1zy6" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
               QR do Bem
             </a> - Sistema de microdoações via QR Code que conecta doadores a pessoas em situação de rua, com uso social controlado e transparente.
