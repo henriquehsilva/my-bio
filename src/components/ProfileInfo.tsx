@@ -36,6 +36,12 @@ const ProfileInfo: React.FC = () => {
             </a> - Uma plataforma de histórias curtas e envolventes, criadas especialmente para criar momentos únicos entre pais e filhos."Histórias que conectam. Amor que se conta."
           </li>
           <li>
+            <a href="https://doisminutos.co" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+              Dois Minutos
+            </a> - Uma plataforma de microconteúdos que transforma conhecimento e histórias em aprendizado rápido e
+            prático, com foco em temas diversos, relevantes e atuais.
+          </li>
+          <li>
             <a href="https://benfeitoria.com/projeto/qr-do-bem-1zy6" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
               QR do Bem
             </a> - Sistema de microdoações via QR Code que conecta doadores a pessoas em situação de rua, com uso social controlado e transparente.
