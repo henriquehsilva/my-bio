@@ -20,11 +20,11 @@ const ProfileInfo: React.FC = () => {
         <div>
           <b>Áreas de atuação e interesse:</b>
           <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li>Desenvolvimento de Software (back-end & soluções escaláveis)</li>
-            <li>Ciência de Dados & Machine Learning</li>
+            <li>Desenvolvimento de Software</li>
+            <li>Ciência de Dados e Machine Learning</li>
             <li>Inteligência Artificial Aplicada</li>
             <li>Robótica e Automação Inteligente</li>
-            <li>Modelagem Matemática & Algoritmos</li>
+            <li>Modelagem Matemática e Algoritmos</li>
           </ul>
         </div>
 
