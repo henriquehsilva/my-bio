@@ -14,12 +14,16 @@ const AboutPage: React.FC = () => {
           {/* Texto justificado sempre */}
           <div className="flex-1 text-center md:text-left transition-transform duration-700 ease-out transform translate-y-8 opacity-0 animate-appear animation-delay-300">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-3 tracking-tight">
-              Henrique Silva - Tio Rick
+              Henrique Silva
             </h1>
             
             <div className="text-[#d0d0d0] mb-6 space-y-1">
               <p className="text-lg md:text-xl">
-                Dev Sênior | Empreendedor e Pensador Social | Inovação com alma
+                Senior Software Engineer 
+                Matemática Aplicada  
+                Inteligência Artificial  
+                Ciência de Dados e
+                Robótica
               </p>
             </div>
             <a
@@ -45,7 +49,7 @@ const AboutPage: React.FC = () => {
                 <Linkedin size={24} />
               </a>
               <a
-                href="https://www.youtube.com/@henriquesilvadev"
+                href="https://www.youtube.com/@henriquesilvalab"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
