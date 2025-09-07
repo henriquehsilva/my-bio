@@ -11,7 +11,7 @@ const Hero = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover filter grayscale"
-          poster="https://images.pexels.com/photos/3571551/pexels-photo-3571551.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+          poster="./bg-video.webp"
         >
           <source
             src="/videos/hero.mp4"
@@ -54,23 +54,23 @@ const Hero = () => {
             estudo & trabalho
             <div className="w-8 h-px bg-white/30 ml-4"></div>            
           </div>
-<div className="flex justify-center items-center -space-x-4">
-  <img 
-    src="/logo-fiap.png" 
-    alt="FIAP" 
-    className="w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40" 
-  />
-  <img 
-    src="/logo-ufg.png" 
-    alt="UFG" 
-    className="w-24 h-20 sm:w-32 sm:h-28 md:w-48 md:h-40" 
-  />
-  <img 
-    src="/logo-cast.png" 
-    alt="CAST" 
-    className="w-24 h-20 sm:w-32 sm:h-28 md:w-48 md:h-40" 
-  />
-</div>
+          <div className="flex justify-center items-center -space-x-4">
+            <img 
+              src="/logo-fiap.png" 
+              alt="FIAP" 
+              className="w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40" 
+            />
+            <img 
+              src="/logo-ufg.png" 
+              alt="UFG" 
+              className="w-24 h-20 sm:w-32 sm:h-28 md:w-48 md:h-40" 
+            />
+            <img 
+              src="/logo-cast.png" 
+              alt="CAST" 
+              className="w-24 h-20 sm:w-32 sm:h-28 md:w-48 md:h-40" 
+            />
+          </div>
         </div>
       </div>
 
