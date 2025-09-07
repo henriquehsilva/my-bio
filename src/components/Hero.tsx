@@ -54,10 +54,22 @@ const Hero = () => {
             estudo & trabalho
             <div className="w-8 h-px bg-white/30 ml-4"></div>            
           </div>
-          <div className="flex items-center -space-x-16">
-            <img src="/logo-fiap.png" alt="FIAP" className="w-48 h-48" />
-            <img src="/logo-ufg.png" alt="UFG" className="w-64 h-48" />
-            <img src="/logo-cast.png" alt="CAST" className="w-64 h-48" />
+          <div className="flex items-center -space-x-8">
+            <img 
+              src="/logo-fiap.png" 
+              alt="FIAP" 
+              className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48" 
+            />
+            <img 
+              src="/logo-ufg.png" 
+              alt="UFG" 
+              className="w-28 h-24 sm:w-40 sm:h-32 md:w-64 md:h-48" 
+            />
+            <img 
+              src="/logo-cast.png" 
+              alt="CAST" 
+              className="w-28 h-24 sm:w-40 sm:h-32 md:w-64 md:h-48" 
+            />
           </div>
         </div>
       </div>
