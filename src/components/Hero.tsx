@@ -51,7 +51,7 @@ const Hero = () => {
         <div className="mt-12">
           <div className="inline-flex items-center text-sm text-white/60 tracking-widest uppercase">
             <div className="w-8 h-px bg-white/30 mr-4"></div>
-            Programador, matemático e eterno aprendiz em busca de sentido no mundo por meio de esboços de cálculo e linhas de código.
+            estudo & trabalho
             <div className="w-8 h-px bg-white/30 ml-4"></div>            
           </div>
           <div className="flex justify-center items-center -space-x-4">
