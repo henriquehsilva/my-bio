@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iFood – Resumo do Backend de Logística de Entregas</title>
+  <style>
+    :root{
+      --primary:#2A2359;
+      --accent:#BF247A;
+      --muted:#6b6b6b;
+      --bg:#f7f7fb;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:#1b1b1b;
+      line-height:1.6;
+    }
+    header{
+      background:linear-gradient(135deg,var(--primary),#812B8C);
+      color:#fff;
+      padding:48px 20px;
+      text-align:center;
+    }
+    h1{margin:0 0 8px;font-size:28px;letter-spacing:.3px}
+    .subtitle{opacity:.9}
+    main{max-width:960px;margin: -30px auto 48px;padding:0 20px}
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      padding:24px;
+      box-shadow:0 8px 30px rgba(0,0,0,.08);
+      margin-bottom:24px;
+    }
+    h2{color:var(--primary);margin-top:0}
+    ul{padding-left:20px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:16px;
+    }
+    .badge{
+      display:inline-block;
+      background:rgba(191,36,122,.1);
+      color:var(--accent);
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      margin-right:6px;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    footer{
+      text-align:center;
+      color:var(--muted);
+      padding:24px 0 48px;
+      font-size:14px;
+    }
+    .kpis{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+    .kpi{flex:1 1 220px;background:#fff;border-radius:12px;padding:16px;border:1px solid #eee}
+    .kpi h3{margin:0;color:var(--primary);font-size:16px}
+    .kpi p{margin:6px 0 0;color:#333;font-size:14px}
+    code{background:#f2eef7;border-radius:6px;padding:2px 6px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>iFood – Backend de Logística de Entregas</h1>
+    <p class="subtitle">Arquitetura de alto nível com base em fontes públicas (event streaming + ML + lakehouse)</p>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Visão geral do pipeline</h2>
+      <div class="grid">
+        <div>
+          <span class="badge">1</span><strong>Criação do pedido & eventos</strong>
+          <p>Pedidos e status geram eventos publicados em <strong>Kafka/Confluent Cloud</strong>, alimentando rastreio e análises em tempo real (ksqlDB).</p>
+        </div>
+        <div>
+          <span class="badge">2</span><strong>Previsão & ETA (ML)</strong>
+          <p>Modelos servidos na <strong>AWS SageMaker</strong> estimam preparo, deslocamento e ETA com base em sinais operacionais.</p>
+        </div>
+        <div>
+          <span class="badge">3</span><strong>Despacho / Matching</strong>
+          <p>Serviço decide o melhor entregador para cada pedido usando eventos de posição, regras operacionais e heurísticas/ML.</p>
+        </div>
+        <div>
+          <span class="badge">4</span><strong>Roteamento & Tracking</strong>
+          <p>Atualizações de localização e status fluem por eventos; clientes e operações recebem notificações e dashboards.</p>
+        </div>
+        <div>
+          <span class="badge">5</span><strong>Data & Governança</strong>
+          <p>Streams alimentam <strong>Lakehouse (Databricks)</strong> e <strong>Lakeflow</strong> para análises, BI e re-treinamento de modelos.</p>
+        </div>
+        <div>
+          <span class="badge">6</span><strong>Plataforma & Operação</strong>
+          <p>Microsserviços (Java/Spring), <strong>AWS</strong> (EKS/Lambda/serviços gerenciados), ingestão/streaming em escala.</p>
+        </div>
+      </div>
+      <div class="kpis">
+        <div class="kpi">
+          <h3>Event streaming</h3>
+          <p>Kafka/Confluent + <em>ksqlDB</em> para processamento contínuo e monitoramento.</p>
+        </div>
+        <div class="kpi">
+          <h3>ML em produção</h3>
+          <p>Plataforma com <strong>SageMaker</strong> para deploy e operação de modelos (ETA, simulações).</p>
+        </div>
+        <div class="kpi">
+          <h3>Lakehouse</h3>
+          <p><strong>Databricks Lakehouse</strong> + Lakeflow para ingestão e transformação em larga escala.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Por que essa arquitetura escala bem?</h2>
+      <ul>
+        <li><strong>Assíncrono por padrão</strong>: baixo acoplamento, reprocessamento possível, DLQs quando preciso.</li>
+        <li><strong>Processamento em tempo real</strong>: métricas e gatilhos operacionais com <em>ksqlDB</em>.</li>
+        <li><strong>ML gerenciado</strong>: inferência padronizada (SageMaker) melhora previsibilidade e custo.</li>
+        <li><strong>Dados unificados</strong>: Lakehouse + pipelines declarativos reduzem latência e facilitam governança.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Componentes & papéis</h2>
+      <ul>
+        <li><strong>Malha de eventos</strong>: Kafka (Confluent Cloud), tópicos de pedidos, tracking e finanças.</li>
+        <li><strong>Serviços de domínio</strong>: pedido, restaurante, courier, despacho, notificação, pagamentos.</li>
+        <li><strong>Dispatch Service</strong>: recebe <code>order_ready_for_dispatch</code> e <code>courier_location_update</code>, cria <code>assignment</code>.</li>
+        <li><strong>ETA/ML</strong>: modelos de tempo de preparo e deslocamento servidos na AWS.</li>
+        <li><strong>Data Platform</strong>: Lakehouse, jobs de streaming/batch, BI e re-treino.</li>
+      </ul>
+      <p style="color:var(--muted);font-size:14px">Observação: o algoritmo exato de matching/roteamento não é público; os elementos acima refletem padrões do setor e fontes oficiais sobre o stack.</p>
+    </section>
+
+    <section class="card">
+      <h2>Fontes públicas</h2>
+      <ul>
+        <li>AWS – Modernização do middleware financeiro (arquitetura orientada a eventos): <a href="https://aws.amazon.com/blogs/industries/ifood-modernizes-its-financial-middleware-to-event-driven-architecture/" target="_blank" rel="noopener">aws.amazon.com</a></li>
+        <li>Confluent – Caso iFood (Confluent Cloud + ksqlDB): <a href="https://www.confluent.io/customers/ifood/" target="_blank" rel="noopener">confluent.io</a></li>
+        <li>AWS ML Blog – Plataforma de inferência com SageMaker (centenas de modelos): <a href="https://aws.amazon.com/blogs/machine-learning/how-ifood-built-a-platform-to-run-hundreds-of-machine-learning-models-with-amazon-sagemaker-inference/" target="_blank" rel="noopener">aws.amazon.com</a></li>
+        <li>Databricks – Lakeflow & Lakehouse (pipelines declarativos): <a href="https://www.databricks.com/customers/ifood/lakeflow-declarative-pipelines" target="_blank" rel="noopener">databricks.com</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>Resumo elaborado para estudo técnico • Baseado em fontes públicas e padrões de arquitetura do setor.</p>
+  </footer>
+</body>
+</html>
