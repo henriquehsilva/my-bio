@@ -5,21 +5,7 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover filter grayscale"
-          poster="./bg-video.webp"
-        >
-          <source
-            src="/videos/hero.mp4"
-            type="video/mp4"
-          />
-          {/* Fallback for browsers that don't support video */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black"></div>
-        </video>
+        <img src="/hsd-logo2.webp" alt="HSD Logo" className="absolute inset-0 w-full h-full object-cover filter" />
       </div>
 
       {/* Overlay */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Youtube, Instagram, Linkedin, Github } from 'lucide-react';
+import { Youtube, Instagram, Linkedin, Github, Newspaper } from 'lucide-react';
 
 const Header = () => {
   const socialLinks = [
@@ -7,6 +7,7 @@ const Header = () => {
     { icon: Instagram, href: 'https://www.instagram.com/henriquesilvadev/', label: 'Instagram' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/henriquesilvadev/', label: 'LinkedIn' },
     { icon: Github, href: 'https://github.com/henriquehsilva', label: 'GitHub' },
+    { icon: Newspaper, href: 'https://henriquesilva.substack.com', label: 'Substack' },
   ];
 
   return (
