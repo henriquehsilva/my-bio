@@ -216,7 +216,7 @@ function App() {
                 <Code className="text-white" size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Domínio .pt Gratuito por 1 Ano</h3>
+                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Domínio Gratuito por 1 Ano</h3>
                 <p className="text-gray-600">Escolha o nome perfeito para o seu negócio online, sem custos adicionais.</p>
               </div>
             </div>
@@ -285,7 +285,7 @@ function App() {
 
               <ul className="text-left text-white text-lg space-y-4 mb-8">
                 <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Design responsivo e exclusivo</li>
-                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Domínio .pt gratuito por 1 ano</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Domínio gratuito por 1 ano</li>
                 <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Otimização para Google (SEO)</li>
                 <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Suporte pós-lançamento</li>
                 <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Website online em 7 dias</li>
