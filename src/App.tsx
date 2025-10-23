@@ -395,7 +395,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center gap-6">
             <p className="text-lg text-center">
-              Desenvolvido a 4 mãos — você e Henrique Silva Dev
+              Desenvolvido por Henrique Silva Dev
             </p>
 
             <div className="flex gap-6">
