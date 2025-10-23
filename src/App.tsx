@@ -42,15 +42,15 @@ function App() {
     setIsMenuOpen(false);
   };
 
+  // Preço no CTA do WhatsApp (ATUALIZADO)
   const whatsappHref = `https://wa.me/5562985849729?text=${encodeURIComponent(
-    'Olá! Quero um website profissional em 1 semana (500 €). Podemos conversar?'
+    'Olá! Quero um website profissional em 1 semana (R$ 1.500,00). Podemos conversar?'
   )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFeedback({ type: null, msg: '' });
 
-    // validação simples
     if (!name.trim() || !email.trim() || !message.trim()) {
       setFeedback({ type: 'error', msg: 'Preencha nome, e-mail e mensagem.' });
       return;
@@ -62,8 +62,8 @@ function App() {
         name,
         email,
         message,
-        status: 'new',             // para triagem futura
-        source: 'landing-pt',      // identifica origem
+        status: 'new',
+        source: 'landing-pt',
         createdAt: serverTimestamp()
       });
       setFeedback({ type: 'success', msg: 'Mensagem enviada com sucesso! Em breve entrarei em contacto.' });
@@ -116,7 +116,8 @@ function App() {
             Transforme a sua ideia num website incrível em apenas 7 dias
           </h1>
           <p className="text-xl md:text-3xl text-white/90 mb-8 font-light">
-            Design + Domínio + Desenvolvimento colaborativo — tudo por <span className="font-bold text-[#F2B705]">500 €</span>
+            {/* PREÇO ATUALIZADO no hero */}
+            Design + Domínio + Desenvolvimento colaborativo — tudo por <span className="font-bold text-[#F2B705]">R$ 1.500,00</span>
           </p>
           <button
             onClick={() => scrollToSection('preco')}
@@ -280,7 +281,8 @@ function App() {
             </h2>
 
             <div className="bg-white/10 backdrop-blur-sm p-12 rounded-3xl mb-8">
-              <div className="text-7xl font-bold text-white mb-4">500 €</div>
+              {/* PREÇO ATUALIZADO no card */}
+              <div className="text-7xl font-bold text-white mb-4">R$ 1.500,00</div>
               <p className="text-2xl text-white/90 mb-8">Pagamento único. Sem taxas escondidas.</p>
 
               <ul className="text-left text-white text-lg space-y-4 mb-8">
@@ -292,7 +294,7 @@ function App() {
               </ul>
 
               <a
-                href="https://buy.stripe.com/test_6oUcMZ4EOcbH4rs5J88AE00"
+                href="https://buy.stripe.com/test_cNi9ANfjs5Nj5vwdbA8AE01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-[#F20587] hover:bg-[#F28705] text-white px-12 py-4 rounded-full text-xl font-bold transition-all transform hover:scale-105 shadow-2xl"
@@ -378,7 +380,7 @@ function App() {
                 contato@henriquesilva.dev
               </a>
 
-              {/* WhatsApp atualizado */}
+              {/* WhatsApp atualizado com preço novo no texto */}
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-[#2E038C] hover:text-[#F20587] transition-colors">
                 <Phone size={20} />
                 WhatsApp: +55 62 98584-9729
