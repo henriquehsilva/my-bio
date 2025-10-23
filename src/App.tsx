@@ -105,8 +105,8 @@ function App() {
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-30">
-          <source src="hero.mp4" type="video/mp4" />
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-80">
+          <source src="https://elixir-movies.s3.us-east-2.amazonaws.com/hero.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-gradient-to-br from-[#2E038C]/90 via-[#F20587]/80 to-[#F28705]/70"></div>
