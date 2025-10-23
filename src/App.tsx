@@ -1,32 +1,81 @@
 import { useState, useEffect } from 'react';
 import { Check, Code, Palette, Rocket, Mail, Phone, Github, Linkedin, Instagram, Menu, X } from 'lucide-react';
+import { db } from './firebase';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+
+const SECTION_IDS = ['sobre', 'como-funciona', 'incluido', 'depoimentos', 'preco', 'contato'] as const;
+type SectionId = typeof SECTION_IDS[number];
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState({});
+  const [isVisible, setIsVisible] = useState<Partial<Record<SectionId, boolean>>>({});
+
+  // ---- Formulário contato ----
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error' | null; msg: string }>({ type: null, msg: '' });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
+            const el = entry.target as HTMLElement;
+            if (el.id) {
+              setIsVisible((prev) => ({ ...prev, [el.id as SectionId]: true }));
+              observer.unobserve(el);
+            }
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    document.querySelectorAll('[data-animate]').forEach((el) => {
-      observer.observe(el);
-    });
-
+    document.querySelectorAll<HTMLElement>('[data-animate]').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: SectionId) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setIsMenuOpen(false);
+  };
+
+  const whatsappHref = `https://wa.me/5562985849729?text=${encodeURIComponent(
+    'Olá! Quero um website profissional em 1 semana (500 €). Podemos conversar?'
+  )}`;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFeedback({ type: null, msg: '' });
+
+    // validação simples
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setFeedback({ type: 'error', msg: 'Preencha nome, e-mail e mensagem.' });
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      await addDoc(collection(db, 'contacts'), {
+        name,
+        email,
+        message,
+        status: 'new',             // para triagem futura
+        source: 'landing-pt',      // identifica origem
+        createdAt: serverTimestamp()
+      });
+      setFeedback({ type: 'success', msg: 'Mensagem enviada com sucesso! Em breve entrarei em contacto.' });
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err) {
+      console.error(err);
+      setFeedback({ type: 'error', msg: 'Não foi possível enviar. Tente novamente em instantes.' });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -56,14 +105,8 @@ function App() {
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        >
-          <source src="https://cdn.coverr.co/videos/coverr-artist-painting-on-canvas-9262/1080p.mp4" type="video/mp4" />
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-30">
+          <source src="hero.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-gradient-to-br from-[#2E038C]/90 via-[#F20587]/80 to-[#F28705]/70"></div>
@@ -150,8 +193,8 @@ function App() {
         </div>
       </section>
 
-      {/* O Que Está Incluído */}
-      <section data-animate className={`py-20 bg-white transition-all duration-1000 ${isVisible['incluido'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      {/* Incluído */}
+      <section id="incluido" data-animate className={`py-20 bg-white transition-all duration-1000 ${isVisible['incluido'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-16 text-center">
             O Que Está Incluído
@@ -202,13 +245,14 @@ function App() {
       </section>
 
       {/* Depoimentos */}
-      <section data-animate className={`py-20 bg-gradient-to-br from-[#F2B705]/10 to-[#F28705]/10 transition-all duration-1000 ${isVisible['depoimentos'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="depoimentos" data-animate className={`py-20 bg-gradient-to-br from-[#F2B705]/10 to-[#F28705]/10 transition-all duration-1000 ${isVisible['depoimentos'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-16 text-center">
             O Que Dizem os Meus Clientes
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* ... seus cards ... */}
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -222,31 +266,7 @@ function App() {
               <p className="text-sm text-gray-500">Fotógrafa, Lisboa</p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-[#F2B705] text-xl">★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Melhor investimento que fiz para o meu negócio. Website lindo, rápido e já estou a receber contactos de novos clientes."
-              </p>
-              <p className="font-bold text-[#2E038C]">João Ferreira</p>
-              <p className="text-sm text-gray-500">Consultor, Porto</p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-[#F2B705] text-xl">★</span>
-                ))}
-              </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Processo super simples e transparente. O resultado superou as minhas expectativas. Recomendo a todos!"
-              </p>
-              <p className="font-bold text-[#2E038C]">Ana Costa</p>
-              <p className="text-sm text-gray-500">Arquiteta, Coimbra</p>
-            </div>
+            {/* ... demais cards ... */}
           </div>
         </div>
       </section>
@@ -264,30 +284,15 @@ function App() {
               <p className="text-2xl text-white/90 mb-8">Pagamento único. Sem taxas escondidas.</p>
 
               <ul className="text-left text-white text-lg space-y-4 mb-8">
-                <li className="flex items-center gap-3">
-                  <Check className="text-[#F2B705] flex-shrink-0" size={24} />
-                  Design responsivo e exclusivo
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="text-[#F2B705] flex-shrink-0" size={24} />
-                  Domínio .pt gratuito por 1 ano
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="text-[#F2B705] flex-shrink-0" size={24} />
-                  Otimização para Google (SEO)
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="text-[#F2B705] flex-shrink-0" size={24} />
-                  Suporte pós-lançamento
-                </li>
-                <li className="flex items-center gap-3">
-                  <Check className="text-[#F2B705] flex-shrink-0" size={24} />
-                  Website online em 7 dias
-                </li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Design responsivo e exclusivo</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Domínio .pt gratuito por 1 ano</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Otimização para Google (SEO)</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Suporte pós-lançamento</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Website online em 7 dias</li>
               </ul>
 
               <a
-                href="https://buy.stripe.com/test_00000000000"
+                href="https://buy.stripe.com/test_6oUcMZ4EOcbH4rs5J88AE00"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-[#F20587] hover:bg-[#F28705] text-white px-12 py-4 rounded-full text-xl font-bold transition-all transform hover:scale-105 shadow-2xl"
@@ -296,9 +301,7 @@ function App() {
               </a>
             </div>
 
-            <p className="text-white/80 text-sm">
-              Pagamento 100% seguro através do Stripe
-            </p>
+            <p className="text-white/80 text-sm">Pagamento 100% seguro através do Stripe</p>
           </div>
         </div>
       </section>
@@ -311,13 +314,16 @@ function App() {
           </h2>
 
           <div className="max-w-2xl mx-auto">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-[#2E038C] font-semibold mb-2">Nome</label>
                 <input
                   type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 border-2 border-[#2E038C]/20 rounded-lg focus:border-[#F20587] focus:outline-none transition-colors"
                   placeholder="O seu nome"
+                  required
                 />
               </div>
 
@@ -325,8 +331,11 @@ function App() {
                 <label className="block text-[#2E038C] font-semibold mb-2">E-mail</label>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 border-2 border-[#2E038C]/20 rounded-lg focus:border-[#F20587] focus:outline-none transition-colors"
                   placeholder="seu@email.com"
+                  required
                 />
               </div>
 
@@ -334,27 +343,45 @@ function App() {
                 <label className="block text-[#2E038C] font-semibold mb-2">Mensagem</label>
                 <textarea
                   rows={5}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-4 py-3 border-2 border-[#2E038C]/20 rounded-lg focus:border-[#F20587] focus:outline-none transition-colors"
                   placeholder="Conte-me sobre o seu projeto..."
+                  required
                 ></textarea>
               </div>
 
+              {feedback.type && (
+                <div
+                  className={`p-3 rounded-lg text-sm ${
+                    feedback.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
+                  }`}
+                >
+                  {feedback.msg}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-[#F20587] hover:bg-[#2E038C] text-white px-8 py-4 rounded-lg text-lg font-bold transition-colors"
+                disabled={submitting}
+                className={`w-full ${
+                  submitting ? 'opacity-70 cursor-not-allowed' : 'bg-[#F20587] hover:bg-[#2E038C]'
+                } text-white px-8 py-4 rounded-lg text-lg font-bold transition-colors`}
               >
-                Enviar Mensagem
+                {submitting ? 'Enviando...' : 'Enviar Mensagem'}
               </button>
             </form>
 
             <div className="mt-12 flex flex-col md:flex-row justify-center gap-6 text-center">
-              <a href="mailto:henrique@dev.pt" className="flex items-center justify-center gap-2 text-[#2E038C] hover:text-[#F20587] transition-colors">
+              <a href="mailto:contato@henriquesilva.dev" className="flex items-center justify-center gap-2 text-[#2E038C] hover:text-[#F20587] transition-colors">
                 <Mail size={20} />
-                henrique@dev.pt
+                contato@henriquesilva.dev
               </a>
-              <a href="https://wa.me/351900000000" className="flex items-center justify-center gap-2 text-[#2E038C] hover:text-[#F20587] transition-colors">
+
+              {/* WhatsApp atualizado */}
+              <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-[#2E038C] hover:text-[#F20587] transition-colors">
                 <Phone size={20} />
-                +351 900 000 000
+                WhatsApp: +55 62 98584-9729
               </a>
             </div>
           </div>
@@ -370,20 +397,12 @@ function App() {
             </p>
 
             <div className="flex gap-6">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2B705] transition-colors">
-                <Linkedin size={24} />
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2B705] transition-colors">
-                <Github size={24} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2B705] transition-colors">
-                <Instagram size={24} />
-              </a>
+              <a href="https://www.linkedin.com/in/henriquesilvadev" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2B705] transition-colors"><Linkedin size={24} /></a>
+              <a href="https://github.com/henriquehsilva" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2B705] transition-colors"><Github size={24} /></a>
+              <a href="https://www.instagram.com/henriquesilvadev/" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2B705] transition-colors"><Instagram size={24} /></a>
             </div>
 
-            <p className="text-sm text-white/70">
-              Copyright © 2025. Todos os direitos reservados.
-            </p>
+            <p className="text-sm text-white/70">Copyright © 2025. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
