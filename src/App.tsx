@@ -117,7 +117,7 @@ function App() {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
-            Mentoria de Programação Sob Medida
+            Mentoria de Programação 1:1
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 font-light">
             Do zero aos seus primeiros projetos: <span className="font-semibold"><a href="https://exercism.io/" target='_blank'> Exercism</a></span>, <span className="font-semibold">Lógica</span>, <span className="font-semibold">TDD</span> e <span className="font-semibold">IA</span> no seu ritmo.
