@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Check, Code, Palette, Rocket, Mail, Phone, Github, Linkedin, Instagram, Menu, X } from 'lucide-react';
+import { Check, Code, Palette, Rocket, Mail, Phone, Github, Linkedin, Instagram, Menu, X, Calendar } from 'lucide-react';
 import { db } from './firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 const SECTION_IDS = ['sobre', 'como-funciona', 'incluido', 'depoimentos', 'preco', 'contato'] as const;
 type SectionId = typeof SECTION_IDS[number];
+
+// 👉 Ajuste aqui seus links reais:
+const CALENDLY_URL = 'https://calendly.com/henriquesilvadev';
+const STRIPE_URL   = 'https://buy.stripe.com/test_14AaERfjsa3z1fgfjI8AE02'; // substitua pelo checkout de R$50/h
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,9 +46,9 @@ function App() {
     setIsMenuOpen(false);
   };
 
-  // Preço no CTA do WhatsApp (ATUALIZADO)
+  // CTA do WhatsApp (atualizado para mentoria)
   const whatsappHref = `https://wa.me/5562985849729?text=${encodeURIComponent(
-    'Olá! Quero um website profissional em 1 semana (R$ 1.500,00). Podemos conversar?'
+    'Olá! Quero agendar uma mentoria de programação (R$ 50,00 / 1h). Podemos conversar?'
   )}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,10 +67,10 @@ function App() {
         email,
         message,
         status: 'new',
-        source: 'landing-pt',
+        source: 'landing-mentoria',
         createdAt: serverTimestamp()
       });
-      setFeedback({ type: 'success', msg: 'Mensagem enviada com sucesso! Em breve entrarei em contacto.' });
+      setFeedback({ type: 'success', msg: 'Mensagem enviada com sucesso! Em breve entro em contato.' });
       setName('');
       setEmail('');
       setMessage('');
@@ -84,7 +88,7 @@ function App() {
       <nav className="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-[#F20587] to-[#2E038C] bg-clip-text text-transparent">
-            Henrique Silva Dev
+            Henrique Silva Dev — Mentorias
           </div>
 
           <button
@@ -113,18 +117,34 @@ function App() {
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
-            Transforme a sua ideia num website incrível em apenas 7 dias
+            Mentoria de Programação Sob Medida
           </h1>
-          <p className="text-xl md:text-3xl text-white/90 mb-8 font-light">
-            {/* PREÇO ATUALIZADO no hero */}
-            Design + Domínio + Desenvolvimento colaborativo — tudo por <span className="font-bold text-[#F2B705]">R$ 1.500,00</span>
+          <p className="text-xl md:text-2xl text-white/90 mb-8 font-light">
+            Do zero aos seus primeiros projetos: <span className="font-semibold"><a href="https://exercism.io/" target='_blank'> Exercism</a></span>, <span className="font-semibold">Lógica</span>, <span className="font-semibold">TDD</span> e <span className="font-semibold">IA</span> no seu ritmo.
+            <br />
+            <span className="font-bold text-[#F2B705]">R$ 50,00 / 1h</span> — grupos sub-representados: <span className="font-bold">-30%</span>.
           </p>
-          <button
-            onClick={() => scrollToSection('preco')}
-            className="bg-[#F20587] hover:bg-[#F28705] text-white px-12 py-4 rounded-full text-xl font-bold transition-all transform hover:scale-105 shadow-2xl"
-          >
-            Começar Agora
-          </button>
+
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-white text-[#2E038C] px-8 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-2xl"
+            >
+              <Calendar size={20} /> Agendar no Calendly
+            </a>
+            <a
+              href="#preco"
+              className="bg-[#F20587] hover:bg-[#F28705] text-white px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl"
+            >
+              Ver Preço e Pagamento
+            </a>
+          </div>
+
+          <p className="text-white/80 mt-6 text-sm">
+            +5 mentorias no mês ⇒ acesso ao conteúdo pago da minha revista digital: <a className="underline" href="https://henriquesilva.substack.com/" target="_blank" rel="noreferrer">henriquesilva.substack.com</a>
+          </p>
         </div>
 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
@@ -139,14 +159,14 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-8 text-center">
-              Website em 1 Semana
+              Trilha Personalizada, do Básico aos Projetos
             </h2>
             <div className="bg-gradient-to-br from-[#F20587]/10 to-[#2E038C]/10 p-8 md:p-12 rounded-3xl">
               <p className="text-xl text-gray-700 leading-relaxed mb-6">
-                Este não é apenas mais um serviço de criação de websites. É uma <span className="font-bold text-[#F20587]">colaboração criativa</span> entre você e um desenvolvedor com mais de <span className="font-bold text-[#2E038C]">10 anos de experiência</span> em desenvolvimento web.
+                Mentoria individual e prática para acelerar sua jornada em programação. Começamos com <span className="font-semibold">lógica</span> e seguimos por <span className="font-semibold">Exercism</span> (exercícios guiados), evoluímos com <span className="font-semibold">TDD</span> e incorporamos <span className="font-semibold">IA</span> para turbinar sua produtividade.
               </p>
               <p className="text-xl text-gray-700 leading-relaxed">
-                <span className="font-bold text-[#F28705]">Você participa da criação.</span> Eu transformo a sua visão em código. Juntos, criamos algo único e profissional em apenas 7 dias.
+                Você define objetivos, eu desenho a trilha e praticamos juntos em <span className="font-semibold">sessões de 60 minutos</span>. No final, você entrega <span className="font-semibold">projetos reais</span> para o seu portfólio.
               </p>
             </div>
           </div>
@@ -162,22 +182,22 @@ function App() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl transform hover:scale-105 transition-transform">
-              <div className="w-16 h-16 bg-[#F2B705] rounded-full flex items-center justify-center mb-6">
-                <span className="text-3xl font-bold text-white">1</span>
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-6">
+                <Calendar className="text-[#2E038C]" size={28} />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Pagamento Seguro</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">1) Agende</h3>
               <p className="text-white/90 text-lg">
-                Faça o pagamento seguro através do Stripe. Simples, rápido e protegido.
+                Escolha um horário no <span className="font-semibold">Calendly</span> para sua mentoria de 1h.
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl transform hover:scale-105 transition-transform">
-              <div className="w-16 h-16 bg-[#F28705] rounded-full flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-[#F2B705] rounded-full flex items-center justify-center mb-6">
                 <span className="text-3xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Reunião Inicial</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">2) Pague</h3>
               <p className="text-white/90 text-lg">
-                Receba um e-mail automático para agendar a nossa primeira conversa. Vamos planear tudo juntos.
+                <span className="font-semibold">R$ 50,00 / 1h</span> via <span className="font-semibold">Stripe</span>. Grupos sub-representados possuem <span className="font-semibold">30% de desconto</span>.
               </p>
             </div>
 
@@ -185,11 +205,30 @@ function App() {
               <div className="w-16 h-16 bg-[#BF3604] rounded-full flex items-center justify-center mb-6">
                 <span className="text-3xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Site Online em 7 Dias</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">3) Evolua</h3>
               <p className="text-white/90 text-lg">
-                Em apenas uma semana, o seu website estará online com domínio próprio e pronto para conquistar clientes.
+                Trilha customizada com <span className="font-semibold">Exercism</span>, <span className="font-semibold">TDD</span>, <span className="font-semibold">IA</span> e <span className="font-semibold">projetos reais</span>. +5 mentorias/mês ⇒ acesso à revista digital paga.
               </p>
             </div>
+          </div>
+
+          <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center">
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-[#2E038C] px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-2xl"
+            >
+              Agendar no Calendly
+            </a>
+            <a
+              href={STRIPE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-[#F20587] hover:bg-[#F28705] text-white px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105 shadow-2xl"
+            >
+              Pagar 1h no Stripe (R$ 50,00)
+            </a>
           </div>
         </div>
       </section>
@@ -204,21 +243,21 @@ function App() {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div className="flex items-start gap-4 p-6 bg-gradient-to-br from-[#F20587]/5 to-transparent rounded-xl hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-[#F20587] rounded-full flex items-center justify-center flex-shrink-0">
-                <Palette className="text-white" size={24} />
+                <Code className="text-white" size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Design Responsivo e Exclusivo</h3>
-                <p className="text-gray-600">Criado especificamente para o seu negócio, funciona perfeitamente em todos os dispositivos.</p>
+                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Trilha Personalizada</h3>
+                <p className="text-gray-600">Plano sob medida alinhado aos seus objetivos (carreira, faculdade, mudança de área).</p>
               </div>
             </div>
 
             <div className="flex items-start gap-4 p-6 bg-gradient-to-br from-[#2E038C]/5 to-transparent rounded-xl hover:shadow-lg transition-shadow">
               <div className="w-12 h-12 bg-[#2E038C] rounded-full flex items-center justify-center flex-shrink-0">
-                <Code className="text-white" size={24} />
+                <Palette className="text-white" size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Domínio Gratuito por 1 Ano</h3>
-                <p className="text-gray-600">Escolha o nome perfeito para o seu negócio online, sem custos adicionais.</p>
+                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Exercism + Lógica</h3>
+                <p className="text-gray-600">Exercícios guiados, feedback e evolução da base de raciocínio.</p>
               </div>
             </div>
 
@@ -227,8 +266,8 @@ function App() {
                 <Rocket className="text-white" size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Otimização para Google (SEO)</h3>
-                <p className="text-gray-600">O seu website pronto para ser encontrado pelos seus clientes no Google.</p>
+                <h3 className="text-xl font-bold text-[#2E038C] mb-2">TDD na Prática</h3>
+                <p className="text-gray-600">Comece escrevendo testes e aprenda a evoluir código com segurança.</p>
               </div>
             </div>
 
@@ -237,23 +276,27 @@ function App() {
                 <Check className="text-white" size={24} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-[#2E038C] mb-2">Suporte Pós-Lançamento</h3>
-                <p className="text-gray-600">Não fica sozinho após o lançamento. Estou aqui para ajudar no que precisar.</p>
+                <h3 className="text-xl font-bold text-[#2E038C] mb-2">IA no Fluxo de Trabalho</h3>
+                <p className="text-gray-600">Aprenda a usar IA para brainstorming, refatoração, testes e documentação.</p>
               </div>
             </div>
           </div>
+
+          <p className="text-center text-gray-600 mt-10">
+            Bônus: quem fizer <span className="font-semibold">+5 mentorias no mês</span> ganha acesso ao conteúdo pago da revista digital{' '}
+            <a className="underline" href="https://henriquesilva.substack.com/" target="_blank" rel="noreferrer">henriquesilva.substack.com</a>.
+          </p>
         </div>
       </section>
 
-      {/* Depoimentos */}
+      {/* Depoimentos (mantido, pode adaptar depois) */}
       <section id="depoimentos" data-animate className={`py-20 bg-gradient-to-br from-[#F2B705]/10 to-[#F28705]/10 transition-all duration-1000 ${isVisible['depoimentos'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-16 text-center">
-            O Que Dizem os Meus Clientes
+            O Que Dizem Meus Alunos
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* ... seus cards ... */}
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -261,13 +304,13 @@ function App() {
                 ))}
               </div>
               <p className="text-gray-700 mb-4 italic">
-                "Incrível como em apenas uma semana tinha o meu website profissional online. O Henrique é atencioso e percebe mesmo o que queremos."
+                "Comecei do zero e em poucas semanas já tinha um projeto no GitHub. A trilha com Exercism e TDD fez toda a diferença."
               </p>
               <p className="font-bold text-[#2E038C]">Maria Santos</p>
-              <p className="text-sm text-gray-500">Fotógrafa, Lisboa</p>
+              <p className="text-sm text-gray-500">Estudante</p>
             </div>
 
-            {/* ... demais cards ... */}
+            {/* Adicione outros cards conforme tiver depoimentos reais */}
           </div>
         </div>
       </section>
@@ -277,33 +320,44 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-              Tudo o Que Precisa Para Começar
+              Preço Simples e Transparente
             </h2>
 
             <div className="bg-white/10 backdrop-blur-sm p-12 rounded-3xl mb-8">
-              {/* PREÇO ATUALIZADO no card */}
-              <div className="text-7xl font-bold text-white mb-4">R$ 1.500,00</div>
-              <p className="text-2xl text-white/90 mb-8">Pagamento único. Sem taxas escondidas.</p>
+              <div className="text-6xl md:text-7xl font-bold text-white mb-2">R$ 50,00</div>
+              <p className="text-white/90 text-xl mb-6">por sessão de 1 hora</p>
 
               <ul className="text-left text-white text-lg space-y-4 mb-8">
-                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Design responsivo e exclusivo</li>
-                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Domínio gratuito por 1 ano</li>
-                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Otimização para Google (SEO)</li>
-                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Suporte pós-lançamento</li>
-                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Website online em 7 dias</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Trilha personalizada (Exercism, Lógica, TDD, IA)</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Sessões 1:1 com prática guiada</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Projetos reais para portfólio</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />Suporte entre sessões</li>
+                <li className="flex items-center gap-3"><Check className="text-[#F2B705]" size={24} />+5 mentorias/mês ⇒ acesso à revista paga</li>
               </ul>
 
-              <a
-                href="https://buy.stripe.com/test_cNi9ANfjs5Nj5vwdbA8AE01"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-[#F20587] hover:bg-[#F28705] text-white px-12 py-4 rounded-full text-xl font-bold transition-all transform hover:scale-105 shadow-2xl"
-              >
-                Pagar com Stripe
-              </a>
+              <div className="grid md:grid-cols-2 gap-4">
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-white text-[#2E038C] px-8 py-4 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl"
+                >
+                  Agendar no Calendly
+                </a>
+                <a
+                  href={STRIPE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#F20587] hover:bg-[#F28705] text-white px-8 py-4 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl"
+                >
+                  Pagar 1h no Stripe
+                </a>
+              </div>
             </div>
 
-            <p className="text-white/80 text-sm">Pagamento 100% seguro através do Stripe</p>
+            <p className="text-white/90">
+              <span className="font-semibold">Grupos sub-representados</span> (mulheres, pessoas negras/indígenas, PCD, LGBTQIA+ e outras minorias na tecnologia) têm <span className="font-semibold">30% de desconto</span>. Informe no agendamento.
+            </p>
           </div>
         </div>
       </section>
@@ -312,7 +366,7 @@ function App() {
       <section id="contato" data-animate className={`py-20 bg-white transition-all duration-1000 ${isVisible['contato'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-16 text-center">
-            Ainda Tem Dúvidas?
+            Fale Comigo
           </h2>
 
           <div className="max-w-2xl mx-auto">
@@ -324,7 +378,7 @@ function App() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 border-2 border-[#2E038C]/20 rounded-lg focus:border-[#F20587] focus:outline-none transition-colors"
-                  placeholder="O seu nome"
+                  placeholder="Seu nome"
                   required
                 />
               </div>
@@ -348,7 +402,7 @@ function App() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   className="w-full px-4 py-3 border-2 border-[#2E038C]/20 rounded-lg focus:border-[#F20587] focus:outline-none transition-colors"
-                  placeholder="Conte-me sobre o seu projeto..."
+                  placeholder="Conte sua meta (ex.: primeira vaga, projeto pessoal, mudança de área...)"
                   required
                 ></textarea>
               </div>
@@ -380,7 +434,6 @@ function App() {
                 contato@henriquesilva.dev
               </a>
 
-              {/* WhatsApp atualizado com preço novo no texto */}
               <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-[#2E038C] hover:text-[#F20587] transition-colors">
                 <Phone size={20} />
                 WhatsApp: +55 62 98584-9729
