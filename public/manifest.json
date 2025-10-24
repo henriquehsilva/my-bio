@@ -1,18 +1,15 @@
 {
-  "id": "/",
-  "name": "Website 1 Semana — Henrique Silva Dev",
-  "short_name": "Website 1 Semana",
-  "description": "Criação de website profissional em 7 dias com Henrique Silva Dev. Design responsivo, domínio incluído e processo colaborativo.",
-  "start_url": "/?source=pwa",
-  "scope": "/",
+  "name": "Mentoria de programação 1:1",
+  "short_name": "Mentoria 1:1",
+  "description": "Mentoria de programação personalizada com foco em resultados reais.",
+  "start_url": "/",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
-  "background_color": "#FFFFFF",
-  "theme_color": "#2E038C",
+  "background_color": "#FEF9F2",
+  "theme_color": "#C99548",
   "orientation": "portrait",
-  "lang": "pt-PT",
+  "scope": "/",
+  "lang": "pt-BR",
   "dir": "ltr",
-  "categories": ["business", "productivity", "utilities", "design"],
   "icons": [
     {
       "src": "/assets/icons/icon-192.png",
@@ -27,64 +24,6 @@
       "purpose": "any maskable"
     }
   ],
-  "shortcuts": [
-    {
-      "name": "Como Funciona",
-      "short_name": "Processo",
-      "description": "Ver o passo-a-passo do projeto em 7 dias",
-      "url": "/#como-funciona",
-      "icons": [{ "src": "/assets/shortcuts/processo.png", "sizes": "96x96", "type": "image/png" }]
-    },
-    {
-      "name": "Pedir Orçamento",
-      "short_name": "Orçamento",
-      "description": "Iniciar o pagamento/checkout",
-      "url": "/#preco",
-      "icons": [{ "src": "/assets/shortcuts/checkout.png", "sizes": "96x96", "type": "image/png" }]
-    },
-    {
-      "name": "Falar no WhatsApp",
-      "short_name": "WhatsApp",
-      "description": "Conversar agora no WhatsApp",
-      "url": "https://wa.me/5562985849729?text=Ol%C3%A1!%20Quero%20um%20website%20em%201%20semana%20(%E2%82%AC500).%20Podemos%20conversar?",
-      "icons": [{ "src": "/assets/shortcuts/whatsapp.png", "sizes": "96x96", "type": "image/png" }]
-    },
-    {
-      "name": "Portfólio",
-      "short_name": "Portfólio",
-      "description": "Ver trabalhos e depoimentos",
-      "url": "/#depoimentos",
-      "icons": [{ "src": "/assets/shortcuts/portfolio.png", "sizes": "96x96", "type": "image/png" }]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/assets/screenshots/hero-1080x1920.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Hero com vídeo e CTA"
-    },
-    {
-      "src": "/assets/screenshots/processo-1080x1920.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Processo em 3 passos"
-    },
-    {
-      "src": "/assets/screenshots/preco-1920x1080.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Secção de preço e checkout"
-    }
-  ],
-  "share_target": {
-    "action": "/share",
-    "method": "GET",
-    "enctype": "application/x-www-form-urlencoded",
-    "params": { "title": "title", "text": "text", "url": "url" }
-  },
-  "prefer_related_applications": false
+  "categories": ["food", "lifestyle"],
+  "screenshots": []
 }
