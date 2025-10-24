@@ -159,7 +159,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-8 text-center">
-              Trilha Personalizada, do Básico aos Projetos
+              Trilha Personalizada
             </h2>
             <div className="bg-gradient-to-br from-[#F20587]/10 to-[#2E038C]/10 p-8 md:p-12 rounded-3xl">
               <p className="text-xl text-gray-700 leading-relaxed mb-6">
