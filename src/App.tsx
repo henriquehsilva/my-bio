@@ -8,7 +8,7 @@ type SectionId = typeof SECTION_IDS[number];
 
 // 👉 Ajuste aqui seus links reais:
 const CALENDLY_URL = 'https://calendly.com/henriquesilvadev/mentoria-1-1';
-const STRIPE_URL   = 'https://buy.stripe.com/test_14AaERfjsa3z1fgfjI8AE02'; // substitua pelo checkout de R$50/h
+const STRIPE_URL   = 'https://buy.stripe.com/6oU6oI5mU1smge1gEW14400'; // substitua pelo checkout de R$50/h
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
