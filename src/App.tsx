@@ -88,7 +88,7 @@ function App() {
       <nav className="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold bg-gradient-to-r from-[#F20587] to-[#2E038C] bg-clip-text text-transparent">
-            Henrique Silva Dev — Mentorias
+            Henrique Silva Dev — 1:1
           </div>
 
           <button
