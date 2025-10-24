@@ -293,7 +293,7 @@ function App() {
       <section id="depoimentos" data-animate className={`py-20 bg-gradient-to-br from-[#F2B705]/10 to-[#F28705]/10 transition-all duration-1000 ${isVisible['depoimentos'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-16 text-center">
-            O Que Dizem Meus Alunos
+            O Que Dizem
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
