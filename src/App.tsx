@@ -290,27 +290,53 @@ function App() {
       </section>
 
       {/* Depoimentos (mantido, pode adaptar depois) */}
-      <section id="depoimentos" data-animate className={`py-20 bg-gradient-to-br from-[#F2B705]/10 to-[#F28705]/10 transition-all duration-1000 ${isVisible['depoimentos'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#2E038C] mb-16 text-center">
-            O Que Dizem
+      <section
+        id="depoimentos"
+        data-animate
+        className={`py-24 bg-gradient-to-br from-[#F2B705]/10 to-[#F28705]/10 transition-all duration-1000 ${
+          isVisible['depoimentos']
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#2E038C] mb-20 text-center">
+            O que dizem 
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+            <div className="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 group">
+              <div className="flex items-center gap-4 mb-6">
+                <img
+                  src="https://media.licdn.com/dms/image/v2/D4D03AQHU_uGBR6GkDw/profile-displayphoto-shrink_400_400/B4DZWW9H0cH4Ag-/0/1741994360948?e=1762992000&v=beta&t=1iFO6TMUgbAC4T-RC6GW_RvWHUuSaFN8hGSLyUSju60"
+                  alt="Sabrina Otoni"
+                  className="w-16 h-16 rounded-full object-cover ring-4 ring-[#F2B705]/30 group-hover:ring-[#F28705]/50 transition-all duration-300"
+                />
+                <div>
+                  <p className="font-bold text-[#2E038C]">Sabrina Otoni</p>
+                  <p className="text-sm text-gray-500">
+                    Tutora de Inteligência Artificial – FIAP
+                  </p>
+                </div>
+              </div>
+
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-[#F2B705] text-xl">★</span>
+                  <span key={i} className="text-[#F2B705] text-lg">★</span>
                 ))}
               </div>
-              <p className="text-gray-700 mb-4 italic">
-                "Comecei do zero e em poucas semanas já tinha um projeto no GitHub. A trilha com Exercism e TDD fez toda a diferença."
+
+              <p className="text-gray-700 italic leading-relaxed">
+                “O Henrique é um aluno muito <b>engajado</b>, sempre demonstra <b>iniciativa em
+                colaborar com os colegas e contribui de forma positiva para o
+                aprendizado coletivo</b>. É <b>organizado</b>, <b>curioso</b> e possui um <b>pensamento
+                técnico voltado à construção de soluções inteligentes</b>. Sem dúvida,
+                tem um excelente potencial para se destacar ao final do curso na
+                FIAP.”
               </p>
-              <p className="font-bold text-[#2E038C]">Maria Santos</p>
-              <p className="text-sm text-gray-500">Estudante</p>
             </div>
 
-            {/* Adicione outros cards conforme tiver depoimentos reais */}
+            {/* Outros cards de depoimentos */}
           </div>
         </div>
       </section>
