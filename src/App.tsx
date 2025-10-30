@@ -134,11 +134,21 @@ function App() {
             >
               <Calendar size={20} /> Agendar no Calendly
             </a>
+
             <a
               href="#preco"
               className="bg-[#F20587] hover:bg-[#F28705] text-white px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl"
             >
               Ver Preço e Pagamento
+            </a>
+
+            <a
+              href="https://henriquesilva.link/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#F20587] hover:bg-[#F28705] text-white px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:scale-105 shadow-2xl"
+            >
+              Sobre mim
             </a>
           </div>
 
