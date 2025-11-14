@@ -53,17 +53,7 @@ function App() {
             }`}
           >
             <div className="relative aspect-[3/4] md:aspect-[2/3] w-full max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#BF247A]/20 via-[#812B8C]/20 to-[#D9731A]/20 rounded-sm blur-3xl"></div>
-
-              <div className="relative w-full h-full border border-[#BF247A]/30 rounded-sm overflow-hidden bg-gradient-to-br from-[#1a1a1c] to-[#0A0A0C] shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0C] via-transparent to-transparent z-10"></div>
-
-                <div className="w-full h-full flex items-center justify-center text-gray-600">
-                  <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                  </svg>
-                </div>
-              </div>
+                    <img src="/eugamer.png" alt="Henrique Silva Dev" />
 
               <div className="absolute -bottom-4 -right-4 w-32 h-32 border border-[#D9731A]/20 rounded-sm -z-10"></div>
               <div className="absolute -top-4 -left-4 w-24 h-24 border border-[#BF3939]/20 rounded-sm -z-10"></div>
