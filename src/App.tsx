@@ -145,28 +145,33 @@ function App() {
                 label="Kaggle"
               />
 
+              {/* Gameplay */}
+              <SocialButton
+                url="https://www.youtube.com/@henriquesilvalab"
+                icon={<Gamepad2 className="w-5 h-5 text-[#BF3939]" />}
+                color="#BF3939"
+                label="Gameplay"
+              />
+
+              {/* Substack */}
+              <SocialButton
+                url="https://henriquesilva.substack.com/"
+                icon={<ExternalLink className="w-5 h-5 text-[#BF247A]" />}
+                color="#BF247A"
+                label="Substack"
+              />
+
             </div>
           </div>
 
-          {/* FOTO + GAMEPLAY FLOATING BUTTON */}
+          {/* FOTO */}
           <div
             className={`relative transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
             <div className="relative aspect-[3/4] md:aspect-[2/3] w-full max-w-md mx-auto">
-
-              <img src="/eugamer.png" alt="Henrique Silva Dev" className="object-cover relative z-10" />
-
-              {/* Gameplay button float */}
-              <a
-                href="https://www.youtube.com/@henriquesilvalab"
-                target="_blank"
-                className="absolute opacity-70 bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-5 py-3 bg-[#BF3939]/80 hover:bg-[#BF3939] text-white rounded-md backdrop-blur-sm transition-all shadow-[0_0_25px_rgba(191,57,57,0.5)]"
-              >
-                <Gamepad2 className="w-5 h-5" />
-                Gameplay
-              </a>
+              <img src="/eu.png" alt="Henrique Silva Dev" className="object-cover relative z-10" />
 
               {/* Decorative borders */}
               <div className="absolute -bottom-4 -right-4 w-32 h-32 border border-[#D9731A]/20 rounded-sm -z-10"></div>
@@ -187,11 +192,12 @@ function App() {
 export default App;
 
 /* COMPONENTE BOTÃO SOCIAL */
-function SocialButton({ url, icon, color, label }: any) {
+function SocialButton({ url, icon, color, label }: { url: string; icon: React.ReactNode; color: string; label: string }) {
   return (
     <a
       href={url}
       target="_blank"
+      rel="noopener noreferrer"
       className="flex items-center gap-2 px-5 py-3 rounded-sm transition-all border"
       style={{
         backgroundColor: `${color}20`,
