@@ -171,7 +171,7 @@ function App() {
             }`}
           >
             <div className="relative aspect-[3/4] md:aspect-[2/3] w-full max-w-md mx-auto">
-              <img src="/eu.png" alt="Henrique Silva Dev" className="object-cover relative z-10" />
+              <img src="/me.jpeg" alt="Henrique Silva Dev" className="object-cover relative z-10" />
 
               {/* Decorative borders */}
               <div className="absolute -bottom-4 -right-4 w-32 h-32 border border-[#D9731A]/20 rounded-sm -z-10"></div>
