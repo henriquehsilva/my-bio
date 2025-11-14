@@ -1,5 +1,17 @@
 import { useEffect, useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import {
+  Github,
+  Instagram,
+  Linkedin,
+  Gamepad2,
+  ExternalLink,
+  Layers,
+  Gitlab,
+  Send,
+  Calendar,
+  Atom,
+  BarChart3
+} from 'lucide-react';
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,11 +24,15 @@ function App() {
     <div className="min-h-screen bg-[#0A0A0C] text-white overflow-x-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-12 md:py-20">
         <main className="grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[calc(100vh-12rem)]">
+          
+          {/* TEXTOS + BOTÕES */}
           <div
             className={`space-y-8 transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
+            
+            {/* Título */}
             <div className="space-y-6">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none">
                 HENRIQUE<br />
@@ -28,37 +44,136 @@ function App() {
               <div className="w-20 h-[2px] bg-gradient-to-r from-[#BF247A] to-[#812B8C]"></div>
             </div>
 
+            {/* Descrição */}
             <p className="text-lg md:text-xl font-light leading-relaxed text-gray-300 max-w-xl">
               Sou desenvolvedor de software há mais de 10 anos, com experiência em diversas tecnologias, produtos digitais e ambientes corporativos.
             </p>
 
             <p className="text-lg md:text-xl font-light leading-relaxed text-gray-300 max-w-xl">
-              Atualmente curso Matemática Aplicada e Computacional na UFG e Inteligência Artificial na FIAP, unindo fundamentos matemáticos, ciência de dados e engenharia de software para criar soluções inovadoras.
+              Atualmente curso Matemática Aplicada e Computacional na UFG e Inteligência Artificial na FIAP, 
+              unindo fundamentos matemáticos, ciência de dados e engenharia de software para criar soluções inovadoras.
             </p>
 
-            <a
-              href="https://henriquesilva.link/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#BF247A] to-[#812B8C] text-white font-bold text-sm tracking-wider uppercase rounded-sm hover:shadow-[0_0_30px_rgba(191,36,122,0.5)] transition-all duration-300 group"
-            >
-              LINKS
-              <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
+            {/* BOTÕES SOCIAIS */}
+            <div className="flex flex-wrap gap-4 pt-4">
+
+              {/* LinkedIn */}
+              <SocialButton
+                url="https://www.linkedin.com/in/henriquesilvadev"
+                icon={<Linkedin className="w-5 h-5 text-[#BF247A]" />}
+                color="#BF247A"
+                label="LinkedIn"
+              />
+
+              {/* Instagram */}
+              <SocialButton
+                url="https://www.instagram.com/henriquesilvadev"
+                icon={<Instagram className="w-5 h-5 text-[#812B8C]" />}
+                color="#812B8C"
+                label="Instagram"
+              />
+
+              {/* GitHub */}
+              <SocialButton
+                url="https://github.com/henriquehsilva"
+                icon={<Github className="w-5 h-5 text-[#D9731A]" />}
+                color="#D9731A"
+                label="GitHub"
+              />
+
+              {/* Stack Overflow */}
+              <SocialButton
+                url="https://stackoverflow.com/users/14033509/henrique-silva"
+                icon={<Layers className="w-5 h-5 text-[#BF3939]" />}
+                color="#BF3939"
+                label="Stack Overflow"
+              />
+
+              {/* Pinterest */}
+              <SocialButton
+                url="https://pinterest.com/henrikesilva1"
+                icon={<ExternalLink className="w-5 h-5 text-[#BF247A]" />}
+                color="#BF247A"
+                label="Pinterest"
+              />
+
+              {/* GitLab */}
+              <SocialButton
+                url="https://gitlab.com/henriquesilvadev"
+                icon={<Gitlab className="w-5 h-5 text-[#D9731A]" />}
+                color="#D9731A"
+                label="GitLab"
+              />
+
+              {/* Spotify */}
+              <SocialButton
+                url="https://open.spotify.com/user/31h2twyyee3rvceua7x4bgsplqrm"
+                icon={<ExternalLink className="w-5 h-5 text-[#812B8C]" />}
+                color="#812B8C"
+                label="Spotify"
+              />
+
+              {/* Telegram */}
+              <SocialButton
+                url="https://t.me/henriquesilvadev"
+                icon={<Send className="w-5 h-5 text-[#BF3939]" />}
+                color="#BF3939"
+                label="Telegram"
+              />
+
+              {/* Calendly */}
+              <SocialButton
+                url="https://calendly.com/henriquesilvadev"
+                icon={<Calendar className="w-5 h-5 text-[#BF247A]" />}
+                color="#BF247A"
+                label="Calendly"
+              />
+
+              {/* HuggingFace */}
+              <SocialButton
+                url="https://huggingface.co/henriquesilvadev"
+                icon={<Atom className="w-5 h-5 text-[#812B8C]" />}
+                color="#812B8C"
+                label="HuggingFace"
+              />
+
+              {/* Kaggle */}
+              <SocialButton
+                url="https://www.kaggle.com/henriquesilvadev"
+                icon={<BarChart3 className="w-5 h-5 text-[#D9731A]" />}
+                color="#D9731A"
+                label="Kaggle"
+              />
+
+            </div>
           </div>
 
+          {/* FOTO + GAMEPLAY FLOATING BUTTON */}
           <div
             className={`relative transition-all duration-1000 delay-300 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
             <div className="relative aspect-[3/4] md:aspect-[2/3] w-full max-w-md mx-auto">
-                    <img src="/eugamer.png" alt="Henrique Silva Dev" />
 
+              <img src="/eugamer.png" alt="Henrique Silva Dev" className="object-cover relative z-10" />
+
+              {/* Gameplay button float */}
+              <a
+                href="https://www.youtube.com/@henriquesilvalab"
+                target="_blank"
+                className="absolute opacity-70 bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-5 py-3 bg-[#BF3939]/80 hover:bg-[#BF3939] text-white rounded-md backdrop-blur-sm transition-all shadow-[0_0_25px_rgba(191,57,57,0.5)]"
+              >
+                <Gamepad2 className="w-5 h-5" />
+                Gameplay
+              </a>
+
+              {/* Decorative borders */}
               <div className="absolute -bottom-4 -right-4 w-32 h-32 border border-[#D9731A]/20 rounded-sm -z-10"></div>
               <div className="absolute -top-4 -left-4 w-24 h-24 border border-[#BF3939]/20 rounded-sm -z-10"></div>
             </div>
           </div>
+
         </main>
 
         <footer className="mt-20 pt-8 border-t border-gray-800/50 text-center text-sm text-gray-600">
@@ -70,3 +185,21 @@ function App() {
 }
 
 export default App;
+
+/* COMPONENTE BOTÃO SOCIAL */
+function SocialButton({ url, icon, color, label }: any) {
+  return (
+    <a
+      href={url}
+      target="_blank"
+      className="flex items-center gap-2 px-5 py-3 rounded-sm transition-all border"
+      style={{
+        backgroundColor: `${color}20`,
+        borderColor: `${color}50`,
+      }}
+    >
+      {icon}
+      <span className="text-sm tracking-wide">{label}</span>
+    </a>
+  );
+}
