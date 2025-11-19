@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     articleContainer.innerHTML = `
-      <article class="content-item">
+      <article class="hero-copy">
         <h2>Resultado para "${query}"</h2>
         <p>${answer || ''}</p>
         ${docLinkMarkup}
