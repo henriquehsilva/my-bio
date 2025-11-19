@@ -459,7 +459,7 @@ footer {
 
 
 /* ============================
-   HERO "revista" CodeImag.in
+   HERO "revista" CodeImg.in
    ============================ */
 
 .hero-section {
@@ -631,5 +631,58 @@ footer {
 
   .hero-lead {
     font-size: 1.1rem;
+  }
+}
+
+/* ---- NOVAS CLASSES ADICIONADAS ---- */
+
+/* deixa o hero em layout de duas colunas */
+.hero-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* força a mídia ficar à direita */
+.hero-media-right {
+  order: 2;
+}
+
+/* imagem flutuante à direita, com efeito suave */
+.hero-image-float {
+  max-width: 320px;
+  margin-left: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  margin-top: -200px; /* levanta a imagem */
+}
+
+/* efeito ao passar o mouse */
+.hero-image-float:hover img {
+  transform: scale(1.05) rotate(1deg);
+  filter: brightness(1.15);
+}
+
+/* imagem responsiva */
+.hero-image-float img {
+  width: 100%;
+  height: auto;
+  display: block;  
+}
+
+/* mobile first: imagem vai para baixo do texto */
+@media (max-width: 768px) {
+  .hero-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-media-right {
+    order: 2; /* continua vindo depois do texto */
+  }
+
+  .hero-image-float {
+    margin: 20px auto 0;
+    max-width: 240px;
   }
 }
