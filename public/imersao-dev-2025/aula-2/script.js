@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     articleContainer.innerHTML = `
       <article class="hero-copy">
-        <a href="/" class="hero-kicker">Voltar a Info</a>
+        <a href="https://henriquesilva.dev/imersao-dev-2025/aula-2/" class="hero-kicker">Voltar a Info</a>
 
         <h2>Resultado para "${query}"</h2>
         <p>${answer || ''}</p>
