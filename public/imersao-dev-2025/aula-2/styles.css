@@ -1,0 +1,635 @@
+/* Fontes Google: Roboto (principal) + Inter (fallback) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Inter:wght@400;500;700&display=swap');
+
+/* Reset básico e configurações globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', 'Inter', sans-serif;
+  background-color: #242614;
+  color: #EAEAEA;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+  padding: 0 16px; /* mobile first: lateral menor */
+}
+
+/* ===== HEADER – MOBILE FIRST ===== */
+
+header {
+  display: flex;
+  flex-direction: column; /* empilha no mobile */
+  align-items: stretch;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid #812B8C;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #BF247A, #D9731A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Estilização da barra de busca - mobile em coluna */
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-left: 0; /* sem recuo no mobile */
+  gap: 8px;
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #812B8C;
+  border-radius: 999px; /* pill completo no mobile */
+  background-color: #242614;
+  color: #EAEAEA;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+  border-color: #D9731A;
+  box-shadow: 0 0 8px rgba(217, 115, 26, 0.5);
+}
+
+/* Botão full-width no mobile */
+.search-bar button {
+  width: 100%;
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(to right, #BF247A, #D9731A);
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 20px rgba(217, 115, 26, 0.4);
+}
+
+/* ===== MAIN ===== */
+
+main {
+  flex: 1;
+  padding: 16px 0 20px;
+}
+
+/* Estilização dos itens de conteúdo na seção main */
+.content-item {
+  background-color: #2D2F1E;
+  border: 1px solid #812B8C;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(191, 36, 122, 0.2);
+}
+
+.content-item h2 {
+  color: #D9731A;
+  margin-bottom: 12px;
+}
+
+.content-item p {
+  margin-bottom: 12px;
+}
+
+.content-item .read-more {
+  color: #BF247A;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* ===== LANGUAGE TAGS – MOBILE: CARROSSEL HORIZONTAL ===== */
+
+.language-tags {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 8px 0 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.language-tags::-webkit-scrollbar {
+  height: 4px;
+}
+.language-tags::-webkit-scrollbar-track {
+  background: transparent;
+}
+.language-tags::-webkit-scrollbar-thumb {
+  background: rgba(129, 43, 140, 0.7);
+  border-radius: 999px;
+}
+
+.language-tag {
+  background-color: #2D2F1E;
+  color: #EAEAEA;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  border: 1px solid #812B8C;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto; /* vira "chip" rolável */
+}
+
+.language-tag .tag-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.language-tag .tag-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.language-tag .tag-icon--fallback {
+  width: auto;
+  min-width: 30px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.15);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #EAEAEA;
+}
+
+.language-tag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(191, 36, 122, 0.2);
+}
+
+/* ===== CODE BLOCKS ===== */
+
+.doc-link {
+  margin-top: 12px;
+}
+
+.doc-link a {
+  color: #D9731A;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.code-example {
+  margin-top: 1.5rem;
+}
+
+.code-example h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.code-block {
+  background: #272822;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: "Fira Code", "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* Monokai-ish */
+.code-block .keyword { color: #66d9ef; }
+.code-block .string  { color: #e6db74; }
+.code-block .number  { color: #ae81ff; }
+.code-block .comment { color: #75715e; }
+.code-block .func    { color: #a6e22e; }
+.code-block .var     { color: #f92672; }
+
+/* ===== FOOTER – MOBILE EMPILHADO ===== */
+
+footer {
+  text-align: center;
+  padding: 16px 0 20px;
+  border-top: 1px solid #812B8C;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.footer-links {
+  list-style: none;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.footer-links li {
+  margin: 0;
+}
+
+.footer-links a {
+  color: #BF247A;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #D9731A;
+}
+
+/* =========================
+   DESKTOP / TABLET – mantém "como está"
+   ========================= */
+
+@media (min-width: 768px) {
+  body {
+    padding: 0 40px; /* volta ao padding original no PC */
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    white-space: nowrap;
+  }
+
+  .search-bar {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    margin-left: 40px; /* volta o espaçamento original */
+    gap: 0;
+  }
+
+  .search-bar input[type="text"] {
+    padding: 15px;
+    border-radius: 50px 0 0 50px; /* como no seu layout original */
+  }
+
+  .search-bar button {
+    width: auto;
+    padding: 15px 25px;
+    border-radius: 0 50px 50px 0;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .content-item {
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+
+  .language-tags {
+    justify-content: center;
+    flex-wrap: wrap;     /* volta pro comportamento original */
+    overflow-x: visible; /* sem carrossel no desktop */
+  }
+
+  .language-tag {
+    flex: 0 0 auto;
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .footer-links li {
+    display: inline-block;
+  }
+}
+
+/* HERO provisório */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(217, 115, 26, 0.25));
+}
+
+.hero h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.hero h2 span {
+  background: linear-gradient(to right, #BF247A, #D9731A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-text {
+  font-size: 1.05rem;
+  max-width: 680px;
+  margin: 0 auto 12px;
+  opacity: 0.9;
+}
+
+/* HERO com vídeo background */
+.hero-video-section {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  min-height: 360px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 40px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Vídeo cobrindo toda a área */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-video-bg iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* evita cliques no vídeo */
+}
+
+/* Overlay escuro para leitura */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(1px);
+  z-index: 2;
+}
+
+/* Conteúdo do hero */
+.hero-video-content {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  padding: 20px;
+  text-align: center;
+  color: #FFF;
+}
+
+.hero-video-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #BF247A, #D9731A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-video-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  color: #EAEAEA;
+}
+
+/* MOBILE FIRST */
+@media (max-width: 768px) {
+  .hero-video-section {
+    height: 45vh;
+  }
+
+  .hero-video-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .hero-video-content p {
+    font-size: 1rem;
+  }
+}
+
+
+/* ============================
+   HERO "revista" CodeImag.in
+   ============================ */
+
+.hero-section {
+  margin-top: 2rem;
+  padding: 1.8rem 1.5rem;
+  background: radial-gradient(circle at top left, #33341f 0%, #242614 45%, #18190e 100%);
+  border-radius: 16px;
+  border: 1px solid #812B8C;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* Container interno: mobile first (coluna) */
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* Bloco da imagem */
+.hero-media {
+  display: flex;
+  justify-content: center;
+}
+
+/* Moldura da imagem com tilt */
+.hero-image-frame {
+  position: relative;
+  max-width: 260px;
+  width: 100%;
+  transform: rotate(-8deg);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Borda luminosa atrás da imagem */
+.hero-image-frame::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #bf247a, #d9731a);
+  opacity: 0.6;
+  z-index: -1;
+  filter: blur(4px);
+}
+
+/* Imagem em si */
+.hero-image {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* Efeito no hover (desktop) */
+.hero-image-frame:hover {
+  transform: rotate(-2deg) translateY(-6px) scale(1.03);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.75);
+  filter: brightness(1.05);
+}
+
+/* Texto estilo revista */
+.hero-copy {
+  text-align: left;
+}
+
+/* Kicker (linha de cima, tipo subtítulo de revista) */
+.hero-kicker {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #d9731a;
+  margin-bottom: 0.75rem;
+}
+
+/* Título principal da seção */
+.hero-copy h2 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Parágrafo de destaque */
+.hero-lead {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+}
+
+/* Parágrafos gerais do hero */
+.hero-copy p {
+  font-size: 0.95rem;
+  color: #eaeaea;
+}
+
+/* Área do vídeo logo abaixo do hero */
+.hero-video-area {
+  margin-top: 1.8rem;
+}
+
+/* Wrapper responsivo 16:9 para o YouTube */
+.hero-video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #812b8c;
+  background: radial-gradient(circle at center, #3a3b23 0%, #18190e 90%);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+}
+
+/* iFrame em full dentro do wrapper */
+.hero-video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ============================
+   Ajustes para telas maiores
+   ============================ */
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 2.2rem 2rem;
+  }
+
+  .hero-inner {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hero-media {
+    flex: 0 0 38%;
+  }
+
+  .hero-copy {
+    flex: 1;
+    padding-left: 2rem;
+  }
+
+  .hero-copy h2 {
+    font-size: 2rem;
+  }
+
+  .hero-lead {
+    font-size: 1.05rem;
+  }
+
+  .hero-copy p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    margin-top: 2.5rem;
+    padding: 2.4rem 2.4rem;
+  }
+
+  .hero-copy h2 {
+    font-size: 2.3rem;
+  }
+
+  .hero-lead {
+    font-size: 1.1rem;
+  }
+}

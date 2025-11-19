@@ -1,0 +1,25 @@
+{
+  "name": "Base de Conhecimento",
+  "short_name": "CodeImegin",
+  "description": "Busque rapidamente documentação e exemplos de linguagens e tecnologias.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#242614",
+  "theme_color": "#242614",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://henriquesilva.dev/imersao-dev-2025/aula-2/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://henriquesilva.dev/imersao-dev-2025/aula-2/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

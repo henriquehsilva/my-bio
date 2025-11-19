@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CodeImag.in</title>
+
+  <!-- Cor da barra do navegador / splash -->
+  <meta name="theme-color" content="#242614">
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Ícone padrão -->
+  <link rel="icon" href="https://henriquesilva.dev/imersao-dev-2025/aula-2/icon-192.png" sizes="192x192" type="image/png">
+
+  <!-- iOS / Safari -->
+  <link rel="apple-touch-icon" href="https://henriquesilva.dev/imersao-dev-2025/aula-2/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Base de Conhecimento">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://henriquesilva.dev/imersao-dev-2025/aula-2/icon-192.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>CodeImag.in</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Digite uma linguagem de programação">
+      <button>Buscar</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <article class="content-item hero" id="initial-content">
+
+      <div class="hero-copy">
+      <p class="hero-kicker">
+        Projeto demo · Imersão Dev com Google Gemini · 10ª Edição
+      </p>
+
+      <h2 id="about-codeimagin-title">Bem-vindo ao <span>CodeImag.in</span>!</h2>
+
+      <p class="hero-lead">
+        <strong>Explore facilmente</strong> qualquer linguagem ou tecnologia de programação.<br />
+        Digite seu termo na barra de busca acima e pressione <b>Enter</b> ou clique em <b>Buscar</b>.<br />
+        Ou, se preferir, <b>escolha</b> uma das tecnologias mais populares logo abaixo para começar.
+      </p>
+      </div>
+    </article>
+
+    <!-- TAGS DE TECNOLOGIA -->
+    <div class="language-tags" aria-label="Acessos rápidos">
+      <!-- Botões pré-carregados via script.js -->
+    </div>
+
+    <br /><br />
+    <!-- SEÇÃO: DE ONDE NASCEU O CODEIMAG.IN -->
+<section class="hero-section" aria-labelledby="about-codeimagin-title">
+  <div class="hero-inner">
+    <!-- Bloco da imagem / arte -->
+    <div class="hero-media">
+      <div class="hero-image-frame">
+        <img
+          src="imersao-bg.png"
+          alt="Arte do CodeImag.in e Imersão Dev com Google Gemini"
+          class="hero-image"
+        />
+      </div>
+    </div>
+
+    <!-- Bloco de texto tipo revista -->
+    <div class="hero-copy">
+      <p class="hero-kicker">
+        Projeto demo · Imersão Dev com Google Gemini · 10ª Edição
+      </p>
+
+      <h2 id="about-codeimagin-title">De onde nasceu o CodeImag.in?</h2>
+
+      <p class="hero-lead">
+        O <strong>CodeImag.in</strong> nasceu como um projeto demo criado para a
+        <strong>Imersão Dev com Google Gemini – 10ª Edição</strong>, unindo
+        experimentação em front-end, consumo de APIs e o poder da IA generativa.
+      </p>
+
+      <p>
+        A proposta é oferecer um ambiente rápido e intuitivo, onde você encontra
+        exemplos de código, documentação oficial e conceitos fundamentais de
+        diversas tecnologias em um só lugar — com uma interface inspirada em
+        ferramentas profissionais de estudo, referência e prática contínua.
+      </p>
+    </div>
+  </div>
+
+  <!-- Espaço para vídeo do YouTube abaixo do hero -->
+  <!-- <div class="hero-video-area" aria-label="Vídeo de apresentação do CodeImag.in">
+    <div class="hero-video-wrapper">
+      <iframe
+        src="https://www.youtube.com/live/JdCd0JRnv2Q?si=KmBccGVogv6ag-9O"
+        title="Apresentação da Imersão Dev com Google Gemini"
+        loading="lazy"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div> -->
+</section>
+
+
+  </main>
+
+  <footer>
+    <ul class="footer-links">
+      <li><a href="https://github.com/henriquehsilva" target="_blank">GitHub</a></li>
+      <li><a href="https://cursos.alura.com.br/imersao/imersao-dev-google" target="_blank">imersão dev_</a></li>
+      <li><a href="https://alura.com.br/" target="_blank">Alura</a></li>
+    </ul>
+    <p>&copy; 2025 Base de Conhecimento. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then(reg => console.log('Service Worker registrado:', reg.scope))
+          .catch(err => console.error('Erro ao registrar SW:', err));
+      });
+    }
+  </script>
+</body>
+</html>
