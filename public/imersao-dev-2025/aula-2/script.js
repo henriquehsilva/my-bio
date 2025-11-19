@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const query = predefinedQuery || searchInput.value.trim();
     if (!query) return;
 
-    searchInput.value = query;
+    searchInput.value = `O que é ${query}?`;
 
     if (!articleContainer || !mainContent.contains(articleContainer)) {
       articleContainer = document.createElement('div');
@@ -168,12 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: query })
+          body: JSON.stringify({ message: `O que é ${query}?` })
         }
       );
 
       const data = await response.json();
-      console.log('Resposta da API:', data);
 
       const answer = data.answer || '';
       const firstSource = data?.sources?.[0] || null;
