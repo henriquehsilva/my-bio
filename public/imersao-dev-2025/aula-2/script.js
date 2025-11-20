@@ -138,15 +138,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     articleContainer.innerHTML = `
-      <div class="hero-copy">
-        <a href="https://henriquesilva.dev/imersao-dev-2025/aula-2/" class="hero-kicker">Voltar a Info</a>
+      <article class="content-item hero hero-layout">
 
-        <h2>Resultado para "${query}"</h2>
-        <p>${answer || ''}</p>
-        ${docLinkMarkup}
-        ${helloWorldMarkup}
-      </div>
-    `;
+        <div class="hero-copy">
+          <a href="https://henriquesilva.dev/imersao-dev-2025/aula-2/" class="hero-kicker">Voltar a Info</a>
+
+          <h2>Resultado para "${query}"</h2>
+          <p>${answer || ''}</p>
+          ${docLinkMarkup}
+          ${helloWorldMarkup}
+        </div>
+      </article>
+      `;
   };
 
   const handleSearch = async (predefinedQuery) => {
