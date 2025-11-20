@@ -4,474 +4,468 @@
     "query": "JavaScript",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// FizzBuzz clássico em JavaScript</span><br><span class=\"keyword\">for</span> (<span class=\"keyword\">let</span> <span class=\"var\">i</span> = <span class=\"number\">1</span>; <span class=\"var\">i</span> &lt;= <span class=\"number\">15</span>; <span class=\"var\">i</span>++) {<br>  <span class=\"keyword\">if</span> (<span class=\"var\">i</span> % <span class=\"number\">15</span> === <span class=\"number\">0</span>) console.log(<span class=\"string\">'FizzBuzz'</span>);<br>  <span class=\"keyword\">else if</span> (<span class=\"var\">i</span> % <span class=\"number\">3</span> === <span class=\"number\">0</span>) console.log(<span class=\"string\">'Fizz'</span>);<br>  <span class=\"keyword\">else if</span> (<span class=\"var\">i</span> % <span class=\"number\">5</span> === <span class=\"number\">0</span>) console.log(<span class=\"string\">'Buzz'</span>);<br>  <span class=\"keyword\">else</span> console.log(<span class=\"var\">i</span>);<br>}"
+    "snippet_html": "<span class=\"comment\">// Simulador de fila de atendimento com prioridade</span><br><span class=\"keyword\">const</span> <span class=\"var\">fila</span> = [<span class=\"string\">'normal'</span>, <span class=\"string\">'vip'</span>, <span class=\"string\">'normal'</span>, <span class=\"string\">'vip'</span>];<br><span class=\"keyword\">let</span> <span class=\"var\">atendidosVip</span> = <span class=\"number\">0</span>;<br><br><span class=\"keyword\">for</span> (<span class=\"keyword\">let</span> <span class=\"var\">i</span> = <span class=\"number\">0</span>; <span class=\"var\">i</span> &lt; <span class=\"var\">fila</span>.length; <span class=\"var\">i</span>++) {<br>&nbsp;&nbsp;<span class=\"keyword\">const</span> <span class=\"var\">tipo</span> = <span class=\"var\">fila</span>[<span class=\"var\">i</span>];<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">tipo</span> === <span class=\"string\">'vip'</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">atendidosVip</span>++;<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class=\"string\">'Atendendo cliente VIP ✨'</span>);<br>&nbsp;&nbsp;} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class=\"string\">'Atendendo cliente normal'</span>);<br>&nbsp;&nbsp;}<br>}<br><br><span class=\"keyword\">if</span> (<span class=\"var\">atendidosVip</span> &gt;= <span class=\"number\">2</span>) {<br>&nbsp;&nbsp;console.log(<span class=\"string\">'Todos os VIPs foram priorizados ✅'</span>);<br>} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;console.log(<span class=\"string\">'Ainda há VIPs na fila ⏳'</span>);<br>}"
   },
   {
     "label": "Python",
     "query": "Python",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\"># Kata: contagem de vogais em Python</span><br><span class=\"keyword\">def</span> <span class=\"func\">count_vowels</span>(<span class=\"var\">text</span>):<br>    <span class=\"var\">vowels</span> = <span class=\"string\">\"aeiou\"</span><br>    <span class=\"keyword\">return</span> <span class=\"func\">sum</span>(<span class=\"number\">1</span> <span class=\"keyword\">for</span> <span class=\"var\">ch</span> <span class=\"keyword\">in</span> <span class=\"var\">text</span>.lower() <span class=\"keyword\">if</span> <span class=\"var\">ch</span> <span class=\"keyword\">in</span> <span class=\"var\">vowels</span>)<br><br>print(<span class=\"func\">count_vowels</span>(<span class=\"string\">\"Hello, Artemis!\"</span>))"
+    "snippet_html": "<span class=\"comment\"># Classificar tarefas por prioridade e contar atrasadas</span><br><span class=\"keyword\">tasks</span> = [<br>    {<span class=\"string\">\"nome\"</span>: <span class=\"string\">\"Refatorar código\"</span>, <span class=\"string\">\"prioridade\"</span>: <span class=\"string\">\"alta\"</span>, <span class=\"string\">\"atrasada\"</span>: <span class=\"keyword\">True</span>},<br>    {<span class=\"string\">\"nome\"</span>: <span class=\"string\">\"Escrever testes\"</span>, <span class=\"string\">\"prioridade\"</span>: <span class=\"string\">\"media\"</span>, <span class=\"string\">\"atrasada\"</span>: <span class=\"keyword\">False</span>},<br>    {<span class=\"string\">\"nome\"</span>: <span class=\"string\">\"Atualizar documentação\"</span>, <span class=\"string\">\"prioridade\"</span>: <span class=\"string\">\"baixa\"</span>, <span class=\"string\">\"atrasada\"</span>: <span class=\"keyword\">True</span>},<br>]<br><br><span class=\"keyword\">late_count</span> = <span class=\"number\">0</span><br><span class=\"keyword\">for</span> <span class=\"var\">t</span> <span class=\"keyword\">in</span> <span class=\"keyword\">tasks</span>:<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> <span class=\"var\">t</span>[<span class=\"string\">\"atrasada\"</span>]:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">late_count</span> += <span class=\"number\">1</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">print</span>(<span class=\"string\">\"⚠️ Tarefa atrasada:\"</span>, <span class=\"var\">t</span>[<span class=\"string\">\"nome\"</span>])<br><br><span class=\"keyword\">if</span> <span class=\"keyword\">late_count</span> &gt; <span class=\"number\">1</span>:<br>&nbsp;&nbsp;<span class=\"keyword\">print</span>(<span class=\"string\">\"Você tem muitas tarefas atrasadas. Hora de priorizar!\"</span>)<br><span class=\"keyword\">else</span>:<br>&nbsp;&nbsp;<span class=\"keyword\">print</span>(<span class=\"string\">\"Boa! Quase tudo em dia ✅\"</span>)"
   },
   {
     "label": "TypeScript",
     "query": "TypeScript",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Soma de números pares em TypeScript</span><br><span class=\"keyword\">const</span> <span class=\"var\">nums</span>: <span class=\"keyword\">number</span>[] = [<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>, <span class=\"number\">4</span>, <span class=\"number\">5</span>];<br><span class=\"keyword\">const</span> <span class=\"var\">sumEven</span>: <span class=\"keyword\">number</span> = <span class=\"var\">nums</span><br>  .filter(<span class=\"var\">n</span> =&gt; <span class=\"var\">n</span> % <span class=\"number\">2</span> === <span class=\"number\">0</span>)<br>  .reduce((<span class=\"var\">acc</span>, <span class=\"var\">n</span>) =&gt; <span class=\"var\">acc</span> + <span class=\"var\">n</span>, <span class=\"number\">0</span>);<br>console.log(<span class=\"string\">'Soma dos pares:'</span>, <span class=\"var\">sumEven</span>);"
+    "snippet_html": "<span class=\"comment\">// Controle de estoque com alerta de itens em falta</span><br><span class=\"keyword\">type</span> <span class=\"var\">Produto</span> = { nome: <span class=\"keyword\">string</span>; qtd: <span class=\"keyword\">number</span> };<br><br><span class=\"keyword\">const</span> <span class=\"var\">estoque</span>: <span class=\"keyword\">Produto</span>[] = [<br>&nbsp;&nbsp;{ nome: <span class=\"string\">\"Notebook\"</span>, qtd: <span class=\"number\">3</span> },<br>&nbsp;&nbsp;{ nome: <span class=\"string\">\"Mouse\"</span>, qtd: <span class=\"number\">0</span> },<br>&nbsp;&nbsp;{ nome: <span class=\"string\">\"Teclado\"</span>, qtd: <span class=\"number\">7</span> },<br>];<br><br><span class=\"keyword\">for</span> (<span class=\"keyword\">const</span> <span class=\"var\">p</span> <span class=\"keyword\">of</span> <span class=\"var\">estoque</span>) {<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">p</span>.qtd === <span class=\"number\">0</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class=\"string\">`🚨 Repor item: ${p.nome}`</span>);<br>&nbsp;&nbsp;} <span class=\"keyword\">else if</span> (<span class=\"var\">p</span>.qtd &lt;= <span class=\"number\">3</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class=\"string\">`⚠️ Estoque baixo de ${p.nome}`</span>);<br>&nbsp;&nbsp;} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class=\"string\">`👍 Estoque ok de ${p.nome}`</span>);<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "Java",
     "query": "Java",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Somar números de 1 a N em Java</span><br><span class=\"keyword\">public class</span> <span class=\"func\">SumUntilN</span> {<br>    <span class=\"keyword\">public static void</span> <span class=\"func\">main</span>(String[] <span class=\"var\">args</span>) {<br>        <span class=\"keyword\">int</span> <span class=\"var\">n</span> = <span class=\"number\">10</span>;<br>        <span class=\"keyword\">int</span> <span class=\"var\">sum</span> = <span class=\"number\">0</span>;<br>        <span class=\"keyword\">for</span> (<span class=\"keyword\">int</span> <span class=\"var\">i</span> = <span class=\"number\">1</span>; <span class=\"var\">i</span> &lt;= <span class=\"var\">n</span>; <span class=\"var\">i</span>++) {<br>            <span class=\"var\">sum</span> += <span class=\"var\">i</span>;<br>        }<br>        System.out.println(<span class=\"string\">\"Soma até \"</span> + <span class=\"var\">n</span> + <span class=\"string\">\" = \"</span> + <span class=\"var\">sum</span>);<br>    }<br>}"
+    "snippet_html": "<span class=\"comment\">// Relatório simples de notas com média e situação</span><br><span class=\"keyword\">public class</span> <span class=\"func\">GradeReport</span> {<br>&nbsp;&nbsp;<span class=\"keyword\">public static void</span> <span class=\"func\">main</span>(String[] <span class=\"var\">args</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">int</span>[] <span class=\"var\">notas</span> = {<span class=\"number\">7</span>, <span class=\"number\">5</span>, <span class=\"number\">9</span>, <span class=\"number\">3</span>};<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">int</span> <span class=\"var\">soma</span> = <span class=\"number\">0</span>;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">for</span> (<span class=\"keyword\">int</span> <span class=\"var\">n</span> : <span class=\"var\">notas</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">soma</span> += <span class=\"var\">n</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">double</span> <span class=\"var\">media</span> = <span class=\"var\">soma</span> / (<span class=\"keyword\">double</span>) <span class=\"var\">notas</span>.length;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">media</span> &gt;= <span class=\"number\">7.0</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class=\"string\">\"Aprovado ✅ - média \"</span> + <span class=\"var\">media</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;} <span class=\"keyword\">else if</span> (<span class=\"var\">media</span> &gt;= <span class=\"number\">5.0</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class=\"string\">\"Recuperação ⚠️ - média \"</span> + <span class=\"var\">media</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class=\"string\">\"Reprovado ❌ - média \"</span> + <span class=\"var\">media</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "C#",
     "query": "C#",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Verificar se número é primo em C#</span><br><span class=\"keyword\">using</span> System;<br><br><span class=\"keyword\">class</span> <span class=\"func\">PrimeCheck</span> {<br>    <span class=\"keyword\">static bool</span> <span class=\"func\">IsPrime</span>(<span class=\"keyword\">int</span> <span class=\"var\">n</span>) {<br>        <span class=\"keyword\">if</span> (<span class=\"var\">n</span> &lt;= <span class=\"number\">1</span>) <span class=\"keyword\">return false</span>;<br>        <span class=\"keyword\">for</span> (<span class=\"keyword\">int</span> <span class=\"var\">i</span> = <span class=\"number\">2</span>; <span class=\"var\">i</span> * <span class=\"var\">i</span> &lt;= <span class=\"var\">n</span>; <span class=\"var\">i</span>++) {<br>            <span class=\"keyword\">if</span> (<span class=\"var\">n</span> % <span class=\"var\">i</span> == <span class=\"number\">0</span>) <span class=\"keyword\">return false</span>;<br>        }<br>        <span class=\"keyword\">return true</span>;<br>    }<br><br>    <span class=\"keyword\">static void</span> <span class=\"func\">Main</span>() {<br>        Console.WriteLine(<span class=\"func\">IsPrime</span>(<span class=\"number\">17</span>));<br>    }<br>}"
+    "snippet_html": "<span class=\"comment\">// Calculadora de IMC com classificação</span><br><span class=\"keyword\">using</span> System;<br><br><span class=\"keyword\">class</span> <span class=\"func\">ImcCalc</span> {<br>&nbsp;&nbsp;<span class=\"keyword\">static void</span> <span class=\"func\">Main</span>() {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">double</span> <span class=\"var\">peso</span> = <span class=\"number\">82</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">double</span> <span class=\"var\">altura</span> = <span class=\"number\">1.78</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">double</span> <span class=\"var\">imc</span> = <span class=\"var\">peso</span> / (<span class=\"var\">altura</span> * <span class=\"var\">altura</span>);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine(<span class=\"string\">$\"IMC: {imc:F1}\"</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">imc</span> &lt; <span class=\"number\">18.5</span>) Console.WriteLine(<span class=\"string\">\"Abaixo do peso\"</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">else if</span> (<span class=\"var\">imc</span> &lt; <span class=\"number\">25</span>) Console.WriteLine(<span class=\"string\">\"Peso normal\"</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">else</span> Console.WriteLine(<span class=\"string\">\"Acima do peso\"</span>);<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "C++",
     "query": "C++",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Soma de vetor em C++</span><br><span class=\"keyword\">#include</span> &lt;iostream&gt;<br><span class=\"keyword\">using namespace</span> std;<br><br><span class=\"keyword\">int</span> <span class=\"func\">main</span>() {<br>    <span class=\"keyword\">int</span> <span class=\"var\">arr</span>[] = {<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>};<br>    <span class=\"keyword\">int</span> <span class=\"var\">sum</span> = <span class=\"number\">0</span>;<br>    <span class=\"keyword\">for</span> (<span class=\"keyword\">int</span> <span class=\"var\">n</span> : <span class=\"var\">arr</span>) {<br>        <span class=\"var\">sum</span> += <span class=\"var\">n</span>;<br>    }<br>    cout &lt;&lt; <span class=\"string\">\"Soma = \"</span> &lt;&lt; <span class=\"var\">sum</span> &lt;&lt; endl;<br>    <span class=\"keyword\">return</span> <span class=\"number\">0</span>;<br>}"
+    "snippet_html": "<span class=\"comment\">// Contar quantos números são pares, ímpares e maiores que 10</span><br><span class=\"keyword\">#include</span> &lt;iostream&gt;<br><span class=\"keyword\">using namespace</span> std;<br><br><span class=\"keyword\">int</span> <span class=\"func\">main</span>() {<br>&nbsp;&nbsp;<span class=\"keyword\">int</span> <span class=\"var\">arr</span>[] = {<span class=\"number\">2</span>, <span class=\"number\">7</span>, <span class=\"number\">12</span>, <span class=\"number\">5</span>, <span class=\"number\">18</span>};<br>&nbsp;&nbsp;<span class=\"keyword\">int</span> <span class=\"var\">pares</span> = <span class=\"number\">0</span>, <span class=\"var\">impares</span> = <span class=\"number\">0</span>, <span class=\"var\">maiores10</span> = <span class=\"number\">0</span>;<br><br>&nbsp;&nbsp;<span class=\"keyword\">for</span> (<span class=\"keyword\">int</span> <span class=\"var\">n</span> : <span class=\"var\">arr</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">n</span> % <span class=\"number\">2</span> == <span class=\"number\">0</span>) <span class=\"var\">pares</span>++;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">else</span> <span class=\"var\">impares</span>++;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">n</span> &gt; <span class=\"number\">10</span>) <span class=\"var\">maiores10</span>++;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;cout &lt;&lt; <span class=\"string\">\"Pares: \"</span> &lt;&lt; <span class=\"var\">pares</span> &lt;&lt; <span class=\"string\">\", Ímpares: \"</span> &lt;&lt; <span class=\"var\">impares</span> &lt;&lt; endl;<br>&nbsp;&nbsp;cout &lt;&lt; <span class=\"string\">\"Maiores que 10: \"</span> &lt;&lt; <span class=\"var\">maiores10</span> &lt;&lt; endl;<br>&nbsp;&nbsp;<span class=\"keyword\">return</span> <span class=\"number\">0</span>;<br>}"
   },
   {
     "label": "C",
     "query": "C",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">/* Fatorial iterativo em C */</span><br><span class=\"keyword\">#include</span> &lt;stdio.h&gt;<br><br><span class=\"keyword\">int</span> <span class=\"func\">fact</span>(<span class=\"keyword\">int</span> <span class=\"var\">n</span>) {<br>    <span class=\"keyword\">int</span> <span class=\"var\">res</span> = <span class=\"number\">1</span>;<br>    <span class=\"keyword\">for</span> (<span class=\"keyword\">int</span> <span class=\"var\">i</span> = <span class=\"number\">2</span>; <span class=\"var\">i</span> &lt;= <span class=\"var\">n</span>; <span class=\"var\">i</span>++) {<br>        <span class=\"var\">res</span> *= <span class=\"var\">i</span>;<br>    }<br>    <span class=\"keyword\">return</span> <span class=\"var\">res</span>;<br>}<br><br><span class=\"keyword\">int</span> <span class=\"func\">main</span>() {<br>    printf(<span class=\"string\">\"5! = %d\\n\"</span>, <span class=\"func\">fact</span>(<span class=\"number\">5</span>));<br>    <span class=\"keyword\">return</span> <span class=\"number\">0</span>;<br>}"
+    "snippet_html": "<span class=\"comment\">/* Contar quantos números de um array são positivos, negativos ou zero */</span><br><span class=\"keyword\">#include</span> &lt;stdio.h&gt;<br><br><span class=\"keyword\">int</span> <span class=\"func\">main</span>() {<br>&nbsp;&nbsp;<span class=\"keyword\">int</span> <span class=\"var\">valores</span>[] = {<span class=\"number\">-2</span>, <span class=\"number\">0</span>, <span class=\"number\">5</span>, <span class=\"number\">10</span>, <span class=\"number\">-7</span>};<br>&nbsp;&nbsp;<span class=\"keyword\">int</span> <span class=\"var\">pos</span> = <span class=\"number\">0</span>, <span class=\"var\">neg</span> = <span class=\"number\">0</span>, <span class=\"var\">zero</span> = <span class=\"number\">0</span>;<br><br>&nbsp;&nbsp;<span class=\"keyword\">for</span> (<span class=\"keyword\">int</span> <span class=\"var\">i</span> = <span class=\"number\">0</span>; <span class=\"var\">i</span> &lt; <span class=\"number\">5</span>; <span class=\"var\">i</span>++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">valores</span>[<span class=\"var\">i</span>] &gt; <span class=\"number\">0</span>) <span class=\"var\">pos</span>++;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">else if</span> (<span class=\"var\">valores</span>[<span class=\"var\">i</span>] &lt; <span class=\"number\">0</span>) <span class=\"var\">neg</span>++;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">else</span> <span class=\"var\">zero</span>++;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;printf(<span class=\"string\">\"Positivos: %d, Negativos: %d, Zeros: %d\\n\"</span>, <span class=\"var\">pos</span>, <span class=\"var\">neg</span>, <span class=\"var\">zero</span>);<br>&nbsp;&nbsp;<span class=\"keyword\">return</span> <span class=\"number\">0</span>;<br>}"
   },
   {
     "label": "Go",
     "query": "Go",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Soma de slice em Go</span><br><span class=\"keyword\">package</span> main<br><br><span class=\"keyword\">import</span> <span class=\"string\">\"fmt\"</span><br><br><span class=\"keyword\">func</span> <span class=\"func\">sum</span>(<span class=\"var\">nums</span> []<span class=\"keyword\">int</span>) <span class=\"keyword\">int</span> {<br>    <span class=\"var\">s</span> := <span class=\"number\">0</span><br>    <span class=\"keyword\">for</span> _, <span class=\"var\">n</span> := <span class=\"keyword\">range</span> <span class=\"var\">nums</span> {<br>        <span class=\"var\">s</span> += <span class=\"var\">n</span><br>    }<br>    <span class=\"keyword\">return</span> <span class=\"var\">s</span><br>}<br><br><span class=\"keyword\">func</span> <span class=\"func\">main</span>() {<br>    fmt.Println(<span class=\"func\">sum</span>([]<span class=\"keyword\">int</span>{<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>}))<br>}"
+    "snippet_html": "<span class=\"comment\">// Classificar tarefas concluídas e pendentes</span><br><span class=\"keyword\">package</span> main<br><br><span class=\"keyword\">import</span> <span class=\"string\">\"fmt\"</span><br><br><span class=\"keyword\">type</span> <span class=\"var\">Task</span> <span class=\"keyword\">struct</span> {<br>&nbsp;&nbsp;nome <span class=\"keyword\">string</span><br>&nbsp;&nbsp;done <span class=\"keyword\">bool</span><br>}<br><br><span class=\"keyword\">func</span> <span class=\"func\">main</span>() {<br>&nbsp;&nbsp;<span class=\"var\">tasks</span> := []<span class=\"var\">Task</span>{<br>&nbsp;&nbsp;&nbsp;&nbsp;{<span class=\"string\">\"Estudar Go\"</span>, <span class=\"keyword\">true</span>},<br>&nbsp;&nbsp;&nbsp;&nbsp;{<span class=\"string\">\"Criar API\"</span>, <span class=\"keyword\">false</span>},<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;<span class=\"keyword\">for</span> _, <span class=\"var\">t</span> := <span class=\"keyword\">range</span> <span class=\"var\">tasks</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> <span class=\"var\">t</span>.done {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fmt.Println(<span class=\"string\">\"✅\"</span>, <span class=\"var\">t</span>.nome)<br>&nbsp;&nbsp;&nbsp;&nbsp;} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fmt.Println(<span class=\"string\">\"⏳\"</span>, <span class=\"var\">t</span>.nome)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "Rust",
     "query": "Rust",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Soma de vetor em Rust</span><br><span class=\"keyword\">fn</span> <span class=\"func\">sum</span>(<span class=\"var\">v</span>: &amp;[<span class=\"keyword\">i32</span>]) -&gt; <span class=\"keyword\">i32</span> {<br>    <span class=\"var\">v</span>.iter().sum()<br>}<br><br><span class=\"keyword\">fn</span> <span class=\"func\">main</span>() {<br>    <span class=\"keyword\">let</span> <span class=\"var\">nums</span> = [<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>];<br>    println!(<span class=\"string\">\"Soma = {}\"</span>, <span class=\"func\">sum</span>(&amp;<span class=\"var\">nums</span>));<br>}"
+    "snippet_html": "<span class=\"comment\">// Filtrar números maiores que 10 e somar apenas os pares</span><br><span class=\"keyword\">fn</span> <span class=\"func\">main</span>() {<br>&nbsp;&nbsp;<span class=\"keyword\">let</span> <span class=\"var\">nums</span> = vec![<span class=\"number\">3</span>, <span class=\"number\">12</span>, <span class=\"number\">18</span>, <span class=\"number\">7</span>, <span class=\"number\">22</span>];<br><br>&nbsp;&nbsp;<span class=\"keyword\">let</span> <span class=\"var\">sum</span>: <span class=\"keyword\">i32</span> = <span class=\"var\">nums</span><br>&nbsp;&nbsp;&nbsp;&nbsp;.iter()<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter(|<span class=\"var\">n</span>| **<span class=\"var\">n</span> &gt; <span class=\"number\">10</span> &amp;&amp; **<span class=\"var\">n</span> % <span class=\"number\">2</span> == <span class=\"number\">0</span>)<br>&nbsp;&nbsp;&nbsp;&nbsp;.sum();<br><br>&nbsp;&nbsp;println!(<span class=\"string\">\"Soma dos &gt;10 e pares = {}\"</span>, <span class=\"var\">sum</span>);<br>}"
   },
   {
     "label": "PHP",
     "query": "PHP",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Inverter string em PHP</span><br>&lt;?php<br><span class=\"keyword\">$text</span> = <span class=\"string\">\"Artemis\"</span>;<br><span class=\"keyword\">$rev</span>  = strrev(<span class=\"keyword\">$text</span>);<br>echo <span class=\"string\">\"Invertido: \"</span> . <span class=\"keyword\">$rev</span>;<br>?&gt;"
+    "snippet_html": "<span class=\"comment\">// Gerar uma lista de usuários ativos e contar quantos são admins</span><br>&lt;?php<br><span class=\"keyword\">$users</span> = [<br>&nbsp;&nbsp;[<span class=\"string\">\"nome\"</span> =&gt; <span class=\"string\">\"Ana\"</span>, <span class=\"string\">\"role\"</span> =&gt; <span class=\"string\">\"admin\"</span>, <span class=\"string\">\"ativo\"</span> =&gt; <span class=\"keyword\">true</span>],<br>&nbsp;&nbsp;[<span class=\"string\">\"nome\"</span> =&gt; <span class=\"string\">\"Bruno\"</span>, <span class=\"string\">\"role\"</span> =&gt; <span class=\"string\">\"user\"</span>, <span class=\"string\">\"ativo\"</span> =&gt; <span class=\"keyword\">false</span>],<br>&nbsp;&nbsp;[<span class=\"string\">\"nome\"</span> =&gt; <span class=\"string\">\"Carla\"</span>, <span class=\"string\">\"role\"</span> =&gt; <span class=\"string\">\"admin\"</span>, <span class=\"string\">\"ativo\"</span> =&gt; <span class=\"keyword\">true</span>],<br>];<br><br><span class=\"keyword\">$adminsAtivos</span> = <span class=\"number\">0</span>;<br><span class=\"keyword\">foreach</span> (<span class=\"keyword\">$users</span> <span class=\"keyword\">as</span> <span class=\"keyword\">$u</span>) {<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"keyword\">$u</span>[<span class=\"string\">\"ativo\"</span>]) {<br>&nbsp;&nbsp;&nbsp;&nbsp;echo <span class=\"string\">\"Usuário ativo: \"</span> . <span class=\"keyword\">$u</span>[<span class=\"string\">\"nome\"</span>] . <span class=\"string\">\"\\n\"</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"keyword\">$u</span>[<span class=\"string\">\"role\"</span>] === <span class=\"string\">\"admin\"</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">$adminsAtivos</span>++;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>}<br><br>echo <span class=\"string\">\"Admins ativos: \"</span> . <span class=\"keyword\">$adminsAtivos</span> . <span class=\"string\">\"\\n\"</span>;<br>?&gt;"
   },
   {
     "label": "Ruby",
     "query": "Ruby",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\"># Soma de array em Ruby</span><br><span class=\"var\">nums</span> = [<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>]<br><span class=\"var\">sum</span>  = <span class=\"var\">nums</span>.sum<br>puts <span class=\"string\">\"Soma = #{sum}\"</span>"
+    "snippet_html": "<span class=\"comment\"># Selecionar tarefas urgentes e contar concluídas</span><br><span class=\"var\">tasks</span> = [<br>&nbsp;&nbsp;{ nome: <span class=\"string\">\"Arrumar bug\"</span>, urgente: <span class=\"keyword\">true</span>, done: <span class=\"keyword\">false</span> },<br>&nbsp;&nbsp;{ nome: <span class=\"string\">\"Escrever testes\"</span>, urgente: <span class=\"keyword\">false</span>, done: <span class=\"keyword\">true</span> },<br>&nbsp;&nbsp;{ nome: <span class=\"string\">\"Deploy\"</span>, urgente: <span class=\"keyword\">true</span>, done: <span class=\"keyword\">true</span> }<br>]<br><br><span class=\"var\">done_count</span> = <span class=\"number\">0</span><br><span class=\"var\">tasks</span>.each <span class=\"keyword\">do</span> |<span class=\"var\">t</span>|<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> <span class=\"var\">t</span>[:urgente]<br>&nbsp;&nbsp;&nbsp;&nbsp;puts <span class=\"string\">\"🚨 Urgente: #{t[:nome]}\"</span><br>&nbsp;&nbsp;<span class=\"keyword\">end</span><br>&nbsp;&nbsp;<span class=\"keyword\">if</span> <span class=\"var\">t</span>[:done]<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">done_count</span> += <span class=\"number\">1</span><br>&nbsp;&nbsp;<span class=\"keyword\">end</span><br><span class=\"keyword\">end</span><br><br>puts <span class=\"string\">\"Concluídas: #{done_count}\"</span>"
   },
   {
     "label": "Swift",
     "query": "Swift",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Filtrar pares em Swift</span><br><span class=\"keyword\">let</span> <span class=\"var\">nums</span> = [<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>, <span class=\"number\">4</span>]<br><span class=\"keyword\">let</span> <span class=\"var\">even</span> = <span class=\"var\">nums</span>.filter { <span class=\"var\">$0</span> % <span class=\"number\">2</span> == <span class=\"number\">0</span> }<br>print(<span class=\"var\">even</span>)"
+    "snippet_html": "<span class=\"comment\">// Filtrar e formatar nomes com mais de 3 caracteres</span><br><span class=\"keyword\">let</span> <span class=\"var\">nomes</span> = [<span class=\"number\">\"Ana\"</span>, <span class=\"number\">\"João\"</span>, <span class=\"number\">\"Beatriz\"</span>]<br><span class=\"keyword\">var</span> <span class=\"var\">resultado</span>: [<span class=\"keyword\">String</span>] = []<br><br><span class=\"keyword\">for</span> <span class=\"var\">nome</span> <span class=\"keyword\">in</span> <span class=\"var\">nomes</span> {<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> <span class=\"var\">nome</span>.count &gt; <span class=\"number\">3</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">resultado</span>.append(<span class=\"string\">\"⭐️ \\(nome)\"</span>)<br>&nbsp;&nbsp;} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">resultado</span>.append(<span class=\"string\">\"• \\(nome)\"</span>)<br>&nbsp;&nbsp;}<br>}<br><br>print(<span class=\"var\">resultado</span>)"
   },
   {
     "label": "Kotlin",
     "query": "Kotlin",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Contar caracteres em Kotlin</span><br><span class=\"keyword\">fun</span> <span class=\"func\">countChars</span>(<span class=\"var\">s</span>: String): Int {<br>    <span class=\"keyword\">return</span> <span class=\"var\">s</span>.length<br>}<br><br><span class=\"keyword\">fun</span> <span class=\"func\">main</span>() {<br>    println(<span class=\"func\">countChars</span>(<span class=\"string\">\"Artemis\"</span>))<br>}"
+    "snippet_html": "<span class=\"comment\">// Simular pequenas transações e calcular saldo final</span><br><span class=\"keyword\">data class</span> <span class=\"func\">Transacao</span>(<span class=\"keyword\">val</span> tipo: String, <span class=\"keyword\">val</span> valor: Double)<br><br><span class=\"keyword\">fun</span> <span class=\"func\">main</span>() {<br>&nbsp;&nbsp;<span class=\"keyword\">val</span> <span class=\"var\">lista</span> = listOf(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"func\">Transacao</span>(<span class=\"string\">\"credito\"</span>, <span class=\"number\">100.0</span>),<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"func\">Transacao</span>(<span class=\"string\">\"debito\"</span>, <span class=\"number\">40.0</span>),<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"func\">Transacao</span>(<span class=\"string\">\"debito\"</span>, <span class=\"number\">25.0</span>)<br>&nbsp;&nbsp;)<br><br>&nbsp;&nbsp;<span class=\"keyword\">var</span> <span class=\"var\">saldo</span> = <span class=\"number\">0.0</span><br>&nbsp;&nbsp;<span class=\"keyword\">for</span> (<span class=\"var\">t</span> <span class=\"keyword\">in</span> <span class=\"var\">lista</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">t</span>.tipo == <span class=\"string\">\"credito\"</span>) <span class=\"var\">saldo</span> += <span class=\"var\">t</span>.valor<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">else</span> <span class=\"var\">saldo</span> -= <span class=\"var\">t</span>.valor<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;println(<span class=\"string\">\"Saldo final: $saldo\"</span>)<br>}"
   },
   {
     "label": "R",
     "query": "R",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\"># Média em R</span><br><span class=\"var\">nums</span> &lt;- c(<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>, <span class=\"number\">4</span>)<br><span class=\"var\">media</span> &lt;- mean(<span class=\"var\">nums</span>)<br>print(<span class=\"var\">media</span>)"
+    "snippet_html": "<span class=\"comment\"># Calcular média por grupo (ex: notas por turma)</span><br><span class=\"var\">dados</span> &lt;- data.frame(<br>  turma = c(<span class=\"string\">\"A\"</span>, <span class=\"string\">\"A\"</span>, <span class=\"string\">\"B\"</span>, <span class=\"string\">\"B\"</span>),<br>  nota  = c(<span class=\"number\">7</span>, <span class=\"number\">9</span>, <span class=\"number\">6</span>, <span class=\"number\">8</span>)<br>)<br><br>aggregate(nota ~ turma, data = <span class=\"var\">dados</span>, FUN = mean)"
   },
   {
     "label": "MATLAB",
     "query": "MATLAB",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">% Plot simples em MATLAB</span><br><span class=\"var\">x</span> = <span class=\"number\">0</span>:<span class=\"number\">0.1</span>:<span class=\"number\">2</span>*pi;<br><span class=\"var\">y</span> = sin(<span class=\"var\">x</span>);<br>plot(<span class=\"var\">x</span>, <span class=\"var\">y</span>)"
+    "snippet_html": "<span class=\"comment\">% Calcular erro médio entre previsão e valor real</span><br><span class=\"var\">y_true</span> = [<span class=\"number\">1</span> <span class=\"number\">2</span> <span class=\"number\">3</span>];<br><span class=\"var\">y_pred</span> = [<span class=\"number\">1.2</span> <span class=\"number\">1.9</span> <span class=\"number\">2.8</span>];<br><span class=\"var\">erro</span> = mean(abs(<span class=\"var\">y_true</span> - <span class=\"var\">y_pred</span>));<br>disp(<span class=\"string\">\"Erro médio:\"</span>);<br>disp(<span class=\"var\">erro</span>);"
   },
   {
     "label": "Scala",
     "query": "Scala",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Map e filter em Scala</span><br><span class=\"keyword\">val</span> <span class=\"var\">nums</span> = List(<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>)<br><span class=\"keyword\">val</span> <span class=\"var\">doubled</span> = <span class=\"var\">nums</span>.map(<span class=\"var\">_</span> * <span class=\"number\">2</span>).filter(<span class=\"var\">_</span> &gt; <span class=\"number\">2</span>)<br>println(<span class=\"var\">doubled</span>)"
+    "snippet_html": "<span class=\"comment\">// Filtrar pedidos com valor &gt; 100 e mapear IDs</span><br><span class=\"keyword\">case class</span> <span class=\"func\">Pedido</span>(id: <span class=\"keyword\">Int</span>, valor: <span class=\"keyword\">Double</span>)<br><br><span class=\"keyword\">val</span> <span class=\"var\">pedidos</span> = List(<span class=\"func\">Pedido</span>(<span class=\"number\">1</span>, <span class=\"number\">50</span>), <span class=\"func\">Pedido</span>(<span class=\"number\">2</span>, <span class=\"number\">200</span>))<br><span class=\"keyword\">val</span> <span class=\"var\">caros</span> = <span class=\"var\">pedidos</span>.filter(_.valor &gt; <span class=\"number\">100</span>).map(_.id)<br>println(<span class=\"var\">caros</span>)"
   },
   {
     "label": "Elixir",
     "query": "Elixir",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elixir/elixir-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\"># Pipeline em Elixir</span><br><span class=\"var\">1</span>.. <span class=\"number\">5</span><br>|&gt; Enum.map(<span class=\"keyword\">fn</span> <span class=\"var\">n</span> -&gt; <span class=\"var\">n</span> * <span class=\"number\">2</span> <span class=\"keyword\">end</span>)<br>|&gt; IO.inspect()"
+    "snippet_html": "<span class=\"comment\"># Dobrar valores de 1 a 5 e filtrar &gt;= 6</span><br><span class=\"number\">1</span>.. <span class=\"number\">5</span><br>|&gt; Enum.map(<span class=\"keyword\">fn</span> <span class=\"var\">n</span> -&gt; <span class=\"var\">n</span> * <span class=\"number\">2</span> <span class=\"keyword\">end</span>)<br>|&gt; Enum.filter(<span class=\"keyword\">fn</span> <span class=\"var\">n</span> -&gt; <span class=\"var\">n</span> &gt;= <span class=\"number\">6</span> <span class=\"keyword\">end</span>)<br>|&gt; IO.inspect()"
   },
   {
     "label": "Erlang",
     "query": "Erlang",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/erlang/erlang-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">% Soma de lista em Erlang</span><br><span class=\"func\">sum</span>([]) -&gt; <span class=\"number\">0</span>;<br><span class=\"func\">sum</span>([<span class=\"var\">H</span>|<span class=\"var\">T</span>]) -&gt; <span class=\"var\">H</span> + <span class=\"func\">sum</span>(<span class=\"var\">T</span>)."
+    "snippet_html": "<span class=\"comment\">% Somar apenas números positivos de uma lista</span><br><span class=\"func\">sum_pos</span>([]) -&gt; <span class=\"number\">0</span>;<br><span class=\"func\">sum_pos</span>([<span class=\"var\">H</span>|<span class=\"var\">T</span>]) <span class=\"keyword\">when</span> <span class=\"var\">H</span> &gt; <span class=\"number\">0</span> -&gt; <span class=\"var\">H</span> + <span class=\"func\">sum_pos</span>(<span class=\"var\">T</span>);<br><span class=\"func\">sum_pos</span>([_|<span class=\"var\">T</span>]) -&gt; <span class=\"func\">sum_pos</span>(<span class=\"var\">T</span>)."
   },
   {
     "label": "Haskell",
     "query": "Haskell",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haskell/haskell-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">-- Soma de lista em Haskell</span><br><span class=\"func\">sumList</span> <span class=\"var\">xs</span> = <span class=\"func\">sum</span> <span class=\"var\">xs</span><br><br><span class=\"func\">main</span> = <span class=\"func\">print</span> (<span class=\"func\">sumList</span> [<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>])"
+    "snippet_html": "<span class=\"comment\">-- Manter apenas números pares e somar</span><br><span class=\"func\">sumEven</span> <span class=\"var\">xs</span> = <span class=\"func\">sum</span> [<span class=\"var\">x</span> | <span class=\"var\">x</span> &lt;- <span class=\"var\">xs</span>, <span class=\"var\">x</span> `mod` <span class=\"number\">2</span> == <span class=\"number\">0</span>]<br><br><span class=\"func\">main</span> = <span class=\"func\">print</span> (<span class=\"func\">sumEven</span> [<span class=\"number\">1</span>,<span class=\"number\">2</span>,<span class=\"number\">3</span>,<span class=\"number\">4</span>])"
   },
   {
     "label": "Clojure",
     "query": "Clojure",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clojure/clojure-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">;; Map e reduce em Clojure</span><br>(<span class=\"func\">def</span> <span class=\"var\">nums</span> [<span class=\"number\">1</span> <span class=\"number\">2</span> <span class=\"number\">3</span>])<br>(<span class=\"func\">println</span> (<span class=\"func\">reduce</span> + (<span class=\"func\">map</span> #(* <span class=\"number\">2</span> %) <span class=\"var\">nums</span>)))"
+    "snippet_html": "<span class=\"comment\">;; Map e reduce para somar quadrados de pares</span><br>(<span class=\"func\">def</span> <span class=\"var\">nums</span> [<span class=\"number\">1</span> <span class=\"number\">2</span> <span class=\"number\">3</span> <span class=\"number\">4</span>])<br>(<span class=\"func\">println</span><br>  (<span class=\"func\">reduce</span> +<br>    (<span class=\"func\">map</span> #(* % %) (<span class=\"func\">filter</span> even? <span class=\"var\">nums</span>))))"
   },
   {
     "label": "Lua",
     "query": "Lua",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lua/lua-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">-- Soma de lista em Lua</span><br><span class=\"keyword\">local</span> <span class=\"var\">nums</span> = {<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>}<br><span class=\"keyword\">local</span> <span class=\"var\">sum</span> = <span class=\"number\">0</span><br><span class=\"keyword\">for</span> _, <span class=\"var\">n</span> <span class=\"keyword\">in</span> ipairs(<span class=\"var\">nums</span>) <span class=\"keyword\">do</span><br>  <span class=\"var\">sum</span> = <span class=\"var\">sum</span> + <span class=\"var\">n</span><br><span class=\"keyword\">end</span><br>print(<span class=\"string\">\"Soma = \"</span> .. <span class=\"var\">sum</span>)"
+    "snippet_html": "<span class=\"comment\">-- Soma apenas números acima de 10</span><br><span class=\"keyword\">local</span> <span class=\"var\">nums</span> = {<span class=\"number\">5</span>, <span class=\"number\">12</span>, <span class=\"number\">20</span>}<br><span class=\"keyword\">local</span> <span class=\"var\">sum</span> = <span class=\"number\">0</span><br><span class=\"keyword\">for</span> _, <span class=\"var\">n</span> <span class=\"keyword\">in</span> ipairs(<span class=\"var\">nums</span>) <span class=\"keyword\">do</span><br>&nbsp;&nbsp;<span class=\"keyword\">if</span> <span class=\"var\">n</span> &gt; <span class=\"number\">10</span> <span class=\"keyword\">then</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">sum</span> = <span class=\"var\">sum</span> + <span class=\"var\">n</span><br>&nbsp;&nbsp;<span class=\"keyword\">end</span><br><span class=\"keyword\">end</span><br>print(<span class=\"string\">\"Soma = \"</span> .. <span class=\"var\">sum</span>)"
   },
   {
     "label": "Perl",
     "query": "Perl",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/perl/perl-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\"># Contar linhas em Perl</span><br><span class=\"keyword\">my</span> <span class=\"var\">$count</span> = <span class=\"number\">0</span>;<br><span class=\"keyword\">while</span> (&lt;STDIN&gt;) { <span class=\"var\">$count</span>++ }<br>print <span class=\"string\">\"Linhas: \"</span>, <span class=\"var\">$count</span>, <span class=\"string\">\"\\n\"</span>;"
+    "snippet_html": "<span class=\"comment\"># Contar linhas não vazias em Perl</span><br><span class=\"keyword\">my</span> <span class=\"var\">$count</span> = <span class=\"number\">0</span>;<br><span class=\"keyword\">while</span> (&lt;STDIN&gt;) {<br>&nbsp;&nbsp;<span class=\"keyword\">chomp</span>;<br>&nbsp;&nbsp;<span class=\"keyword\">next</span> <span class=\"keyword\">if</span> <span class=\"var\">$_</span> eq <span class=\"string\">\"\"</span>;<br>&nbsp;&nbsp;<span class=\"var\">$count</span>++;<br>}<br>print <span class=\"string\">\"Linhas não vazias: \"</span>, <span class=\"var\">$count</span>, <span class=\"string\">\"\\n\"</span>;"
   },
   {
     "label": "Shell Script",
     "query": "Shell Script",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\"># Loop simples em Shell</span><br><span class=\"keyword\">for</span> <span class=\"var\">i</span> <span class=\"keyword\">in</span> <span class=\"number\">1</span> <span class=\"number\">2</span> <span class=\"number\">3</span>;<span class=\"keyword\"> do</span><br>  echo <span class=\"string\">\"Valor: $i\"</span><br><span class=\"keyword\">done</span>"
+    "snippet_html": "<span class=\"comment\"># Verificar status de uma lista de serviços e contar os que estão ativos</span><br><span class=\"keyword\">services</span>=(nginx docker sshd)<br><span class=\"keyword\">active_count</span>=0<br><br><span class=\"keyword\">for</span> <span class=\"var\">s</span> <span class=\"keyword\">in</span> <span class=\"string\">\"${services[@]}\"</span>; <span class=\"keyword\">do</span><br>&nbsp;&nbsp;systemctl is-active <span class=\"string\">\"$s\"</span> &gt;/dev/null 2&gt;&amp;1<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> [ <span class=\"var\">$?</span> -eq 0 ]; <span class=\"keyword\">then</span><br>&nbsp;&nbsp;&nbsp;&nbsp;echo <span class=\"string\">\"✅ $s está ativo\"</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">active_count</span>=$((<span class=\"keyword\">active_count</span>+1))<br>&nbsp;&nbsp;<span class=\"keyword\">else</span><br>&nbsp;&nbsp;&nbsp;&nbsp;echo <span class=\"string\">\"❌ $s está parado\"</span><br>&nbsp;&nbsp;<span class=\"keyword\">fi</span><br><span class=\"keyword\">done</span><br><br>echo <span class=\"string\">\"Serviços ativos: $active_count\"</span>"
   },
   {
     "label": "F#",
     "query": "F#",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fsharp/fsharp-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Soma de lista em F#</span><br><span class=\"keyword\">let</span> <span class=\"var\">nums</span> = [<span class=\"number\">1</span>; <span class=\"number\">2</span>; <span class=\"number\">3</span>]<br><span class=\"keyword\">let</span> <span class=\"var\">sum</span>  = List.sum <span class=\"var\">nums</span><br>printfn <span class=\"string\">\"Soma = %d\"</span> <span class=\"var\">sum</span>"
+    "snippet_html": "<span class=\"comment\">// Somar apenas números pares em F#</span><br><span class=\"keyword\">let</span> <span class=\"var\">nums</span> = [<span class=\"number\">1</span>; <span class=\"number\">2</span>; <span class=\"number\">3</span>; <span class=\"number\">4</span>]<br><span class=\"keyword\">let</span> <span class=\"var\">sumEven</span> = <span class=\"var\">nums</span> |> List.filter (fun n -&gt; n % <span class=\"number\">2</span> = <span class=\"number\">0</span>) |> List.sum<br>printfn <span class=\"string\">\"Soma de pares = %d\"</span> <span class=\"var\">sumEven</span>"
   },
   {
     "label": "Dart",
     "query": "Dart",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Filtrar pares em Dart</span><br><span class=\"keyword\">void</span> <span class=\"func\">main</span>() {<br>  <span class=\"keyword\">var</span> <span class=\"var\">nums</span> = [<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>, <span class=\"number\">4</span>];<br>  <span class=\"keyword\">var</span> <span class=\"var\">even</span> = <span class=\"var\">nums</span>.where((<span class=\"var\">n</span>) =&gt; <span class=\"var\">n</span> % <span class=\"number\">2</span> == <span class=\"number\">0</span>);<br>  print(<span class=\"var\">even</span>);<br>}"
+    "snippet_html": "<span class=\"comment\">// Filtrar usuários maiores de idade</span><br><span class=\"keyword\">void</span> <span class=\"func\">main</span>() {<br>  <span class=\"keyword\">var</span> <span class=\"var\">idades</span> = [<span class=\"number\">15</span>, <span class=\"number\">22</span>, <span class=\"number\">30</span>];<br>  <span class=\"keyword\">var</span> <span class=\"var\">maiores</span> = <span class=\"var\">idades</span>.where((<span class=\"var\">i</span>) =&gt; <span class=\"var\">i</span> &gt;= <span class=\"number\">18</span>);<br>  print(<span class=\"var\">maiores</span>.toList());<br>}"
   },
   {
     "label": "Objective-C",
     "query": "Objective-C",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/objectivec/objectivec-plain.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Log simples em Objective-C</span><br><span class=\"keyword\">#import</span> &lt;Foundation/Foundation.h&gt;<br><br><span class=\"keyword\">int</span> <span class=\"func\">main</span>(<span class=\"keyword\">int</span> <span class=\"var\">argc</span>, <span class=\"keyword\">const char</span> * <span class=\"var\">argv</span>[]) {<br>    @autoreleasepool {<br>        NSLog(@<span class=\"string\">\"Hello, Artemis!\"</span>);<br>    }<br>    <span class=\"keyword\">return</span> <span class=\"number\">0</span>;<br>}"
+    "snippet_html": "<span class=\"comment\">// Logar mensagens diferentes conforme modo debug</span><br><span class=\"keyword\">#import</span> &lt;Foundation/Foundation.h&gt;<br><br><span class=\"keyword\">int</span> <span class=\"func\">main</span>(<span class=\"keyword\">int</span> <span class=\"var\">argc</span>, <span class=\"keyword\">const char</span> * <span class=\"var\">argv</span>[]) {<br>    @autoreleasepool {<br>        <span class=\"keyword\">BOOL</span> <span class=\"var\">debug</span> = YES;<br>        <span class=\"keyword\">if</span> (<span class=\"var\">debug</span>) {<br>            NSLog(@<span class=\"string\">\"[DEBUG] App iniciando...\"</span>);<br>        } <span class=\"keyword\">else</span> {<br>            NSLog(@<span class=\"string\">\"App iniciando\"</span>);<br>        }<br>    }<br>    <span class=\"keyword\">return</span> <span class=\"number\">0</span>;<br>}"
   },
   {
     "label": "Julia",
     "query": "Julia",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/julia/julia-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\"># Média em Julia</span><br><span class=\"keyword\">function</span> <span class=\"func\">mean</span>(<span class=\"var\">v</span>)<br>    <span class=\"keyword\">return</span> <span class=\"func\">sum</span>(<span class=\"var\">v</span>) / <span class=\"func\">length</span>(<span class=\"var\">v</span>)<br><span class=\"keyword\">end</span><br><br>println(<span class=\"func\">mean</span>([<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>]))"
+    "snippet_html": "<span class=\"comment\"># Normalizar uma lista de valores entre 0 e 1</span><br><span class=\"var\">v</span> = [<span class=\"number\">10</span>, <span class=\"number\">20</span>, <span class=\"number\">30</span>]<br><span class=\"var\">mn</span>, <span class=\"var\">mx</span> = minimum(<span class=\"var\">v</span>), maximum(<span class=\"var\">v</span>)<br><span class=\"var\">norm</span> = [(x - <span class=\"var\">mn</span>) / (<span class=\"var\">mx</span> - <span class=\"var\">mn</span>) for x in <span class=\"var\">v</span>]<br>println(<span class=\"var\">norm</span>)"
   },
   {
     "label": "V",
     "query": "V programming language",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/v/v-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Loop simples em V</span><br><span class=\"keyword\">fn</span> <span class=\"func\">main</span>() {<br>    <span class=\"keyword\">for</span> <span class=\"var\">i</span> <span class=\"keyword\">in</span> <span class=\"number\">1</span>.. <span class=\"number\">4</span> {<br>        println(<span class=\"string\">'Valor: '</span> + <span class=\"var\">i</span>.str())<br>    }<br>}"
+    "snippet_html": "<span class=\"comment\">// Imprimir apenas números pares de 1 a 10</span><br><span class=\"keyword\">fn</span> <span class=\"func\">main</span>() {<br>&nbsp;&nbsp;<span class=\"keyword\">for</span> <span class=\"var\">i</span> <span class=\"keyword\">in</span> <span class=\"number\">1</span>.. <span class=\"number\">11</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">if</span> <span class=\"var\">i</span> % <span class=\"number\">2</span> == <span class=\"number\">0</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;println(<span class=\"var\">i</span>)<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "Zig",
     "query": "Zig",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zig/zig-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Hello em Zig</span><br><span class=\"keyword\">const</span> <span class=\"var\">std</span> = @import(<span class=\"string\">\"std\"</span>);<br><span class=\"keyword\">pub fn</span> <span class=\"func\">main</span>() <span class=\"keyword\">!void</span> {<br>    <span class=\"keyword\">try</span> <span class=\"var\">std</span>.io.getStdOut().writer().print(<span class=\"string\">\"Hello, Artemis!\\n\"</span>, .{});<br>}"
+    "snippet_html": "<span class=\"comment\">// Imprimir elementos de um array com índice</span><br><span class=\"keyword\">const</span> <span class=\"var\">std</span> = @import(<span class=\"string\">\"std\"</span>);<br><span class=\"keyword\">pub fn</span> <span class=\"func\">main</span>() <span class=\"keyword\">!void</span> {<br>&nbsp;&nbsp;<span class=\"keyword\">const</span> <span class=\"var\">items</span> = [_]<span class=\"keyword\">u8</span>{ <span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span> };<br>&nbsp;&nbsp;<span class=\"keyword\">for</span> (<span class=\"var\">items</span>, <span class=\"number\">0</span>..) |<span class=\"var\">val</span>, <span class=\"var\">i</span>| {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">try</span> <span class=\"var\">std</span>.io.getStdOut().writer().print(<span class=\"string\">\"idx {d}: {d}\\n\"</span>, .{<span class=\"var\">i</span>, <span class=\"var\">val</span>});<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "Solidity",
     "query": "Solidity",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">// Contrato simples em Solidity</span><br><span class=\"keyword\">pragma</span> solidity ^<span class=\"number\">0.8</span>.<span class=\"number\">0</span>;<br><br><span class=\"keyword\">contract</span> <span class=\"func\">HelloArtemis</span> {<br>    <span class=\"keyword\">string</span> <span class=\"var\">message</span> = <span class=\"string\">\"Hello, Artemis!\"</span>;<br>    <span class=\"keyword\">function</span> <span class=\"func\">getMessage</span>() <span class=\"keyword\">public view</span> returns (<span class=\"keyword\">string</span> memory) {<br>        <span class=\"keyword\">return</span> <span class=\"var\">message</span>;<br>    }<br>}"
+    "snippet_html": "<span class=\"comment\">// Contador simples com condição de acesso</span><br><span class=\"keyword\">pragma</span> solidity ^<span class=\"number\">0.8</span>.<span class=\"number\">0</span>;<br><br><span class=\"keyword\">contract</span> <span class=\"func\">Counter</span> {<br>&nbsp;&nbsp;<span class=\"keyword\">uint</span> <span class=\"var\">value</span>;<br>&nbsp;&nbsp;<span class=\"keyword\">address</span> <span class=\"var\">owner</span>;<br><br>&nbsp;&nbsp;<span class=\"keyword\">constructor</span>() {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">owner</span> = msg.sender;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;<span class=\"keyword\">function</span> <span class=\"func\">inc</span>() <span class=\"keyword\">public</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">require</span>(msg.sender == <span class=\"var\">owner</span>, <span class=\"string\">\"apenas dono\"</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">value</span>++;<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "VB.NET",
     "query": "VB.NET",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">' Mensagem simples em VB.NET</span><br><span class=\"keyword\">Module</span> <span class=\"func\">Program</span><br>    <span class=\"keyword\">Sub</span> <span class=\"func\">Main</span>()<br>        Console.WriteLine(<span class=\"string\">\"Hello, Artemis!\"</span>)<br>    <span class=\"keyword\">End Sub</span><br><span class=\"keyword\">End Module</span>"
+    "snippet_html": "<span class=\"comment\">' Listar apenas números maiores que 10</span><br><span class=\"keyword\">Module</span> <span class=\"func\">Program</span><br>    <span class=\"keyword\">Sub</span> <span class=\"func\">Main</span>()<br>        <span class=\"keyword\">Dim</span> <span class=\"var\">valores</span> = {<span class=\"number\">5</span>, <span class=\"number\">12</span>, <span class=\"number\">20</span>}<br>        <span class=\"keyword\">For Each</span> <span class=\"var\">v</span> <span class=\"keyword\">In</span> <span class=\"var\">valores</span><br>            <span class=\"keyword\">If</span> <span class=\"var\">v</span> &gt; <span class=\"number\">10</span> <span class=\"keyword\">Then</span><br>                Console.WriteLine(<span class=\"var\">v</span>)<br>            <span class=\"keyword\">End If</span><br>        <span class=\"keyword\">Next</span><br>    <span class=\"keyword\">End Sub</span><br><span class=\"keyword\">End Module</span>"
   },
   {
     "label": "Assembly",
     "query": "Assembly",
     "initials": "ASM",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">; Exemplo ilustrativo em Assembly x86 (pseudo)</span><br><span class=\"keyword\">mov</span> <span class=\"var\">eax</span>, <span class=\"number\">1</span><br><span class=\"keyword\">mov</span> <span class=\"var\">ebx</span>, <span class=\"number\">0</span><br><span class=\"keyword\">int</span> <span class=\"number\">0x80</span>"
+    "snippet_html": "<span class=\"comment\">; Soma dois números (exemplo x86 muito simplificado)</span><br><span class=\"keyword\">mov</span> <span class=\"var\">eax</span>, <span class=\"number\">2</span><br><span class=\"keyword\">mov</span> <span class=\"var\">ebx</span>, <span class=\"number\">3</span><br><span class=\"keyword\">add</span> <span class=\"var\">eax</span>, <span class=\"var\">ebx</span><br><span class=\"comment\">; resultado em eax = 5</span>"
   },
   {
     "label": "Prolog",
     "query": "Prolog",
     "initials": "PRO",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">% Fatorial em Prolog</span><br><span class=\"func\">fact</span>(<span class=\"number\">0</span>, <span class=\"number\">1</span>).<br><span class=\"func\">fact</span>(<span class=\"var\">N</span>, <span class=\"var\">R</span>) :-<br>  <span class=\"var\">N</span> &gt; <span class=\"number\">0</span>,<br>  <span class=\"var\">N1</span> is <span class=\"var\">N</span> - <span class=\"number\">1</span>,<br>  <span class=\"func\">fact</span>(<span class=\"var\">N1</span>, <span class=\"var\">R1</span>),<br>  <span class=\"var\">R</span> is <span class=\"var\">N</span> * <span class=\"var\">R1</span>."
+    "snippet_html": "<span class=\"comment\">% Fatorial em Prolog com recursão (N &gt;= 0)</span><br><span class=\"func\">fact</span>(<span class=\"number\">0</span>, <span class=\"number\">1</span>).<br><span class=\"func\">fact</span>(<span class=\"var\">N</span>, <span class=\"var\">R</span>) :-<br>  <span class=\"var\">N</span> &gt; <span class=\"number\">0</span>,<br>  <span class=\"var\">N1</span> is <span class=\"var\">N</span> - <span class=\"number\">1</span>,<br>  <span class=\"func\">fact</span>(<span class=\"var\">N1</span>, <span class=\"var\">R1</span>),<br>  <span class=\"var\">R</span> is <span class=\"var\">N</span> * <span class=\"var\">R1</span>."
   },
   {
     "label": "Fortran",
     "query": "Fortran",
     "initials": "FOR",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">! Soma de vetor em Fortran</span><br><span class=\"keyword\">program</span> <span class=\"func\">sumvec</span><br>  <span class=\"keyword\">integer</span>, <span class=\"keyword\">dimension</span>(<span class=\"number\">3</span>) :: <span class=\"var\">v</span> = [<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>]<br>  <span class=\"keyword\">integer</span> :: <span class=\"var\">s</span><br>  <span class=\"var\">s</span> = <span class=\"func\">sum</span>(<span class=\"var\">v</span>)<br>  print *, <span class=\"string\">\"Soma = \"</span>, <span class=\"var\">s</span><br><span class=\"keyword\">end program</span> <span class=\"func\">sumvec</span>"
+    "snippet_html": "<span class=\"comment\">! Soma apenas valores positivos de um vetor</span><br><span class=\"keyword\">program</span> <span class=\"func\">sumpos</span><br>  <span class=\"keyword\">integer</span>, <span class=\"keyword\">dimension</span>(<span class=\"number\">5</span>) :: <span class=\"var\">v</span> = [<span class=\"number\">-1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>, <span class=\"number\">-4</span>, <span class=\"number\">5</span>]<br>  <span class=\"keyword\">integer</span> :: <span class=\"var\">s</span>, <span class=\"var\">i</span><br>  <span class=\"var\">s</span> = <span class=\"number\">0</span><br>  <span class=\"keyword\">do</span> <span class=\"var\">i</span> = <span class=\"number\">1</span>, <span class=\"number\">5</span><br>    <span class=\"keyword\">if</span> (<span class=\"var\">v</span>(<span class=\"var\">i</span>) &gt; <span class=\"number\">0</span>) <span class=\"keyword\">then</span><br>      <span class=\"var\">s</span> = <span class=\"var\">s</span> + <span class=\"var\">v</span>(<span class=\"var\">i</span>)<br>    <span class=\"keyword\">end if</span><br>  <span class=\"keyword\">end do</span><br>  print *, <span class=\"string\">\"Soma positivos=\"</span>, <span class=\"var\">s</span><br><span class=\"keyword\">end program</span> <span class=\"func\">sumpos</span>"
   },
   {
     "label": "COBOL",
     "query": "COBOL",
     "initials": "COB",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">*> Mensagem simples em COBOL</span><br>IDENTIFICATION DIVISION.<br>PROGRAM-ID. <span class=\"func\">HELLO-KATA</span>.<br>PROCEDURE DIVISION.<br>    DISPLAY <span class=\"string\">\"Hello, Artemis Dojo!\"</span>.<br>    STOP RUN."
+    "snippet_html": "<span class=\"comment\">*> Somar dois números e exibir resultado</span><br>IDENTIFICATION DIVISION.<br>PROGRAM-ID. <span class=\"func\">SOMA-DOIS</span>.<br>DATA DIVISION.<br>WORKING-STORAGE SECTION.<br>  <span class=\"var\">01</span> <span class=\"var\">A</span> PIC 9(2) VALUE 05.<br>  <span class=\"var\">01</span> <span class=\"var\">B</span> PIC 9(2) VALUE 07.<br>  <span class=\"var\">01</span> <span class=\"var\">R</span> PIC 9(3).<br>PROCEDURE DIVISION.<br>  ADD <span class=\"var\">A</span> TO <span class=\"var\">B</span> GIVING <span class=\"var\">R</span>.<br>  DISPLAY <span class=\"string\">\"Resultado: \"</span> <span class=\"var\">R</span>.<br>  STOP RUN."
   },
   {
     "label": "WebAssembly (WAT)",
     "query": "WebAssembly Text",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wasm/wasm-original.svg",
     "category": "language",
-    "snippet_html": "<span class=\"comment\">;; Módulo WAT simples</span><br>(<span class=\"keyword\">module</span><br>  (<span class=\"keyword\">func</span> <span class=\"var\">$add</span> (param <span class=\"var\">$a</span> <span class=\"keyword\">i32</span>) (param <span class=\"var\">$b</span> <span class=\"keyword\">i32</span>) (result <span class=\"keyword\">i32</span>)<br>    (<span class=\"keyword\">i32.add</span> (<span class=\"keyword\">local.get</span> <span class=\"var\">$a</span>) (<span class=\"keyword\">local.get</span> <span class=\"var\">$b</span>))))"
+    "snippet_html": "<span class=\"comment\">;; Módulo WAT que soma 1 a um parâmetro</span><br>(<span class=\"keyword\">module</span><br>  (<span class=\"keyword\">func</span> <span class=\"var\">$inc</span> (param <span class=\"var\">$x</span> <span class=\"keyword\">i32</span>) (result <span class=\"keyword\">i32</span>)<br>    (<span class=\"keyword\">i32.add</span> (<span class=\"keyword\">local.get</span> <span class=\"var\">$x</span>) (<span class=\"keyword\">i32.const</span> <span class=\"number\">1</span>))))"
   },
   {
     "label": "HTML5",
     "query": "HTML",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
     "category": "frontend",
-    "snippet_html": "<span class=\"comment\">&lt;!-- Estrutura básica HTML5 --&gt;</span><br>&lt;!DOCTYPE html&gt;<br>&lt;html lang=<span class=\"string\">\"pt-BR\"</span>&gt;<br>  &lt;head&gt;<br>    &lt;title&gt;<span class=\"string\">Artemis Docs</span>&lt;/title&gt;<br>  &lt;/head&gt;<br>  &lt;body&gt;<br>    &lt;h1&gt;<span class=\"string\">Hello, Artemis!</span>&lt;/h1&gt;<br>  &lt;/body&gt;<br>&lt;/html&gt;"
+    "snippet_html": "<span class=\"comment\">&lt;!-- Página com lista de tarefas e indicador de prioridade --&gt;</span><br>&lt;!DOCTYPE html&gt;<br>&lt;html lang=<span class=\"string\">\"pt-BR\"</span>&gt;<br>&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;<span class=\"string\">Dashboard de Tarefas</span>&lt;/title&gt;<br>&nbsp;&nbsp;&lt;/head&gt;<br>&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;<span class=\"string\">Minhas Tarefas</span>&lt;/h1&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class=<span class=\"string\">\"task-list\"</span>&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class=<span class=\"string\">\"task\"</span> data-prioridade=<span class=\"string\">\"alta\"</span>&gt;<span class=\"string\">Corrigir bugs</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li class=<span class=\"string\">\"task\"</span> data-prioridade=<span class=\"string\">\"baixa\"</span>&gt;<span class=\"string\">Ler documentação</span>&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;"
   },
   {
     "label": "CSS3",
     "query": "CSS",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
     "category": "frontend",
-    "snippet_html": "<span class=\"comment\">/* Card simples em CSS */</span><br>.card {<br>  <span class=\"var\">background</span>: <span class=\"string\">#272822</span>;<br>  <span class=\"var\">color</span>: <span class=\"string\">#f8f8f2</span>;<br>  <span class=\"var\">padding</span>: <span class=\"number\">16</span>px;<br>  <span class=\"var\">border-radius</span>: <span class=\"number\">8</span>px;<br>}"
+    "snippet_html": "<span class=\"comment\">/* Destacar tarefas de alta prioridade e usar layout responsivo simples */</span><br>.task-list {<br>&nbsp;&nbsp;<span class=\"var\">display</span>: flex;<br>&nbsp;&nbsp;<span class=\"var\">flex-direction</span>: column;<br>&nbsp;&nbsp;<span class=\"var\">gap</span>: <span class=\"number\">8</span>px;<br>}<br><br>.task[data-prioridade=<span class=\"string\">\"alta\"</span>] {<br>&nbsp;&nbsp;<span class=\"var\">border-left</span>: <span class=\"number\">4</span>px solid <span class=\"string\">#BF3939</span>;<br>&nbsp;&nbsp;<span class=\"var\">background</span>: <span class=\"string\">#2A2359</span>;<br>}<br><br>@media (min-width: 700px) {<br>&nbsp;&nbsp;.task-list {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">flex-direction</span>: row;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">flex-wrap</span>: wrap;<br>&nbsp;&nbsp;}<br>}"
   },
   {
     "label": "Node.js",
     "query": "Node.js",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
     "category": "backend",
-    "snippet_html": "<span class=\"comment\">// HTTP server simples em Node.js</span><br><span class=\"keyword\">const</span> <span class=\"var\">http</span> = require(<span class=\"string\">'http'</span>);<br><span class=\"keyword\">const</span> <span class=\"var\">server</span> = <span class=\"var\">http</span>.createServer((<span class=\"var\">req</span>, <span class=\"var\">res</span>) =&gt; {<br>  <span class=\"var\">res</span>.end(<span class=\"string\">'Hello, Artemis!'</span>);<br>});<br><span class=\"var\">server</span>.listen(<span class=\"number\">3000</span>);"
+    "snippet_html": "<span class=\"comment\">// API simples que conta quantas vezes cada rota foi acessada</span><br><span class=\"keyword\">const</span> <span class=\"var\">http</span> = require(<span class=\"string\">'http'</span>);<br><span class=\"keyword\">const</span> <span class=\"var\">hits</span> = { <span class=\"string\">'/home'</span>: <span class=\"number\">0</span>, <span class=\"string\">'/status'</span>: <span class=\"number\">0</span> };<br><br><span class=\"keyword\">const</span> <span class=\"var\">server</span> = <span class=\"var\">http</span>.createServer((<span class=\"var\">req</span>, <span class=\"var\">res</span>) =&gt; {<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">hits</span>[<span class=\"var\">req</span>.url]) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">hits</span>[<span class=\"var\">req</span>.url]++;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">req</span>.url === <span class=\"string\">'/status'</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">res</span>.setHeader(<span class=\"string\">'Content-Type'</span>, <span class=\"string\">'application/json'</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">res</span>.end(JSON.stringify(<span class=\"var\">hits</span>));<br>&nbsp;&nbsp;} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">res</span>.end(<span class=\"string\">'Hello from Node.js'</span>);<br>&nbsp;&nbsp;}<br>});<br><br><span class=\"var\">server</span>.listen(<span class=\"number\">3000</span>, () =&gt; console.log(<span class=\"string\">'Server on :3000'</span>));"
   },
-
   {
     "label": "Django",
     "query": "Django",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
     "category": "backend",
-    "snippet_html": "<span class=\"comment\"># View simples em Django</span><br><span class=\"keyword\">from</span> django.http <span class=\"keyword\">import</span> HttpResponse<br><br><span class=\"keyword\">def</span> <span class=\"func\">hello</span>(<span class=\"var\">request</span>):<br>    <span class=\"keyword\">return</span> HttpResponse(<span class=\"string\">\"Hello, Artemis!\"</span>)"
+    "snippet_html": "<span class=\"comment\"># View que retorna mensagem diferente por query param</span><br><span class=\"keyword\">from</span> django.http <span class=\"keyword\">import</span> HttpResponse<br><br><span class=\"keyword\">def</span> <span class=\"func\">hello</span>(<span class=\"var\">request</span>):<br>&nbsp;&nbsp;<span class=\"var\">nome</span> = <span class=\"var\">request</span>.GET.get(<span class=\"string\">\"nome\"</span>, <span class=\"string\">\"dev\"</span>)<br>&nbsp;&nbsp;<span class=\"keyword\">return</span> HttpResponse(<span class=\"string\">f\"Olá, {nome}!\"</span>)"
   },
   {
     "label": "Flask",
     "query": "Flask",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
     "category": "backend",
-    "snippet_html": "<span class=\"comment\"># API simples em Flask</span><br><span class=\"keyword\">from</span> flask <span class=\"keyword\">import</span> Flask<br><span class=\"var\">app</span> = Flask(__name__)<br><br>@<span class=\"var\">app</span>.route(<span class=\"string\">\"/hello\"</span>)<br><span class=\"keyword\">def</span> <span class=\"func\">hello</span>():<br>    <span class=\"keyword\">return</span> <span class=\"string\">\"Hello, Artemis!\"</span>"
+    "snippet_html": "<span class=\"comment\"># API em Flask que classifica status</span><br><span class=\"keyword\">from</span> flask <span class=\"keyword\">import</span> Flask, jsonify<br><span class=\"var\">app</span> = Flask(__name__)<br><br>@<span class=\"var\">app</span>.get(<span class=\"string\">\"/status\"</span>)<br><span class=\"keyword\">def</span> <span class=\"func\">status</span>():<br>&nbsp;&nbsp;<span class=\"var\">ok</span> = <span class=\"keyword\">True</span><br>&nbsp;&nbsp;<span class=\"keyword\">return</span> jsonify({<span class=\"string\">\"ok\"</span>: <span class=\"var\">ok</span>, <span class=\"string\">\"env\"</span>: <span class=\"string\">\"dev\"</span>})"
   },
   {
     "label": "FastAPI",
     "query": "FastAPI",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
     "category": "backend",
-    "snippet_html": "<span class=\"comment\"># Endpoint em FastAPI</span><br><span class=\"keyword\">from</span> fastapi <span class=\"keyword\">import</span> FastAPI<br><span class=\"var\">app</span> = FastAPI()<br><br>@<span class=\"var\">app</span>.get(<span class=\"string\">\"/hello\"</span>)<br><span class=\"keyword\">def</span> <span class=\"func\">hello</span>():<br>    <span class=\"keyword\">return</span> {<span class=\"string\">\"message\"</span>: <span class=\"string\">\"Hello, Artemis!\"</span>}"
+    "snippet_html": "<span class=\"comment\"># Endpoint que classifica usuário como iniciante, intermediário ou avançado</span><br><span class=\"keyword\">from</span> fastapi <span class=\"keyword\">import</span> FastAPI<br><span class=\"var\">app</span> = FastAPI()<br><br>@<span class=\"var\">app</span>.get(<span class=\"string\">\"/level\"</span>)<br><span class=\"keyword\">def</span> <span class=\"func\">get_level</span>(xp: <span class=\"keyword\">int</span>):<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> xp &lt; <span class=\"number\">100</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">return</span> {<span class=\"string\">\"level\"</span>: <span class=\"string\">\"beginner\"</span>}<br>&nbsp;&nbsp;<span class=\"keyword\">elif</span> xp &lt; <span class=\"number\">500</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">return</span> {<span class=\"string\">\"level\"</span>: <span class=\"string\">\"intermediate\"</span>}<br>&nbsp;&nbsp;<span class=\"keyword\">return</span> {<span class=\"string\">\"level\"</span>: <span class=\"string\">\"advanced\"</span>}"
   },
   {
     "label": "Ruby on Rails",
     "query": "Ruby on Rails",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-plain.svg",
     "category": "backend",
-    "snippet_html": "<span class=\"comment\"># Controller simples em Rails</span><br><span class=\"keyword\">class</span> <span class=\"func\">HelloController</span> &lt; ApplicationController<br>  <span class=\"keyword\">def</span> <span class=\"func\">index</span><br>    render plain: <span class=\"string\">\"Hello, Artemis!\"</span><br>  <span class=\"keyword\">end</span><br><span class=\"keyword\">end</span>"
+    "snippet_html": "<span class=\"comment\"># Controller que retorna JSON com contagem de posts</span><br><span class=\"keyword\">class</span> <span class=\"func\">StatsController</span> &lt; ApplicationController<br>&nbsp;&nbsp;<span class=\"keyword\">def</span> <span class=\"func\">index</span><br>&nbsp;&nbsp;&nbsp;&nbsp;count = Post.count<br>&nbsp;&nbsp;&nbsp;&nbsp;render json: { posts: count }<br>&nbsp;&nbsp;<span class=\"keyword\">end</span><br><span class=\"keyword\">end</span>"
   },
   {
     "label": "Laravel",
     "query": "Laravel",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg",
     "category": "backend",
-    "snippet_html": "<span class=\"comment\">// Rota simples em Laravel</span><br>Route::get(<span class=\"string\">'/hello'</span>, <span class=\"keyword\">function</span> () {<br>    <span class=\"keyword\">return</span> <span class=\"string\">'Hello, Artemis!'</span>;<br>});"
+    "snippet_html": "<span class=\"comment\">// Rota que responde diferente por role do usuário</span><br>Route::get(<span class=\"string\">'/dashboard'</span>, <span class=\"keyword\">function</span> () {<br>&nbsp;&nbsp;<span class=\"keyword\">$role</span> = auth()-&gt;user()-&gt;role ?? <span class=\"string\">'guest'</span>;<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"keyword\">$role</span> === <span class=\"string\">'admin'</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">return</span> <span class=\"string\">'Bem-vindo, admin'</span>;<br>&nbsp;&nbsp;}<span class=\"keyword\">return</span> <span class=\"string\">'Bem-vindo ao painel'</span>;<br>});"
   },
   {
     "label": "Express.js",
     "query": "Express.js",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
     "category": "backend",
-    "snippet_html": "<span class=\"comment\">// Endpoint simples em Express</span><br><span class=\"keyword\">const</span> <span class=\"var\">express</span> = require(<span class=\"string\">'express'</span>);<br><span class=\"keyword\">const</span> <span class=\"var\">app</span> = <span class=\"func\">express</span>();<br><br><span class=\"var\">app</span>.get(<span class=\"string\">'/hello'</span>, (<span class=\"var\">req</span>, <span class=\"var\">res</span>) =&gt; {<br>  <span class=\"var\">res</span>.send(<span class=\"string\">'Hello, Artemis!'</span>);<br>});"
+    "snippet_html": "<span class=\"comment\">// Endpoint com parâmetro de rota e condicional</span><br><span class=\"keyword\">const</span> <span class=\"var\">express</span> = require(<span class=\"string\">'express'</span>);<br><span class=\"keyword\">const</span> <span class=\"var\">app</span> = <span class=\"func\">express</span>();<br><br><span class=\"var\">app</span>.get(<span class=\"string\">'/saudacao/:nome'</span>, (<span class=\"var\">req</span>, <span class=\"var\">res</span>) =&gt; {<br>&nbsp;&nbsp;<span class=\"keyword\">const</span> <span class=\"var\">nome</span> = <span class=\"var\">req</span>.params.nome;<br>&nbsp;&nbsp;<span class=\"keyword\">if</span> (<span class=\"var\">nome</span> === <span class=\"string\">'admin'</span>) {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">res</span>.send(<span class=\"string\">'Olá, mestre do sistema 👑'</span>);<br>&nbsp;&nbsp;} <span class=\"keyword\">else</span> {<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"var\">res</span>.send(<span class=\"string\">`Olá, ${nome}`</span>);<br>&nbsp;&nbsp;}<br>});"
   },
-
   {
     "label": "React",
     "query": "React",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     "category": "frontend",
-    "snippet_html": "<span class=\"comment\">// Componente React simples</span><br><span class=\"keyword\">function</span> <span class=\"func\">Hello</span>() {<br>  <span class=\"keyword\">return</span> (&lt;h1&gt;<span class=\"string\">Hello, Artemis!</span>&lt;/h1&gt;);<br>}"
+    "snippet_html": "<span class=\"comment\">// Lista de tarefas com contagem de concluídas</span><br><span class=\"keyword\">function</span> <span class=\"func\">TodoList</span>() {<br>&nbsp;&nbsp;<span class=\"keyword\">const</span> <span class=\"var\">tasks</span> = [<br>&nbsp;&nbsp;&nbsp;&nbsp;{ id: <span class=\"number\">1</span>, title: <span class=\"string\">'Estudar React'</span>, done: <span class=\"keyword\">true</span> },<br>&nbsp;&nbsp;&nbsp;&nbsp;{ id: <span class=\"number\">2</span>, title: <span class=\"string\">'Criar projeto'</span>, done: <span class=\"keyword\">false</span> }<br>&nbsp;&nbsp;];<br><br>&nbsp;&nbsp;<span class=\"keyword\">const</span> <span class=\"var\">doneCount</span> = <span class=\"var\">tasks</span>.filter(<span class=\"var\">t</span> =&gt; <span class=\"var\">t</span>.done).length;<br><br>&nbsp;&nbsp;<span class=\"keyword\">return</span> (&lt;div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;<span class=\"string\">Tarefas ({doneCount} concluídas)</span>&lt;/h2&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;{<span class=\"var\">tasks</span>.map(<span class=\"var\">t</span> =&gt; (&lt;li key={t.id}&gt;{<span class=\"var\">t</span>.title}&lt;/li&gt;))}<br>&nbsp;&nbsp;&lt;/div&gt;);<br>}"
   },
   {
     "label": "Vue.js",
     "query": "Vue.js",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
     "category": "frontend",
-    "snippet_html": "<span class=\"comment\">&lt;!-- Componente Vue 3 --&gt;</span><br>&lt;template&gt;<br>  &lt;h1&gt;<span class=\"string\">Hello, Artemis!</span>&lt;/h1&gt;<br>&lt;/template&gt;"
+    "snippet_html": "<span class=\"comment\">&lt;!-- Componente Vue 3 com lista e condicional --&gt;</span><br>&lt;template&gt;<br>  &lt;div&gt;<br>    &lt;h2&gt;Notificações&lt;/h2&gt;<br>    &lt;p v-if=<span class=\"string\">\"alerts.length === 0\"</span>&gt;Tudo tranquilo ✅&lt;/p&gt;<br>    &lt;ul v-else&gt;<br>      &lt;li v-for=<span class=\"string\">\"a in alerts\"</span> :key=<span class=\"string\">\"a.id\"</span>&gt;{{ a.msg }}&lt;/li&gt;<br>    &lt;/ul&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script setup&gt;<br>const alerts = [<br>  { id: 1, msg: 'Build falhou' },<br>  { id: 2, msg: 'Novo pull request' }<br>]<br>&lt;/script&gt;"
   },
   {
     "label": "Angular",
     "query": "Angular",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
     "category": "frontend",
-    "snippet_html": "<span class=\"comment\">// Template Angular</span><br>&lt;h1&gt;<span class=\"string\">{{ title }}</span>&lt;/h1&gt;<br><span class=\"comment\">// TS</span><br><span class=\"keyword\">title</span> = <span class=\"string\">'Hello, Artemis!'</span>;"
+    "snippet_html": "<span class=\"comment\">&lt;!-- Template Angular com *ngFor e *ngIf --&gt;</span><br>&lt;h2&gt;Usuários online&lt;/h2&gt;<br>&lt;p *ngIf=<span class=\"string\">\"users.length === 0\"</span>&gt;Ninguém online&lt;/p&gt;<br>&lt;ul&gt;<br>  &lt;li *ngFor=<span class=\"string\">\"let u of users\"</span>&gt;{{ u.name }}&lt;/li&gt;<br>&lt;/ul&gt;<br><span class=\"comment\">// TS</span><br><span class=\"keyword\">users</span> = [{ name: <span class=\"string\">'Ana'</span> }, { name: <span class=\"string\">'Henrique'</span> }];"
   },
   {
     "label": "Svelte",
     "query": "Svelte",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg",
     "category": "frontend",
-    "snippet_html": "<span class=\"comment\">&lt;!-- Componente Svelte --&gt;</span><br>&lt;script&gt;<br>  <span class=\"keyword\">let</span> <span class=\"var\">name</span> = <span class=\"string\">'Artemis'</span>;<br>&lt;/script&gt;<br><br>&lt;h1&gt;<span class=\"string\">Hello, {name}!</span>&lt;/h1&gt;"
+    "snippet_html": "<span class=\"comment\">&lt;!-- Componente Svelte com loop e condicional --&gt;</span><br>&lt;script&gt;<br>  <span class=\"keyword\">let</span> <span class=\"var\">points</span> = [<span class=\"number\">10</span>, <span class=\"number\">30</span>, <span class=\"number\">50</span>];<br>&lt;/script&gt;<br><br>&lt;h2&gt;Pontuações&lt;/h2&gt;<br>{#each points as p}<br>  {#if p &gt;= 30}<br>    &lt;p&gt;⭐️ {p}&lt;/p&gt;<br>  {:else}<br>    &lt;p&gt;• {p}&lt;/p&gt;<br>  {/if}<br>{/each}"
   },
-
   {
     "label": "PostgreSQL",
     "query": "PostgreSQL",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
     "category": "database",
-    "snippet_html": "<span class=\"comment\">-- Consulta simples em PostgreSQL</span><br><span class=\"keyword\">SELECT</span> <span class=\"var\">id</span>, <span class=\"var\">nome</span><br><span class=\"keyword\">FROM</span> <span class=\"var\">usuarios</span><br><span class=\"keyword\">WHERE</span> <span class=\"var\">ativo</span> = <span class=\"keyword\">TRUE</span>;"
+    "snippet_html": "<span class=\"comment\">-- Listar usuários ativos e marcar quem tem mais de 5 logins</span><br><span class=\"keyword\">SELECT</span><br>&nbsp;&nbsp;u.id,<br>&nbsp;&nbsp;u.nome,<br>&nbsp;&nbsp;u.ativo,<br>&nbsp;&nbsp;<span class=\"keyword\">CASE</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">WHEN</span> <span class=\"var\">login_count</span> &gt; <span class=\"number\">5</span> <span class=\"keyword\">THEN</span> <span class=\"string\">'power-user'</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"keyword\">ELSE</span> <span class=\"string\">'regular'</span><br>&nbsp;&nbsp;<span class=\"keyword\">END</span> <span class=\"keyword\">AS</span> perfil<br><span class=\"keyword\">FROM</span> usuarios u<br><span class=\"keyword\">WHERE</span> u.ativo = <span class=\"keyword\">TRUE</span>;"
   },
   {
     "label": "MySQL",
     "query": "MySQL",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
     "category": "database",
-    "snippet_html": "<span class=\"comment\">-- Criar tabela em MySQL</span><br><span class=\"keyword\">CREATE TABLE</span> <span class=\"var\">clientes</span> (<br>  <span class=\"var\">id</span> <span class=\"keyword\">INT</span> <span class=\"keyword\">PRIMARY KEY</span>,<br>  <span class=\"var\">nome</span> <span class=\"keyword\">VARCHAR</span>(<span class=\"number\">100</span>)<br>);"
+    "snippet_html": "<span class=\"comment\">-- Criar tabela com campo obrigatório e default</span><br><span class=\"keyword\">CREATE TABLE</span> <span class=\"var\">clientes</span> (<br>  <span class=\"var\">id</span> <span class=\"keyword\">INT</span> <span class=\"keyword\">AUTO_INCREMENT PRIMARY KEY</span>,<br>  <span class=\"var\">nome</span> <span class=\"keyword\">VARCHAR</span>(<span class=\"number\">100</span>) <span class=\"keyword\">NOT NULL</span>,<br>  <span class=\"var\">ativo</span> <span class=\"keyword\">TINYINT</span>(<span class=\"number\">1</span>) <span class=\"keyword\">DEFAULT</span> <span class=\"number\">1</span><br>);"
   },
   {
     "label": "MongoDB",
     "query": "MongoDB",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
     "category": "database",
-    "snippet_html": "<span class=\"comment\">// Inserir documento em MongoDB</span><br>db.<span class=\"var\">logs</span>.insertOne({<br>  <span class=\"string\">\"msg\"</span>: <span class=\"string\">\"Hello, Artemis!\"</span>,<br>  <span class=\"string\">\"level\"</span>: <span class=\"string\">\"info\"</span><br>});"
+    "snippet_html": "<span class=\"comment\">// Inserir logs e buscar os de nível \"error\"</span><br>db.<span class=\"var\">logs</span>.insertMany([<br>  { <span class=\"string\">\"msg\"</span>: <span class=\"string\">\"OK\"</span>, <span class=\"string\">\"level\"</span>: <span class=\"string\">\"info\"</span> },<br>  { <span class=\"string\">\"msg\"</span>: <span class=\"string\">\"Falhou\"</span>, <span class=\"string\">\"level\"</span>: <span class=\"string\">\"error\"</span> }<br>]);<br><br>db.<span class=\"var\">logs</span>.find({ <span class=\"string\">\"level\"</span>: <span class=\"string\">\"error\"</span> });"
   },
   {
     "label": "Redis",
     "query": "Redis",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
     "category": "database",
-    "snippet_html": "<span class=\"comment\"># Set e get em Redis (CLI)</span><br><span class=\"keyword\">SET</span> <span class=\"var\">hello</span> <span class=\"string\">\"Artemis\"</span><br><span class=\"keyword\">GET</span> <span class=\"var\">hello</span>"
+    "snippet_html": "<span class=\"comment\"># Usar lista como fila simples</span><br><span class=\"keyword\">LPUSH</span> <span class=\"var\">fila</span> <span class=\"string\">\"tarefa1\"</span><br><span class=\"keyword\">LPUSH</span> <span class=\"var\">fila</span> <span class=\"string\">\"tarefa2\"</span><br><span class=\"keyword\">RPOP</span> <span class=\"var\">fila</span>   <span class=\"comment\"># pega a tarefa mais antiga</span>"
   },
-
   {
     "label": "Docker",
     "query": "Docker",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
     "category": "devops",
-    "snippet_html": "<span class=\"comment\"># Dockerfile simples</span><br><span class=\"keyword\">FROM</span> node:<span class=\"number\">18</span>-alpine<br><span class=\"keyword\">WORKDIR</span> /app<br><span class=\"keyword\">COPY</span> . .<br><span class=\"keyword\">RUN</span> npm install<br><span class=\"keyword\">CMD</span> [<span class=\"string\">\"npm\"</span>, <span class=\"string\">\"start\"</span>]"
+    "snippet_html": "<span class=\"comment\"># Dockerfile com variável de ambiente e comando de saúde simples</span><br><span class=\"keyword\">FROM</span> node:<span class=\"number\">18</span>-alpine<br><span class=\"keyword\">WORKDIR</span> /app<br><span class=\"keyword\">ENV</span> NODE_ENV=<span class=\"string\">production</span><br><span class=\"keyword\">COPY</span> package*.json ./<br><span class=\"keyword\">RUN</span> npm install --omit=dev<br><span class=\"keyword\">COPY</span> . .<br><span class=\"keyword\">EXPOSE</span> <span class=\"number\">3000</span><br><span class=\"keyword\">HEALTHCHECK</span> <span class=\"var\">CMD</span> curl -f http://localhost:3000/health || exit <span class=\"number\">1</span><br><span class=\"keyword\">CMD</span> [<span class=\"string\">\"npm\"</span>, <span class=\"string\">\"start\"</span>]"
   },
   {
     "label": "Kubernetes",
     "query": "Kubernetes",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
     "category": "devops",
-    "snippet_html": "<span class=\"comment\"># Deployment simples em YAML</span><br><span class=\"var\">apiVersion</span>: apps/v1<br><span class=\"var\">kind</span>: Deployment<br><span class=\"var\">metadata</span>:<br>  <span class=\"var\">name</span>: <span class=\"string\">artemis-api</span><br><span class=\"var\">spec</span>:<br>  <span class=\"var\">replicas</span>: <span class=\"number\">2</span>"
+    "snippet_html": "<span class=\"comment\"># Deployment simples com 2 réplicas</span><br><span class=\"var\">apiVersion</span>: apps/v1<br><span class=\"var\">kind</span>: Deployment<br><span class=\"var\">metadata</span>:<br>  <span class=\"var\">name</span>: <span class=\"string\">artemis-api</span><br><span class=\"var\">spec</span>:<br>  <span class=\"var\">replicas</span>: <span class=\"number\">2</span><br>  <span class=\"var\">selector</span>:<br>    <span class=\"var\">matchLabels</span>:<br>      <span class=\"var\">app</span>: <span class=\"string\">artemis-api</span><br>  <span class=\"var\">template</span>:<br>    <span class=\"var\">metadata</span>:<br>      <span class=\"var\">labels</span>:<br>        <span class=\"var\">app</span>: <span class=\"string\">artemis-api</span><br>    <span class=\"var\">spec</span>:<br>      <span class=\"var\">containers</span>:<br>        - <span class=\"var\">name</span>: <span class=\"string\">api</span><br>          <span class=\"var\">image</span>: <span class=\"string\">meu-registro/artemis:latest</span>"
   },
   {
     "label": "AWS",
     "query": "AWS",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
     "category": "devops",
-    "snippet_html": "<span class=\"comment\"># Exemplo conceitual AWS CLI</span><br>aws s3 cp <span class=\"string\">arquivo.txt</span> s3://<span class=\"var\">meu-bucket-artemis</span>/"
+    "snippet_html": "<span class=\"comment\"># Enviar arquivo para S3</span><br>aws s3 cp <span class=\"string\">arquivo.txt</span> s3://<span class=\"var\">meu-bucket-artemis</span>/arquivo.txt<br><span class=\"comment\"># Listar objetos</span><br>aws s3 ls s3://<span class=\"var\">meu-bucket-artemis</span>/"
   },
   {
     "label": "GCP",
     "query": "Google Cloud Platform",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
     "category": "devops",
-    "snippet_html": "<span class=\"comment\"># Exemplo conceitual gcloud</span><br>gcloud run deploy <span class=\"var\">artemis-api</span> --source ."
+    "snippet_html": "<span class=\"comment\"># Deploy de container no Cloud Run</span><br>gcloud run deploy <span class=\"var\">artemis-api</span> --source . --region=<span class=\"string\">\"southamerica-east1\"</span> --allow-unauthenticated"
   },
   {
     "label": "Azure",
     "query": "Azure",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
     "category": "devops",
-    "snippet_html": "<span class=\"comment\"># Exemplo conceitual Azure CLI</span><br>az webapp up -n <span class=\"var\">artemis-app</span> -g <span class=\"var\">rg-artemis</span>"
+    "snippet_html": "<span class=\"comment\"># Subir app web simples no Azure</span><br>az webapp up -n <span class=\"var\">artemis-app</span> -g <span class=\"var\">rg-artemis</span> --runtime <span class=\"string\">\"NODE:18-lts\"</span>"
   },
-
   {
     "label": "PyTorch",
     "query": "PyTorch",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
     "category": "ml",
-    "snippet_html": "<span class=\"comment\"># Tensor aleatório em PyTorch</span><br><span class=\"keyword\">import</span> torch<br><span class=\"var\">x</span> = torch.rand(<span class=\"number\">2</span>, <span class=\"number\">3</span>)<br>print(<span class=\"var\">x</span>)"
+    "snippet_html": "<span class=\"comment\"># Criar um tensor, aplicar máscara e contar quantos valores são positivos</span><br><span class=\"keyword\">import</span> torch<br><br><span class=\"var\">x</span> = torch.tensor([<span class=\"number\">-1.0</span>, <span class=\"number\">0.0</span>, <span class=\"number\">2.5</span>, <span class=\"number\">3.3</span>])<br><span class=\"var\">mask</span> = <span class=\"var\">x</span> &gt; <span class=\"number\">0</span><br><span class=\"var\">positivos</span> = <span class=\"var\">x</span>[<span class=\"var\">mask</span>]<br><br>print(<span class=\"string\">\"Valores &gt; 0:\"</span>, <span class=\"var\">positivos</span>)<br>print(<span class=\"string\">\"Quantidade:\"</span>, <span class=\"var\">mask</span>.sum().item())"
   },
   {
     "label": "TensorFlow",
     "query": "TensorFlow",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
     "category": "ml",
-    "snippet_html": "<span class=\"comment\"># Constante em TensorFlow</span><br><span class=\"keyword\">import</span> tensorflow as tf<br><span class=\"var\">x</span> = tf.constant(<span class=\"number\">3</span>)<br>print(<span class=\"var\">x</span>)"
+    "snippet_html": "<span class=\"comment\"># Classificar valores como \"altos\" ou \"baixos\" usando TensorFlow ops</span><br><span class=\"keyword\">import</span> tensorflow as tf<br><br><span class=\"var\">x</span> = tf.constant([<span class=\"number\">1</span>, <span class=\"number\">5</span>, <span class=\"number\">9</span>])<br><span class=\"var\">mask</span> = <span class=\"var\">x</span> &gt; <span class=\"number\">4</span><br><span class=\"var\">labels</span> = tf.where(<span class=\"var\">mask</span>, <span class=\"string\">\"alto\"</span>, <span class=\"string\">\"baixo\"</span>)<br><br>print(<span class=\"var\">labels</span>.numpy())"
   },
   {
     "label": "scikit-learn",
     "query": "scikit-learn",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg",
     "category": "ml",
-    "snippet_html": "<span class=\"comment\"># Treino de regressão simples</span><br><span class=\"keyword\">from</span> sklearn.linear_model <span class=\"keyword\">import</span> LinearRegression<br><span class=\"var\">model</span> = LinearRegression()<br><span class=\"var\">model</span>.fit([[<span class=\"number\">1</span>], [<span class=\"number\">2</span>]], [<span class=\"number\">2</span>, <span class=\"number\">4</span>])"
+    "snippet_html": "<span class=\"comment\"># Treinar um modelo simples e decidir se aprova ou não um limite de crédito</span><br><span class=\"keyword\">from</span> sklearn.tree <span class=\"keyword\">import</span> DecisionTreeClassifier<br><br><span class=\"var\">X</span> = [[<span class=\"number\">1</span>], [<span class=\"number\">3</span>], [<span class=\"number\">6</span>], [<span class=\"number\">9</span>]]  <span class=\"comment\"># renda (em milhares)</span><br><span class=\"var\">y</span> = [<span class=\"number\">0</span>, <span class=\"number\">0</span>, <span class=\"number\">1</span>, <span class=\"number\">1</span>]        <span class=\"comment\"># 0 = nega, 1 = aprova</span><br><br><span class=\"var\">model</span> = DecisionTreeClassifier().fit(<span class=\"var\">X</span>, <span class=\"var\">y</span>)<br><span class=\"var\">pred</span> = <span class=\"var\">model</span>.predict([[<span class=\"number\">4</span>]])[<span class=\"number\">0</span>]<br><br><span class=\"keyword\">print</span>(<span class=\"string\">\"Aprovar?\"</span>, <span class=\"string\">\"Sim\"</span> <span class=\"keyword\">if</span> <span class=\"var\">pred</span> == <span class=\"number\">1</span> <span class=\"keyword\">else</span> <span class=\"string\">\"Não\"</span>)"
   },
   {
     "label": "LangChain",
     "query": "LangChain",
     "initials": "LC",
     "category": "ml",
-    "snippet_html": "<span class=\"comment\"># Cadeia simples em LangChain (conceitual)</span><br><span class=\"keyword\">from</span> langchain <span class=\"keyword\">import</span> LLMChain<br><span class=\"comment\"># chain = LLMChain(...)</span>"
+    "snippet_html": "<span class=\"comment\"># Cadeia conceitual com verificação de confiança na resposta</span><br><span class=\"keyword\">from</span> langchain <span class=\"keyword\">import</span> LLMChain<br><span class=\"comment\"># llm = ... (instancie seu modelo)</span><br><span class=\"comment\"># chain = LLMChain(llm=llm, prompt=...)</span><br><span class=\"comment\"># resp = chain.run(\"Explique o que é RAG\")</span><br><span class=\"comment\"># if resp_confidence &lt; 0.5: buscar mais contexto antes de responder</span>"
   },
   {
     "label": "RAG",
     "query": "RAG",
     "initials": "RAG",
     "category": "ml",
-    "snippet_html": "<span class=\"comment\"># Fluxo conceitual de RAG</span><br><span class=\"var\">query</span> -&gt; <span class=\"func\">retrieve_context</span>() -&gt; <span class=\"func\">llm_generate</span>(<span class=\"var\">context</span>, <span class=\"var\">query</span>)"
+    "snippet_html": "<span class=\"comment\"># Fluxo de RAG com checagem de relevância dos documentos</span><br><span class=\"var\">query</span> -&gt; <span class=\"func\">embed_query</span>() -&gt; <span class=\"func\">search_docs</span>()<br>-&gt; <span class=\"keyword\">if</span> <span class=\"var\">score_medio</span> &lt; limiar: <span class=\"func\">refine_busca</span>()<br>-&gt; <span class=\"func\">llm_generate</span>(<span class=\"var\">contexto_filtrado</span>, <span class=\"var\">query</span>)"
   },
-
   {
     "label": "HTTP",
     "query": "HTTP",
     "initials": "HTTP",
     "category": "concept",
-    "snippet_html": "<span class=\"comment\"># Exemplo de requisição HTTP com curl</span><br>curl -X <span class=\"keyword\">GET</span> <span class=\"string\">\"https://api.artemis.dev/health\"</span>"
+    "snippet_html": "<span class=\"comment\"># Exemplo de requisição HTTP com curl e cabeçalho customizado</span><br>curl -X <span class=\"keyword\">GET</span> <span class=\"string\">\"https://api.artemis.dev/health\"</span> \\<br>  -H <span class=\"string\">\"Accept: application/json\"</span> \\<br>  -H <span class=\"string\">\"X-Client: codeimagin\"</span>"
   },
   {
     "label": "REST",
     "query": "REST",
     "initials": "REST",
     "category": "concept",
-    "snippet_html": "<span class=\"comment\"># Exemplo de recurso REST</span><br><span class=\"keyword\">GET</span> /api/v1/bugs<br><span class=\"keyword\">POST</span> /api/v1/bugs"
+    "snippet_html": "<span class=\"comment\"># Exemplo de recursos REST</span><br><span class=\"keyword\">GET</span> /api/v1/bugs        <span class=\"comment\"># lista bugs</span><br><span class=\"keyword\">POST</span> /api/v1/bugs       <span class=\"comment\"># cria bug</span><br><span class=\"keyword\">GET</span> /api/v1/bugs/{id}  <span class=\"comment\"># detalhe</span><br><span class=\"keyword\">PATCH</span> /api/v1/bugs/{id} <span class=\"comment\"># atualiza parcialmente</span>"
   },
   {
     "label": "JSON",
     "query": "JSON",
     "icon": "https://cdn.simpleicons.org/json/FAFAFA",
     "category": "concept",
-    "snippet_html": "<span class=\"comment\">// Objeto JSON representando bug</span><br>{<br>  <span class=\"string\">\"id\"</span>: <span class=\"number\">1</span>,<br>  <span class=\"string\">\"titulo\"</span>: <span class=\"string\">\"Erro de login\"</span><br>}"
+    "snippet_html": "<span class=\"comment\">// Objeto JSON representando bug com status</span><br>{<br>  <span class=\"string\">\"id\"</span>: <span class=\"number\">1</span>,<br>  <span class=\"string\">\"titulo\"</span>: <span class=\"string\">\"Erro de login\"</span>,<br>  <span class=\"string\">\"status\"</span>: <span class=\"string\">\"aberto\"</span><br>}"
   },
   {
     "label": "Git",
     "query": "Git",
     "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
     "category": "concept",
-    "snippet_html": "<span class=\"comment\"># Comandos Git básicos</span><br>git status<br>git commit -m <span class=\"string\">\"docs: adiciona exemplo Artemis\"</span>"
+    "snippet_html": "<span class=\"comment\"># Fluxo básico de trabalho com Git</span><br>git status<br>git add .<br>git commit -m <span class=\"string\">\"feat: adiciona exemplos no CodeImag.in\"</span><br>git push origin main"
   }
 ]
