@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     articleContainer.innerHTML = `
-      <article class="content-item hero hero-layout">
+      <article class="content-item hero hero-layout" id="initial-content">
 
         <div class="hero-copy">
           <a href="https://henriquesilva.dev/imersao-dev-2025/aula-2/" class="hero-kicker">Voltar a Info</a>
