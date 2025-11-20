@@ -138,17 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     articleContainer.innerHTML = `
-      <article class="content-item hero" id="initial-content">
+      <div class="hero-copy">
+        <a href="https://henriquesilva.dev/imersao-dev-2025/aula-2/" class="hero-kicker">Voltar a Info</a>
 
-        <div class="hero-copy">
-          <a href="https://henriquesilva.dev/imersao-dev-2025/aula-2/" class="hero-kicker">Voltar a Info</a>
-
-          <h2>Resultado para "${query}"</h2>
-          <p>${answer || ''}</p>
-          ${docLinkMarkup}
-          ${helloWorldMarkup}
-        </div>
-      </article>
+        <h2>Resultado para "${query}"</h2>
+        <p class="hero-lead">${answer || ''}</p>
+        ${docLinkMarkup}
+        ${helloWorldMarkup}
+      </div>      
       `;
   };
 
