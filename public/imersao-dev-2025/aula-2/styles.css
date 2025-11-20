@@ -686,3 +686,20 @@ footer {
     max-width: 240px;
   }
 }
+
+
+
+/* Wrapper do vídeo */
+.hero-video-wrapper {
+  flex: 1;        /* Ocupa metade ou menos */
+  max-width: 560px;
+  border-radius: 12px; /* opcional: fica mais elegante */
+  padding: 0;
+}
+
+/* Vídeo dentro do wrapper */
+.hero-video {
+  width: 100%;
+  display: block;
+  object-fit: cover; /* mantém proporção sem cortar errado */
+}
