@@ -216,15 +216,30 @@ main {
   margin-bottom: 0.5rem;
 }
 
+/* Container do código (pode ser div, pre ou code com essa classe) */
 .code-block {
   background: #272822;
   color: #f8f8f2;
   padding: 1rem;
   border-radius: 8px;
   overflow-x: auto;
+  max-width: 100%;
   font-family: "Fira Code", "JetBrains Mono", monospace;
   font-size: 0.85rem;
   line-height: 1.5;
+
+  /* garante que o bloco não “empurre” a página no mobile */
+  white-space: pre;
+}
+
+/* Se você usar <pre> ou <code> dentro do .code-block */
+.code-block pre,
+.code-block code {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre;
 }
 
 /* Monokai-ish */
@@ -234,6 +249,30 @@ main {
 .code-block .comment { color: #75715e; }
 .code-block .func    { color: #a6e22e; }
 .code-block .var     { color: #f92672; }
+
+/* ===== Ajustes responsivos específicos para o code ===== */
+@media (max-width: 768px) {
+  .code-block {
+    font-size: 0.8rem;
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .code-block {
+    font-size: 0.75rem;
+    padding: 0.7rem;
+
+    /* Opcional: permite quebrar linhas ao invés de scroll infinito horizontal */
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .code-block pre,
+  .code-block code {
+    white-space: inherit;
+  }
+}
 
 /* ===== FOOTER – MOBILE EMPILHADO ===== */
 
