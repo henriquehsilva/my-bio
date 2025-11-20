@@ -653,6 +653,7 @@ footer {
   max-width: 320px;
   margin-left: auto;
   transition: transform 0.3s ease, filter 0.3s ease;
+  margin-top: -200px; /* levanta a imagem */
 }
 
 /* efeito ao passar o mouse */
@@ -692,6 +693,7 @@ footer {
   flex: 1;        /* Ocupa metade ou menos */
   max-width: 560px;
   border-radius: 12px; /* opcional: fica mais elegante */
+  padding: 0;
 }
 
 /* Vídeo dentro do wrapper */
