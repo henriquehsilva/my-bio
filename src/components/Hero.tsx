@@ -74,18 +74,18 @@ export default function Hero() {
           Senior Software Engineer | AI & Data Science Student
         </p>
         <a
-          href="https://instagram.com/henriquesilvadev"
+          href="https://www.linkedin.com/in/henriquesilvadev"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block text-sm font-light tracking-wide uppercase border border-white/40 px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300"
         >
-          Visit my Instagram
+          Visit my LinkedIn
         </a>
 
         {posts[0]?.id.includes('placeholder') && (
           <div className="mt-8">
             <p className="text-xs text-gray-400 font-light">
-              Connect Instagram API to display your real photos
+              Connect LinkedIn API to display your real photos
             </p>
           </div>
         )}
