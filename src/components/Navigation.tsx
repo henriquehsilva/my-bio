@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 
 const socialLinks = [
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/placeholder' },
-  { name: 'GitHub', url: 'https://github.com/placeholder' },
-  { name: 'Twitter', url: 'https://twitter.com/placeholder' },
-  { name: 'YouTube', url: 'https://youtube.com/@placeholder' },
-  { name: 'Substack', url: 'https://placeholder.substack.com' },
-  { name: 'Medium', url: 'https://medium.com/@placeholder' },
-  { name: 'Instagram', url: 'https://instagram.com/placeholder' },
-  { name: 'Calendly', url: 'https://calendly.com/placeholder' },
-  { name: 'Spotify', url: 'https://open.spotify.com/user/placeholder' }
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/henriquesilvadev' },
+  { name: 'GitHub', url: 'https://github.com/henriquehsilva' },
+  { name: 'X', url: 'https://x.com/henriquesdev' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@henriquesilvaplay' },
+  { name: 'Substack', url: 'https://henriquesilva.substack.com/' },
+  { name: 'Medium', url: 'https://mentalma.henriquesilva.dev' },
+  { name: 'Instagram', url: 'https://www.instagram.com/henriquesilvadev/' },
+  { name: 'Calendly', url: 'https://calendly.com/henriquesilvadev/mentoria-1-1' },
+  { name: 'Spotify', url: 'https://open.spotify.com/user/31h2twyyee3rvceua7x4bgsplqrm' }
 ];
 
 export default function Navigation() {
@@ -40,20 +40,19 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black/95 backdrop-blur-sm border-b border-white/10' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-sm border-b border-white/10' : 'bg-transparent'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 overflow-hidden border border-white/20">
             <img
-              src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=80"
-              alt="Henrique Silva"
+              src="/me.png"
+              alt="@henriquesilvadev"
               className="w-full h-full object-cover"
             />
           </div>
-          <span className="text-lg font-medium tracking-tight">HenriqueSilva.dev</span>
+          <span className="text-lg font-medium tracking-tight">HENRIQUE SILVA DEV</span>
         </div>
 
         <div className="hidden lg:flex items-center gap-8">

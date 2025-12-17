@@ -18,17 +18,44 @@ export async function getLatestSubstackPost(): Promise<SubstackPost> {
   }
 
   try {
-    const response = await fetch(`${substackUrl}/api/v1/posts/latest`);
+    // Substack RSS is usually at /feed
+    const rssUrl = substackUrl.endsWith('/') ? `${substackUrl}feed` : `${substackUrl}/feed`;
+
+    const response = await fetch(
+      `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`
+    );
 
     if (!response.ok) throw new Error('Failed to fetch Substack post');
 
-    return await response.json();
+    const data = await response.json();
+
+    if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+      throw new Error('No posts found in Substack feed');
+    }
+
+    const latestPost = data.items[0];
+
+    // Clean description to get excerpt
+    const description = latestPost.description || '';
+    const cleanExcerpt = description
+      .replace(/<[^>]*>/g, '') // Remove HTML tags
+      .replace(/\s+/g, ' ')    // Normalize whitespace
+      .trim()
+      .slice(0, 200) + '...';
+
+    return {
+      title: latestPost.title,
+      date: latestPost.pubDate,
+      excerpt: cleanExcerpt,
+      readingTime: '5 min read', // RSS doesn't always provide reading time
+      url: latestPost.link
+    };
   } catch (error) {
     console.error('Error fetching Substack post:', error);
     return {
       title: 'Unable to load latest post',
       date: new Date().toISOString(),
-      excerpt: 'Check Substack API configuration.',
+      excerpt: 'Check Substack URL configuration in .env.',
       readingTime: '0 min read',
       url: '#'
     };

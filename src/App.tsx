@@ -1,6 +1,7 @@
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import LatestTweet from './components/LatestTweet';
+import LatestInstagram from './components/LatestInstagram';
 import StatsStrip from './components/StatsStrip';
 import LatestThoughts from './components/LatestThoughts';
 import FeaturedProjects from './components/FeaturedProjects';
@@ -17,6 +18,7 @@ function App() {
       <main>
         <Hero />
         <LatestTweet />
+        <LatestInstagram />
         <StatsStrip />
         <LatestThoughts />
         <FeaturedProjects />

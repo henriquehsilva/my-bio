@@ -34,8 +34,7 @@ export default function Hero() {
 
   if (loading) {
     return (
-      <section id="hero" className="relative h-screen flex items-center justify-center">
-        <div className="absolute inset-0 bg-black" />
+      <section className="relative min-h-screen h-screen max-h-screen flex items-center justify-center bg-black">
         <div className="relative z-10 text-center px-6">
           <div className="animate-pulse">
             <div className="h-12 w-64 bg-gray-800 rounded mx-auto mb-4" />
@@ -47,18 +46,14 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0">
+    <section className="relative min-h-screen h-screen max-h-screen flex items-center justify-center bg-black overflow-hidden">
+      {/* Background Layer */}
+      <div className="absolute top-0 left-0 w-full h-full">
         {posts.map((post, index) => (
           <div
             key={post.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{
-              transform: index === currentIndex ? 'scale(1.05)' : 'scale(1)',
-              transition: 'opacity 1s ease-in-out, transform 8s ease-out'
-            }}
+            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
           >
             <img
               src={post.imageUrl}
@@ -67,18 +62,19 @@ export default function Hero() {
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/70 via-black/50 to-black" />
       </div>
 
+      {/* Content Layer */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <h1 className="text-6xl md:text-8xl font-bold mb-6 text-shadow leading-tight">
           Henrique Silva
         </h1>
         <p className="text-xl md:text-2xl font-light text-gray-200 mb-8 text-shadow max-w-3xl mx-auto leading-relaxed">
-          Senior Software Developer | AI & Data Science student | Building in public
+          Senior Software Engineer | AI & Data Science Student
         </p>
         <a
-          href="https://instagram.com/placeholder"
+          href="https://instagram.com/henriquesilvadev"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block text-sm font-light tracking-wide uppercase border border-white/40 px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-300"
@@ -95,14 +91,14 @@ export default function Hero() {
         )}
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+      {/* Indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {posts.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-white w-8' : 'bg-white/40'
-            }`}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-white w-8' : 'bg-white/40'
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
@@ -110,3 +106,4 @@ export default function Hero() {
     </section>
   );
 }
+

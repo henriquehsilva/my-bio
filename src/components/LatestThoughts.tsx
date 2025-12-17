@@ -1,24 +1,49 @@
 import { useEffect, useState } from 'react';
 import { getLatestSubstackPost } from '../services/substack.service';
-import type { SubstackPost } from '../types';
+import { getLatestMediumPost } from '../services/medium.service';
+import type { SubstackPost, MediumPost } from '../types';
 
 export default function LatestThoughts() {
-  const [post, setPost] = useState<SubstackPost | null>(null);
+  const [post, setPost] = useState<SubstackPost | MediumPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const [source, setSource] = useState<'Substack' | 'Medium'>('Substack');
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchLatestPost = async () => {
       try {
-        const data = await getLatestSubstackPost();
-        setPost(data);
+        const mediumUsername = import.meta.env.VITE_MEDIUM_USERNAME;
+        const substackUrl = import.meta.env.VITE_SUBSTACK_URL;
+
+        const promises: Promise<any>[] = [];
+        if (mediumUsername) promises.push(getLatestMediumPost());
+        if (substackUrl) promises.push(getLatestSubstackPost());
+
+        if (promises.length === 0) {
+          // Both missing, show default Substack placeholder
+          const defaultPost = await getLatestSubstackPost();
+          setPost(defaultPost);
+          setLoading(false);
+          return;
+        }
+
+        const results = await Promise.all(promises);
+
+        // Find the absolute latest post by date
+        const sorted = results.sort((a, b) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+
+        const latest = sorted[0];
+        setPost(latest);
+        setSource(latest.url.includes('medium.com') || latest.url.includes('henriquesilva.dev') ? 'Medium' : 'Substack');
       } catch (error) {
-        console.error('Error loading Substack post:', error);
+        console.error('Error loading latest thoughts:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchPost();
+    fetchLatestPost();
   }, []);
 
   if (loading) {
@@ -62,22 +87,13 @@ export default function LatestThoughts() {
             {post.excerpt}
           </p>
 
-          {(post.views || post.likes || post.comments || post.subscribers) && (
-            <div className="flex items-center gap-8 mb-8 text-sm text-gray-400 border-t border-gray-800 pt-6">
-              {post.views && <span className="font-light">{post.views.toLocaleString()} Views</span>}
-              {post.likes && <span className="font-light">{post.likes.toLocaleString()} Likes</span>}
-              {post.comments && <span className="font-light">{post.comments.toLocaleString()} Comments</span>}
-              {post.subscribers && <span className="font-light">{post.subscribers.toLocaleString()} Subscribers</span>}
-            </div>
-          )}
-
           <a
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-sm font-light text-gray-300 hover:text-white transition-colors relative group"
           >
-            Read on Substack
+            Read on {source}
             <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
           </a>
         </div>

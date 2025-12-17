@@ -54,7 +54,7 @@ export default function LatestGameplay() {
           <h2 className="text-5xl md:text-6xl font-bold mb-16 tracking-tight">Latest Gameplay</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {videos.map((video, index) => {
+            {videos.slice(0, 3).map((video, index) => {
               const formattedDate = new Date(video.publishedAt).toLocaleDateString('en-US', {
                 month: 'short',
                 day: 'numeric',
@@ -108,7 +108,7 @@ export default function LatestGameplay() {
           </div>
 
           <a
-            href="https://youtube.com/@placeholder"
+            href="https://youtube.com/@henriquesilvaplay"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-sm font-light text-gray-300 hover:text-white transition-colors relative group"
