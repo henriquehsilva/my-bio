@@ -6,7 +6,7 @@ import StatsStrip from './components/StatsStrip';
 import LatestThoughts from './components/LatestThoughts';
 import FeaturedProjects from './components/FeaturedProjects';
 import LatestStudyNote from './components/LatestStudyNote';
-import LatestGameplay from './components/LatestGameplay';
+import WatchingNow from './components/WatchingNow';
 import { useScrollReveal } from './hooks/useScrollReveal';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
         <LatestThoughts />
         <FeaturedProjects />
         <LatestStudyNote />
-        <LatestGameplay />
+        <WatchingNow />
       </main>
     </div>
   );

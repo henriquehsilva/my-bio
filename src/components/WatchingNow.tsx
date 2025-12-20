@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getLatestYouTubeVideos } from '../services/youtube.service';
 import type { YouTubeVideo } from '../types';
 
-export default function LatestGameplay() {
+export default function WatchingNow() {
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
@@ -24,7 +24,7 @@ export default function LatestGameplay() {
 
   if (loading) {
     return (
-      <section id="latest-gameplay" className="py-32 px-6 bg-black">
+      <section id="watching-now" className="py-32 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-8 w-48 bg-gray-800 rounded mb-12" />
@@ -49,9 +49,9 @@ export default function LatestGameplay() {
 
   return (
     <>
-      <section id="latest-gameplay" className="py-32 px-6 bg-black reveal">
+      <section id="watching-now" className="py-32 px-6 bg-black reveal">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16 tracking-tight">Latest Gameplay</h2>
+          <h2 className="text-5xl md:text-6xl font-bold mb-16 tracking-tight">What I’m Watching 👀</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {videos.slice(0, 3).map((video, index) => {
@@ -108,12 +108,12 @@ export default function LatestGameplay() {
           </div>
 
           <a
-            href="https://youtube.com/@henriquesilvaplay"
+            href="https://www.youtube.com/playlist?list=PLVFX2B2opoKkmpLq7HV8GtbcXO7Gb4gJp"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-sm font-light text-gray-300 hover:text-white transition-colors relative group"
           >
-            View all on YouTube
+            Watch playlist on YouTube
             <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
           </a>
         </div>

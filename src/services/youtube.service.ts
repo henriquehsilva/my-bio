@@ -2,7 +2,7 @@ import type { YouTubeVideo } from '../types';
 
 export async function getLatestYouTubeVideos(count: number = 3): Promise<YouTubeVideo[]> {
   const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
-  const channelId = import.meta.env.VITE_YOUTUBE_CHANNEL_ID || 'UCxX1p2y0s4Wb7q9g3z8q9rQ'; // Fallback to henriquesilvaplay ID
+  const playlistId = 'PLVFX2B2opoKkmpLq7HV8GtbcXO7Gb4gJp'; // "What I'm Watching 👀" playlist
 
   const placeholderVideos: YouTubeVideo[] = [
     {
@@ -34,13 +34,14 @@ export async function getLatestYouTubeVideos(count: number = 3): Promise<YouTube
     }
   ];
 
-  if (!apiKey || !channelId) {
+  if (!apiKey) {
     return placeholderVideos;
   }
 
   try {
+    // Fetch from playlist instead of channel search
     const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${count}`
+      `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet,contentDetails&maxResults=${count}`
     );
 
     if (!response.ok) {
@@ -57,14 +58,12 @@ export async function getLatestYouTubeVideos(count: number = 3): Promise<YouTube
     }
 
     return data.items
-      .filter((item: any) => item.id.kind === 'youtube#video')
-      .slice(0, count) // Strictly limit to the requested count
       .map((item: any) => ({
-        id: item.id.videoId,
+        id: item.contentDetails.videoId,
         title: item.snippet.title,
-        thumbnail: item.snippet.thumbnails.medium.url,
+        thumbnail: item.snippet.thumbnails.medium?.url || item.snippet.thumbnails.default?.url,
         publishedAt: item.snippet.publishedAt,
-        url: `https://www.youtube.com/watch?v=${item.id.videoId}`
+        url: `https://www.youtube.com/watch?v=${item.contentDetails.videoId}`
       }));
   } catch (error) {
     console.error('Error in getLatestYouTubeVideos:', error);
