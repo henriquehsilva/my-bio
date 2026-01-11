@@ -365,62 +365,6 @@
             background: #000;
         }
 
-        /* CTA Section */
-        .cta-section {
-            margin: 60px 0;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .cta-section h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            color: #fff;
-        }
-
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 16px;
-        }
-
-        .btn-norminette,
-        .btn-secondary {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 32px;
-            font-weight: 700;
-            font-size: 1rem;
-            border-radius: 100px;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-decoration: none;
-        }
-
-        .btn-norminette {
-            background: linear-gradient(135deg, #8b5cf6, #f472b6);
-            color: #fff;
-            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-norminette:active,
-        .btn-secondary:active {
-            transform: scale(0.98);
-        }
 
         /* Resource Navbar - Scrollable on mobile */
         .resource-navbar {
@@ -567,27 +511,6 @@
                 border-radius: 20px;
             }
 
-            .cta-section {
-                margin: 100px 0;
-            }
-
-            .cta-section h3 {
-                font-size: 1.8rem;
-            }
-
-            .cta-buttons {
-                flex-direction: row;
-                justify-content: center;
-                width: auto;
-                gap: 24px;
-            }
-
-            .btn-norminette,
-            .btn-secondary {
-                width: auto;
-                padding: 18px 40px;
-                font-size: 1.1rem;
-            }
 
             .resource-navbar {
                 justify-content: flex-end;
@@ -712,7 +635,7 @@
                             ERRO
                             <span class="status-badge">Fail</span>
                         </div>
-                        <pre><code><k></k>typedef</k> <k>struct</k> Pessoa
+                        <pre><code><k>typedef</k> <k>struct</k> Pessoa
 {
     <k>char</k> *Nome;
 } Pessoa;
@@ -916,21 +839,37 @@ i += <n>1</n>;                <c>// bi-operador com espaços</c></code></pre>
                         <li>Apenas includes, declarações, defines, protótipos e macros.</li>
                         <li>Includes: sempre no início do arquivo.</li>
                         <li>Proibição: nunca inclua um arquivo <code>.c</code>.</li>
-                        <li>Header Guards: use <code>FT_NAME_H</code> para arquivos <code>ft_name.h</code>.</li>
+                        <li>Header Guards: use <code>NAME_H</code> ou <code>FT_NAME_H</code> em caixa alta.</li>
+                        <li>Protótipos: tipos e nomes devem estar <strong>alinhados</strong> com TABs.</li>
                     </ul>
                 </div>
-                <div class="code-block good">
-                    <div class="code-label">ESTRUTURA DE HEADER (.h)</div>
-                    <pre><code><c>#ifndef LIBFT_H</c>
-<c># define LIBFT_H</c>
+                <div class="comparison-grid">
+                    <div class="code-block bad">
+                        <div class="code-label">
+                            ERROS COMUNS
+                            <span class="status-badge">Fail</span>
+                        </div>
+                        <pre><code><c>#include "file.c"</c>       <c>// Erro: incluir .c</c>
+<k>void</k> <f>ft_test</f>(<k>int</k>);     <c>// Erro: sem nome param</c>
 
-<c># include &lt;stdlib.h&gt;</c>
-<c># include &lt;unistd.h&gt;</c>
+<k>void</k> <f>f1</f>(<k>int</k> n);
+<k>int</k> <f>f2</f>(<k>int</k> n);         <c>// Desalinhado</c></code></pre>
+                    </div>
+                    <div class="code-block good">
+                        <div class="code-label">
+                            ESTRUTURA CORRETA
+                            <span class="status-badge">Success</span>
+                        </div>
+                        <pre><code><c>#ifndef LIBFT_H</c>
+<c>#define LIBFT_H</c>
+
+<c>#include &lt;unistd.h&gt;</c>
 
 <k>void</k>	<f>ft_putchar</f>(<k>char</k> c);
 <k>int</k>		<f>ft_strlen</f>(<k>const</k> <k>char</k> *s);
 
 <c>#endif</c></code></pre>
+                    </div>
                 </div>
             </section>
 
