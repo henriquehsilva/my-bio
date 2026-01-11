@@ -17,6 +17,15 @@ export interface InstagramPost {
   videoUrl?: string;
   permalink?: string;
 }
+export interface StoryItem {
+  id: string;
+  type: 'IMAGE' | 'VIDEO' | 'SPOTIFY';
+  url: string;
+  thumbnail?: string;
+  caption?: string;
+  timestamp: string;
+  permalink?: string;
+}
 
 export interface SubstackPost {
   title: string;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getLatestInstagramPosts } from '../services/instagram.service';
-import type { InstagramPost } from '../types';
-import ReelsModal from './ReelsModal';
+import type { StoryItem } from '../types';
+import StoriesModal from './StoriesModal';
 
 const socialLinks = [
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/henriquesilvadev' },
@@ -17,8 +17,8 @@ const socialLinks = [
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
-  const [showReels, setShowReels] = useState(false);
-  const [reels, setReels] = useState<InstagramPost[]>([]);
+  const [showStories, setShowStories] = useState(false);
+  const [stories, setStories] = useState<StoryItem[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,17 +30,36 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
-    const fetchReels = async () => {
+    const fetchStories = async () => {
       try {
-        const data = await getLatestInstagramPosts(15);
-        // Filter to only include posts with videoUrl (Reels)
-        const filteredReels = data.filter(post => post.mediaType === 'VIDEO' && post.videoUrl);
-        setReels(filteredReels);
+        const data = await getLatestInstagramPosts(10);
+
+        // Map Instagram posts to StoryItems
+        const instagramStories: StoryItem[] = data.map(post => ({
+          id: post.id,
+          type: post.mediaType === 'VIDEO' ? 'VIDEO' : 'IMAGE',
+          url: post.mediaType === 'VIDEO' ? post.videoUrl || post.imageUrl : post.imageUrl,
+          thumbnail: post.imageUrl,
+          caption: post.caption,
+          timestamp: post.timestamp,
+          permalink: post.permalink
+        }));
+
+        // Inject a Spotify story (as an example/hardcoded for now)
+        const spotifyStory: StoryItem = {
+          id: 'spotify-story',
+          type: 'SPOTIFY',
+          url: 'https://open.spotify.com/playlist/37i9dQZF1E8Oof9xN6b5hS', // Example playlist
+          timestamp: new Date().toISOString(),
+          caption: "What I'm coding to today 💻🎧"
+        };
+
+        setStories([spotifyStory, ...instagramStories]);
       } catch (error) {
-        console.error('Error fetching reels for modal:', error);
+        console.error('Error fetching stories for modal:', error);
       }
     };
-    fetchReels();
+    fetchStories();
   }, []);
 
   return (
@@ -52,7 +71,7 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
-              onClick={() => reels.length > 0 && setShowReels(true)}
+              onClick={() => stories.length > 0 && setShowStories(true)}
               className="relative group p-[2px] rounded-full"
               aria-label="View Reels"
             >
@@ -94,11 +113,13 @@ export default function Navigation() {
         </div>
       </nav>
 
-      <ReelsModal
-        reels={reels}
-        isOpen={showReels}
-        onClose={() => setShowReels(false)}
-      />
+      {stories.length > 0 && (
+        <StoriesModal
+          stories={stories}
+          isOpen={showStories}
+          onClose={() => setShowStories(false)}
+        />
+      )}
     </>
   );
 }
