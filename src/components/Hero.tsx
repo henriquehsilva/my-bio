@@ -55,11 +55,23 @@ export default function Hero() {
             className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'
               }`}
           >
-            <img
-              src={post.imageUrl}
-              alt={post.caption}
-              className="w-full h-full object-cover"
-            />
+            {post.mediaType === 'VIDEO' && post.videoUrl ? (
+              <video
+                src={post.videoUrl}
+                poster={post.imageUrl}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <img
+                src={post.imageUrl}
+                alt={post.caption}
+                className="w-full h-full object-cover"
+              />
+            )}
           </div>
         ))}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/70 via-black/50 to-black" />

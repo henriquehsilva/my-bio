@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getLatestYouTubeVideos } from '../services/youtube.service';
+import { getLatestYouTubeVideos, YOUTUBE_PLAYLISTS } from '../services/youtube.service';
 import type { YouTubeVideo } from '../types';
 
 export default function WatchingNow() {
@@ -10,7 +10,7 @@ export default function WatchingNow() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const data = await getLatestYouTubeVideos(3);
+        const data = await getLatestYouTubeVideos(YOUTUBE_PLAYLISTS.WATCHING_NOW, 3);
         setVideos(data);
       } catch (error) {
         console.error('Error loading YouTube videos:', error);
@@ -51,7 +51,7 @@ export default function WatchingNow() {
     <>
       <section id="watching-now" className="py-32 px-6 bg-black reveal">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16 tracking-tight">What I’m Watching 👀</h2>
+          <h2 className="text-5xl md:text-6xl font-bold mb-16 tracking-tight">Curso de Python</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {videos.slice(0, 3).map((video, index) => {
@@ -108,7 +108,7 @@ export default function WatchingNow() {
           </div>
 
           <a
-            href="https://www.youtube.com/playlist?list=PLVFX2B2opoKkmpLq7HV8GtbcXO7Gb4gJp"
+            href={`https://www.youtube.com/playlist?list=${YOUTUBE_PLAYLISTS.WATCHING_NOW}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block text-sm font-light text-gray-300 hover:text-white transition-colors relative group"

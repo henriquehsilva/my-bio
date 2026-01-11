@@ -1,6 +1,6 @@
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import LatestTweet from './components/LatestTweet';
+import PythonCourse from './components/PythonCourse';
 import LatestInstagram from './components/LatestInstagram';
 import StatsStrip from './components/StatsStrip';
 import LatestThoughts from './components/LatestThoughts';
@@ -17,7 +17,7 @@ function App() {
       <Navigation />
       <main>
         <Hero />
-        <LatestTweet />
+        <PythonCourse />
         <LatestInstagram />
         <StatsStrip />
         <LatestThoughts />

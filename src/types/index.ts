@@ -13,6 +13,9 @@ export interface InstagramPost {
   imageUrl: string;
   caption: string;
   timestamp: string;
+  mediaType: 'IMAGE' | 'VIDEO' | 'CAROUSEL_ALBUM';
+  videoUrl?: string;
+  permalink?: string;
 }
 
 export interface SubstackPost {

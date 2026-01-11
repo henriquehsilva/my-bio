@@ -27,7 +27,7 @@ export async function getFeaturedProjects(): Promise<GitHubProject[]> {
     const filteredRepos = repos
       .filter((repo: any) => {
         // Exclude forks
-        if (repo.fork) return false;
+        // if (repo.fork) return false;
 
         // Exclude specific repos that might not be projects (e.g., the profile owner repo or tiny ones)
         if (repo.name === username) return false;

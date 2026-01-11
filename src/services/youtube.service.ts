@@ -1,8 +1,12 @@
 import type { YouTubeVideo } from '../types';
 
-export async function getLatestYouTubeVideos(count: number = 3): Promise<YouTubeVideo[]> {
+export const YOUTUBE_PLAYLISTS = {
+  WATCHING_NOW: 'PLVFX2B2opoKkmpLq7HV8GtbcXO7Gb4gJp',
+  STUDY_JOURNEY: 'PLVFX2B2opoKldIrw-D1dSh1YgCX3gmW16'
+};
+
+export async function getLatestYouTubeVideos(playlistId: string = YOUTUBE_PLAYLISTS.WATCHING_NOW, count: number = 3): Promise<YouTubeVideo[]> {
   const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
-  const playlistId = 'PLVFX2B2opoKkmpLq7HV8GtbcXO7Gb4gJp'; // "What I'm Watching 👀" playlist
 
   const placeholderVideos: YouTubeVideo[] = [
     {
