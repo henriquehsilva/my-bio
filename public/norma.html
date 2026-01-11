@@ -1,28 +1,40 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>The Norm (42) v4.1 — Guia rápido com exemplos</title>
+    <title>The Norm (42) v4.1 — Guia oficial da 42</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg: #030712;
-            --fg: #f3f4f6;
-            --muted: #9ca3af;
-            --card: rgba(17, 24, 39, 0.7);
-            --bad: #ef4444;
-            --bad-bg: rgba(239, 68, 68, 0.1);
-            --good: #10b981;
-            --good-bg: rgba(16, 185, 129, 0.1);
-            --accent: #6366f1;
-            --border: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.05);
+            --bg: #0c0c0e;
+            --sidebar-bg: rgba(18, 18, 20, 0.85);
+            --card-bg: rgba(25, 25, 30, 0.5);
+            --border: rgba(255, 255, 255, 0.05);
+            --fg: #e5e7eb;
+            --muted: #94a3b8;
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.15);
+            --good: #a6e22e;
+            /* Monokai Green */
+            --bad: #f92672;
+            /* Monokai Pink */
+            --nav-width: 280px;
+
+            /* Monokai Syntax */
+            --monokai-bg: #272822;
+            --monokai-fg: #f8f8f2;
+            --monokai-keyword: #f92672;
+            --monokai-string: #e6db74;
+            --monokai-func: #a6e22e;
+            --monokai-const: #ae81ff;
+            --monokai-comment: #75715e;
+            --monokai-arg: #fd971f;
         }
 
         * {
@@ -31,208 +43,314 @@
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 18px;
+            /* Increased base size */
+        }
+
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
-            background-image:
-                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
-            background-attachment: fixed;
             color: var(--fg);
-            line-height: 1.6;
+            line-height: 1.8;
+            /* Increased line height */
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        header {
-            padding: 80px 24px 60px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(31, 41, 55, 0.5) 0%, transparent 70%);
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 40px;
+        /* Layout Structure */
+        .layout {
+            display: flex;
+            min-height: 100vh;
         }
 
-        header h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+        /* Sidebar Navigation */
+        aside.sidebar {
+            width: var(--nav-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(30px);
+            border-right: 1px solid var(--border);
+            padding: 50px 24px;
+            overflow-y: auto;
+            z-index: 50;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            aside.sidebar {
+                display: flex;
+                flex-direction: column;
+            }
+
+            main.content {
+                margin-left: var(--nav-width);
+            }
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
             font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(to right, #818cf8, #c084fc, #fb7185);
+            margin-bottom: 56px;
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.02em;
         }
 
-        header p {
-            max-width: 700px;
-            margin: 0 auto;
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-link {
             color: var(--muted);
-            font-size: 1.1rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 12px 16px;
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            color: #fff;
+            background: var(--accent-glow);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content area */
+        main.content {
+            flex: 1;
+            padding: 80px 48px;
+            max-width: 1300px;
+        }
+
+        header.hero {
+            max-width: 900px;
+            margin-bottom: 100px;
+        }
+
+        header.hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 32px;
+            letter-spacing: -0.05em;
+            color: #fff;
+            filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.2));
+        }
+
+        header.hero p {
+            font-size: 1.4rem;
+            color: var(--muted);
             font-weight: 300;
+            max-width: 700px;
         }
 
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px 80px;
-        }
-
-        section {
-            margin-bottom: 60px;
-            padding: 40px;
-            background: var(--card);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        section:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
+        /* Typography */
         h2 {
-            font-size: 1.75rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-top: 120px;
+            margin-bottom: 40px;
+            color: #fff;
+            letter-spacing: -0.03em;
             display: flex;
             align-items: center;
-            gap: 12px;
-            color: #fff;
+            gap: 20px;
         }
 
-        h2::before {
+        h2::after {
             content: '';
-            display: block;
-            width: 4px;
-            height: 24px;
-            background: linear-gradient(to bottom, #818cf8, #c084fc);
-            border-radius: 4px;
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--border), transparent);
         }
 
-        h3 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--muted);
-            margin: 32px 0 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        /* Cards and Containers */
+        section.doc-section {
+            margin-bottom: 140px;
         }
 
-        ul {
+        .info-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            margin-top: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        ul.rules-list {
             list-style: none;
-            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        li {
+        ul.rules-list li {
             position: relative;
-            padding-left: 28px;
-            margin-bottom: 12px;
-            color: var(--muted);
-            font-weight: 300;
+            padding-left: 36px;
+            color: var(--fg);
         }
 
-        li::before {
-            content: "→";
+        ul.rules-list li::before {
+            content: "•";
             position: absolute;
             left: 0;
             color: var(--accent);
-            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1.2;
         }
 
         code {
             font-family: 'JetBrains Mono', monospace;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2px 6px;
-            border-radius: 6px;
-            color: #e0e7ff;
-            font-size: 0.9em;
+            font-size: 1.05rem;
+            /* Increased */
+            background: rgba(255, 255, 255, 0.08);
+            padding: 3px 8px;
+            border-radius: 8px;
+            color: #ddd;
         }
 
-        .grid {
+        /* Code Grid Comparison */
+        .comparison-grid {
             display: grid;
-            gap: 24px;
-            margin-top: 32px;
+            gap: 32px;
+            margin-top: 48px;
         }
 
-        @media(min-width: 900px) {
-            .grid {
+        @media (min-width: 850px) {
+            .comparison-grid {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
-        .label {
-            font-size: 0.75rem;
-            font-weight: 600;
+        .code-block {
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--monokai-bg);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .code-block:hover {
+            transform: translateY(-5px);
+        }
+
+        .code-label {
+            padding: 16px 24px;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 12px;
+            letter-spacing: 0.15em;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .code-block.bad .status-badge {
+            background: rgba(249, 38, 114, 0.15);
+            color: var(--bad);
+            border: 1px solid rgba(249, 38, 114, 0.3);
+        }
+
+        .code-block.good .status-badge {
+            background: rgba(166, 226, 46, 0.15);
+            color: var(--good);
+            border: 1px solid rgba(166, 226, 46, 0.3);
         }
 
         pre {
-            padding: 24px;
-            overflow: auto;
-            border-radius: 16px;
-            background: #0d1117;
-            border: 1px solid var(--border);
+            padding: 32px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.6;
+            font-size: 0.95rem;
+            /* Increased */
+            line-height: 1.8;
+            overflow-x: auto;
+            color: var(--monokai-fg);
+            background: var(--monokai-bg);
         }
 
-        .bad pre {
-            border-color: rgba(239, 68, 68, 0.2);
-            background: linear-gradient(135deg, #0d1117 0%, #1a0b0b 100%);
+        /* Simple Monokai Highlight Simulation */
+        k {
+            color: var(--monokai-keyword);
+            font-weight: 600;
         }
 
-        .good pre {
-            border-color: rgba(16, 185, 129, 0.2);
-            background: linear-gradient(135deg, #0d1117 0%, #0b1a14 100%);
+        /* Keyword */
+        s {
+            color: var(--monokai-string);
         }
 
-        .bad .pill {
-            background: var(--bad);
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        /* String */
+        f {
+            color: var(--monokai-func);
         }
 
-        .good .pill {
-            background: var(--good);
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        /* Function */
+        c {
+            color: var(--monokai-comment);
+            font-style: italic;
         }
 
-        footer {
-            padding: 60px 24px;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
-            font-weight: 300;
-            border-top: 1px solid var(--border);
-            background: rgba(17, 24, 39, 0.3);
+        /* Comment */
+        n {
+            color: var(--monokai-const);
         }
 
-        .note {
-            margin-top: 24px;
-            padding: 16px 24px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            font-size: 0.9rem;
+        /* Number/Const */
+        a {
+            color: var(--monokai-arg);
+        }
+
+        /* Argument */
+        t {
+            color: var(--monokai-func);
+        }
+
+        /* Type */
+
+        /* Utilities */
+        .note-box {
+            margin-top: 40px;
+            padding: 24px 32px;
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px 24px 24px 8px;
+            font-size: 1.05rem;
             color: var(--muted);
             font-style: italic;
-            border-left: 2px solid var(--accent);
         }
 
         strong {
@@ -240,284 +358,328 @@
             font-weight: 600;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        footer {
+            margin-top: 150px;
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--muted);
+            font-size: 1rem;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2));
+        }
+
+        /* Video Player Styling */
+        .video-wrapper {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            margin-top: 60px;
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--accent-glow);
+            overflow: hidden;
+        }
+
+        .video-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 32px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent), transparent, var(--bad));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .norma-video {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        @media (max-width: 1023px) {
+            main.content {
+                padding: 40px 20px;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            header.hero {
+                margin-bottom: 40px;
+            }
+
+            header.hero h1 {
+                font-size: 2.5rem;
             }
         }
 
-        section {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        section:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        section:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-
-        section:nth-child(4) {
-            animation-delay: 0.3s;
-        }
-
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
-            background: var(--bg);
+            background: transparent;
         }
 
         ::-webkit-scrollbar-thumb {
             background: var(--border);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--muted);
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>The Norm (42) v4.1 — guia rápido com exemplos</h1>
-        <p>
-            Este documento resume as regras mais comuns da Norm e mostra exemplos do que
-            <strong>quebra</strong> a norma versus o que <strong>passa</strong>.
-            Baseado no PDF oficial “The Norm — Version 4.1”.
-            <!-- Fonte: PDF do usuário -->
-        </p>
-    </header>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="logo">NORM v4.1</div>
+            <nav class="nav-links">
+                <a href="#naming" class="nav-link">1. Naming (Nomes)</a>
+                <a href="#formatting" class="nav-link">2. Formatting (Formatação)</a>
+                <a href="#functions" class="nav-link">3. Functions (Funções)</a>
+                <a href="#types" class="nav-link">4. Types (Struct/Enum)</a>
+                <a href="#headers" class="nav-link">5. Headers (.h)</a>
+                <a href="#standard-header" class="nav-link">6. Standard 42 Header</a>
+                <a href="#macros" class="nav-link">7. Macros & Preprocessor</a>
+                <a href="#forbidden" class="nav-link">8. Forbidden (Proibidos)</a>
+                <a href="#comments" class="nav-link">9. Comments (Comentários)</a>
+                <a href="#files" class="nav-link">10. Files</a>
+                <a href="#makefile" class="nav-link">11. Makefile</a>
+                <a href="#complete-example" class="nav-link">Exemplo Completo</a>
+            </nav>
+        </aside>
 
-    <main>
-        <section>
-            <h2>1) Naming (nomes)</h2>
-            <ul>
-                <li>Tipos devem seguir prefixos: <code>s_</code> (struct), <code>t_</code> (typedef), <code>u_</code>
-                    (union), <code>e_</code> (enum), <code>g_</code> (global). :contentReference[oaicite:2]{index=2}
-                </li>
-                <li>Identificadores: apenas <strong>minúsculas</strong>, dígitos e <code>_</code> (snake_case). Sem
-                    maiúsculas. :contentReference[oaicite:3]{index=3}</li>
-                <li>Nomes de arquivos e pastas: apenas snake_case. :contentReference[oaicite:4]{index=4}</li>
-                <li>ASCII apenas (exceto dentro de strings/chars literais). :contentReference[oaicite:5]{index=5}</li>
-                <li>Globais não <code>const</code> ou não <code>static</code> são proibidas (salvo exceções do projeto).
-                    :contentReference[oaicite:6]{index=6}</li>
-            </ul>
+        <main class="content">
+            <header class="hero">
+                <h1>The Norm (42) Guide.</h1>
+                <p>O guia definitivo de regras e padrões de codificação para projetos em C na 42. Escrito
+                    profissionalmente, baseado na Versão 4.1.</p>
 
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — nomes fora do padrão</div>
-                    <pre><code>typedef struct Pessoa
-{
-    char *Nome;
-} Pessoa;        // typedef sem t_, struct sem s_, campos com maiúsculas
-int Global;      // global sem g_, e nem const/static</code></pre>
+                <div class="video-wrapper">
+                    <video class="norma-video" controls autoplay playsinline>
+                        <source src="norma.mp4" type="video/mp4">
+                        Seu navegador não suporta o player de vídeo.
+                    </video>
+                </div>
+            </header>
+
+            <section id="naming" class="doc-section">
+                <h2>1) Naming (Nomes)</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li>Tipos devem seguir prefixos: <code>s_</code> (struct), <code>t_</code> (typedef),
+                            <code>u_</code> (union), <code>e_</code> (enum), <code>g_</code> (global).
+                        </li>
+                        <li>Identificadores: apenas <strong>minúsculas</strong>, dígitos e <code>_</code> (snake_case).
+                            Sem maiúsculas.</li>
+                        <li>Nomes de arquivos e pastas: apenas snake_case.</li>
+                        <li>ASCII apenas (exceto dentro de strings/chars literais).</li>
+                        <li>Globais não <code>const</code> ou não <code>static</code> são proibidas.</li>
+                    </ul>
                 </div>
 
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — nomes conforme a Norm</div>
-                    <pre><code>typedef struct s_person
+                <div class="comparison-grid">
+                    <div class="code-block bad">
+                        <div class="code-label">
+                            ERRO
+                            <span class="status-badge">Fail</span>
+                        </div>
+                        <pre><code><k></k>typedef</k> <k>struct</k> Pessoa
 {
-    char    *name;
-}   t_person;
+    <k>char</k> *Nome;
+} Pessoa;
 
-static int  g_counter; /* global ok: g_ + static */</code></pre>
-                </div>
-            </div>
-
-            <p class="note">
-                Dica prática: use nomes autoexplicativos em inglês e separados por underscore.
-                :contentReference[oaicite:7]{index=7}
-            </p>
-        </section>
-
-        <section>
-            <h2>2) Formatting (formatação)</h2>
-            <ul>
-                <li>Função: no máximo <strong>25 linhas</strong> (não contando as chaves da função).
-                    :contentReference[oaicite:8]{index=8}</li>
-                <li>Linhas: no máximo <strong>80 colunas</strong> (inclui comentários). Tabs contam como espaços.
-                    :contentReference[oaicite:9]{index=9}</li>
-                <li>Indentação: usar <strong>TAB real</strong> de 4 colunas (não 4 espaços).
-                    :contentReference[oaicite:10]{index=10}</li>
-                <li>Chaves sozinhas em sua própria linha (exceto declaração de struct/enum/union).
-                    :contentReference[oaicite:11]{index=11}</li>
-                <li>Declarações no início da função; 1 variável por linha; sem init junto com declaração (exceto
-                    global/static/const). :contentReference[oaicite:12]{index=12}</li>
-                <li>Sem duas linhas vazias seguidas; linha vazia não pode conter espaços/tabs.
-                    :contentReference[oaicite:13]{index=13}</li>
-                <li>Operadores e operandos com exatamente 1 espaço; vírgula/; seguidos de espaço (salvo fim de linha).
-                    :contentReference[oaicite:14]{index=14}</li>
-                <li>Asterisco do ponteiro “gruda” no nome da variável (ex.: <code>char *s</code> é errado,
-                    <code>char *s</code>?? → na Norm é <code>char *s</code> “* junto do nome”: <code>char *s</code> vs
-                    <code>char *s</code>; o correto é <code>char *s</code> com <code>*s</code> colado no identificador:
-                    <code>char *s</code> → <code>char *s</code> (ex.: <code>char *str</code> deve virar
-                    <code>char *str</code>? Na Norm: <code>char *str</code> não; é <code>char    *str</code> e
-                    <code>*</code> colado em <code>str</code>: <code>*str</code>).
-                    :contentReference[oaicite:15]{index=15}
-                </li>
-                <li>Estruturas de controle usam chaves, exceto quando existe 1 instrução em 1 linha.
-                    :contentReference[oaicite:16]{index=16}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — 2 instruções na mesma linha + espaços ruins
+<k>int</k> Global;</code></pre>
                     </div>
-                    <pre><code>if (x&gt;0) { y=1; z=2; }   // 2 instruções na linha, espaços errados, chaves na mesma linha</code></pre>
+                    <div class="code-block good">
+                        <div class="code-label">
+                            CORRETO
+                            <span class="status-badge">Success</span>
+                        </div>
+                        <pre><code><k>typedef</k> <k>struct</k> <t>s_person</t>
+{
+    <k>char</k>    *name;
+}   <t>t_person</t>;
+
+<k>static</k> <k>int</k>  <a>g_counter</a>;</code></pre>
+                    </div>
+                </div>
+                <div class="comparison-grid" style="margin-top:24px;">
+                    <div class="code-block bad">
+                        <div class="code-label">
+                            PREFIXOS ERRADOS
+                            <span class="status-badge">Fail</span>
+                        </div>
+                        <pre><code><k>union</k> Data { <k>int</k> i; };      <c>// sem u_</c>
+<k>enum</k> Color { RED, BLUE };   <c>// sem e_</c>
+<k>int</k> my_global;              <c>// sem g_</c></code></pre>
+                    </div>
+                    <div class="code-block good">
+                        <div class="code-label">
+                            PREFIXOS CORRETOS
+                            <span class="status-badge">Success</span>
+                        </div>
+                        <pre><code><k>union</k> <t>u_data</t> { <k>int</k> i; };
+<k>enum</k> <t>e_color</t> { RED, BLUE };
+<k>static</k> <k>int</k> <a>g_my_global</a>;</code></pre>
+                    </div>
+                </div>
+                <div class="note-box">
+                    Dica: Use nomes autoexplicativos em inglês. A clareza é o pilar da Norma.
+                </div>
+            </section>
+
+            <section id="formatting" class="doc-section">
+                <h2>2) Formatting (Formatação)</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li>Função: máximo de <strong>25 linhas</strong> (sem contar as chaves).</li>
+                        <li>Linhas: máximo de <strong>80 colunas</strong> (incluindo comentários).</li>
+                        <li>Indentação: use <strong>TAB real</strong> de 4 colunas.</li>
+                        <li>Chaves: sozinhas em sua própria linha (exceto em struct/enum/union).</li>
+                        <li>Variáveis: Declarações no início; 1 por linha; sem inicialização (exceto static/const).</li>
+                        <li>Operadores: exatamente 1 espaço de cada lado.</li>
+                        <li>Asterisco: colado ao nome da variável (ex: <code>char *str</code>).</li>
+                        <li>Estruturas de controle: sempre usam chaves, a menos que 1 instrução em 1 linha.</li>
+                    </ul>
                 </div>
 
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — 1 instrução por linha + espaçamento + chaves</div>
-                    <pre><code>if (x &gt; 0)
+                <div class="comparison-grid">
+                    <div class="code-block bad">
+                        <div class="code-label">
+                            ESTILO E DECLARAÇÃO
+                            <span class="status-badge">Fail</span>
+                        </div>
+                        <pre><code><k>if</k> (x&gt;<n>0</n>) { y=<n>1</n>; z=<n>2</n>; }
+
+<k>int</k> a, b, c;          <c>// + de 1 por linha</c>
+<k>int</k> x = <n>10</n>;          <c>// init na decl</c></code></pre>
+                    </div>
+                    <div class="code-block good">
+                        <div class="code-label">
+                            PADRÃO 42
+                            <span class="status-badge">Success</span>
+                        </div>
+                        <pre><code><k>if</k> (x &gt; <n>0</n>)
 {
-	y = 1;
-	z = 2;
-}</code></pre>
-                </div>
-            </div>
-
-            <p class="note">
-                Importante: configure seu editor pra inserir TAB real. A Norm valida isso.
-                :contentReference[oaicite:17]{index=17}
-            </p>
-        </section>
-
-        <section>
-            <h2>3) Functions (funções)</h2>
-            <ul>
-                <li>No máximo <strong>4 parâmetros nomeados</strong>. :contentReference[oaicite:18]{index=18}</li>
-                <li>Sem argumentos → protótipo deve usar <code>void</code>. :contentReference[oaicite:19]{index=19}</li>
-                <li>No máximo <strong>5 variáveis</strong> por função. :contentReference[oaicite:20]{index=20}</li>
-                <li><code>return</code> deve estar entre parênteses (exceto retorno vazio).
-                    :contentReference[oaicite:21]{index=21}</li>
-                <li>Um TAB entre tipo de retorno e nome da função. :contentReference[oaicite:22]{index=22}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — parâmetros demais + return sem parênteses</div>
-                    <pre><code>int sum(int a, int b, int c, int d, int e)
-{
-	return a + b; // return sem parênteses, params&gt;4
-}</code></pre>
-                </div>
-
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — até 4 params + return com parênteses</div>
-                    <pre><code>int	sum(int a, int b)
-{
-	return (a + b);
+	y = <n>1</n>;
+	z = <n>2</n>;
 }
 
-int	main(void)
-{
-	int	result;
+<k>int</k>	a;
+<k>int</k>	b;
+<k>int</k>	c;</code></pre>
+                    </div>
+                </div>
+            </section>
 
-	result = sum(2, 3);
-	return (result);
+            <section id="functions" class="doc-section">
+                <h2>3) Functions (Funções)</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li>Máximo de <strong>4 parâmetros</strong> nomeados.</li>
+                        <li>Sem argumentos? Use <code>void</code> explicitamente.</li>
+                        <li>Máximo de <strong>5 variáveis</strong> por função.</li>
+                        <li><code>return</code>: sempre entre parênteses.</li>
+                        <li>Tipo de retorno: um TAB entre o tipo e o nome.</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="code-block bad">
+                        <div class="code-label">
+                            LIMITES E VOID
+                            <span class="status-badge">Fail</span>
+                        </div>
+                        <pre><code><k>int</k> <f>sum</f>(<k>int</k> a, <k>int</k> b, <k>int</k> c, <k>int</k> d, <k>int</k> e)
+{
+	<k>return</k> a + b;
+}
+
+<k>int</k> <f>get_val</f>()  <c>// falta void</c>
+{
+	<k>return</k> (<n>42</n>);
 }</code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>4) struct / typedef / enum / union</h2>
-            <ul>
-                <li>Espaço após <code>struct</code>/<code>enum</code>/<code>union</code> no nome.
-                    :contentReference[oaicite:23]{index=23}</li>
-                <li>Não pode declarar <code>struct</code> em arquivo <code>.c</code> (declare no <code>.h</code>).
-                    :contentReference[oaicite:24]{index=24}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — struct declarada no .c</div>
-                    <pre><code>/* file: foo.c */
-struct s_point
+                    </div>
+                    <div class="code-block good">
+                        <div class="code-label">
+                            CORRETO
+                            <span class="status-badge">Success</span>
+                        </div>
+                        <pre><code><k>int</k>	<f>sum</f>(<k>int</k> a, <k>int</k> b)
 {
-	int	x;
-	int	y;
-};</code></pre>
-                </div>
+	<k>return</k> (a + b);
+}
 
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — struct no header + typedef t_</div>
-                    <pre><code>/* file: point.h */
-#ifndef POINT_H
-# define POINT_H
-
-typedef struct s_point
+<k>int</k>	<f>get_val</f>(<k>void</k>)
 {
-	int	x;
-	int	y;
-}	t_point;
-
-#endif</code></pre>
+	<k>return</k> (<n>42</n>);
+}</code></pre>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section>
-            <h2>5) Headers (.h)</h2>
-            <ul>
-                <li>Header deve conter apenas: includes, declarações, defines, protótipos e macros.
-                    :contentReference[oaicite:25]{index=25}</li>
-                <li>Includes no início do arquivo. :contentReference[oaicite:26]{index=26}</li>
-                <li>Proibido incluir arquivo <code>.c</code>. :contentReference[oaicite:27]{index=27}</li>
-                <li>Usar header guard: se for <code>ft_foo.h</code>, guard deve ser <code>FT_FOO_H</code>.
-                    :contentReference[oaicite:28]{index=28}</li>
-                <li>Não incluir headers não usados (regra marcada com *: pode falhar em avaliação).
-                    :contentReference[oaicite:29]{index=29}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — sem guard + inclui .c</div>
-                    <pre><code>/* bad_header.h */
-# include "foo.c"   // proibido
-int	sum(int a, int b);</code></pre>
+            <section id="types" class="doc-section">
+                <h2>4) Types (Struct/Enum)</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li>Espaço obrigatório após <code>struct</code>/<code>enum</code>/<code>union</code>.</li>
+                        <li>Proibido: declarar <code>struct</code> em arquivos <code>.c</code>.</li>
+                    </ul>
                 </div>
+                <div class="code-block good">
+                    <div class="code-label">MODELO EM HEADER (.h) FORTE</div>
+                    <pre><code><k>typedef</k> <k>struct</k> <t>s_point</t>
+{
+	<k>int</k>		x;
+	<k>int</k>		y;
+}	<t>t_point</t>;
 
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — guard + includes no topo</div>
-                    <pre><code>/* ft_math.h */
-#ifndef FT_MATH_H
-# define FT_MATH_H
+<k>typedef</k> <k>enum</k> <t>e_status</t>
+{
+	IDLE,
+	RUNNING,
+	ERROR
+}	<t>t_status</t>;
 
-int	sum(int a, int b);
-
-#endif</code></pre>
+<k>typedef</k> <k>union</k> <t>u_value</t>
+{
+	<k>int</k>		i;
+	<k>float</k>	f;
+}	<t>t_value</t>;</code></pre>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section>
-            <h2>6) 42 Header (cabeçalho padrão)</h2>
-            <ul>
-                <li>Todo arquivo <code>.c</code> e <code>.h</code> deve começar imediatamente com o header padrão da 42.
-                    :contentReference[oaicite:30]{index=30}</li>
-                <li>Deve conter infos atualizadas (login, email, datas). Regra marcada com *: pode reprovar em review.
-                    :contentReference[oaicite:31]{index=31}</li>
-            </ul>
+            <section id="headers" class="doc-section">
+                <h2>5) Headers (.h)</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li>Apenas includes, declarações, defines, protótipos e macros.</li>
+                        <li>Includes: sempre no início do arquivo.</li>
+                        <li>Proibição: nunca inclua um arquivo <code>.c</code>.</li>
+                        <li>Header Guards: use <code>FT_NAME_H</code> para arquivos <code>ft_name.h</code>.</li>
+                    </ul>
+                </div>
+            </section>
 
-            <div class="good" style="margin-top:14px;">
-                <div class="label"><span class="pill">Ok</span> — exemplo de header (modelo)</div>
-                <pre><code>/* ************************************************************************** */
+            <section id="standard-header" class="doc-section">
+                <h2>6) Standard 42 Header</h2>
+                <div class="info-card">
+                    <p style="margin-bottom: 24px; color: var(--muted);">Todo arquivo deve começar com o cabeçalho ASCII
+                        oficial contendo login, e-mail e timestamps.</p>
+                </div>
+                <div class="code-block good" style="margin-top: 24px;">
+                    <div class="code-label">CABEÇALHO OFICIAL</div>
+                    <pre><code>/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_math.c                                           :+:      :+:    :+:   */
+/*   ft_example.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: login &lt;login@student.42...&gt;                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -525,222 +687,160 @@ int	sum(int a, int b);
 /*   Updated: 2026/01/11 00:00:00 by login             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */</code></pre>
-            </div>
-        </section>
-
-        <section>
-            <h2>7) Macros e Preprocessor</h2>
-            <ul>
-                <li><code>#define</code> criado por você deve ser usado só para valores literais/constantes (*).
-                    :contentReference[oaicite:32]{index=32}</li>
-                <li>Proibido criar <code>#define</code> para burlar a norma ou ofuscar código (*).
-                    :contentReference[oaicite:33]{index=33}</li>
-                <li>Macros multi-linha são proibidas. :contentReference[oaicite:34]{index=34}</li>
-                <li>Nome de macro em UPPERCASE. :contentReference[oaicite:35]{index=35}</li>
-                <li>Diretivas fora do escopo global são proibidas. :contentReference[oaicite:36]{index=36}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — macro multi-linha</div>
-                    <pre><code>#define DO_THING(x) \
-	do { (x)++; } while (0)   /* macro multi-linha: proibido */</code></pre>
                 </div>
+            </section>
 
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — constante literal</div>
-                    <pre><code>#define BUFFER_SIZE 1024</code></pre>
+            <section id="macros" class="doc-section">
+                <h2>7) Macros & Preprocessor</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li><code>#define</code>: use apenas para constantes literais.</li>
+                        <li>Macros multi-linha: estritamente proibidas.</li>
+                        <li>Nomes: sempre em <strong>CAIXA ALTA</strong>.</li>
+                        <li>Diretivas: proibidas fora do escopo global.</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
+                <div class="comparison-grid">
+                    <div class="code-block bad">
+                        <div class="code-label">
+                            MACROS COM LÓGICA
+                            <span class="status-badge">Fail</span>
+                        </div>
+                        <pre><code><c>#define MAX(a, b) (a > b ? a : b)</c>
+<c>#define PRINT_OK { ft_putstr("OK\n"); }</c></code></pre>
+                    </div>
+                    <div class="code-block good">
+                        <div class="code-label">
+                            CONSTANTES PURAS
+                            <span class="status-badge">Success</span>
+                        </div>
+                        <pre><code><c>#define BUFFER_SIZE 4096</c>
+<c>#define TIMEOUT_SEC 10</c></code></pre>
+                    </div>
+                </div>
+            </section>
 
-        <section>
-            <h2>8) Forbidden stuff (proibidos)</h2>
-            <ul>
-                <li>Proibido: <code>for</code>, <code>do...while</code>, <code>switch/case</code>, <code>goto</code>.
-                    :contentReference[oaicite:37]{index=37}</li>
-                <li>Proibido operador ternário <code>?:</code>. :contentReference[oaicite:38]{index=38}</li>
-                <li>Proibido VLA (Variable Length Array). :contentReference[oaicite:39]{index=39}</li>
-                <li>Proibido “tipo implícito” em declarações. :contentReference[oaicite:40]{index=40}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — for + ternário + VLA</div>
-                    <pre><code>int	main(int argc, char **argv)
+            <section id="forbidden" class="doc-section">
+                <h2>8) Forbidden (Proibidos)</h2>
+                <div class="info-card">
+                    <p style="margin-bottom: 24px; color: var(--muted);">Palavras-chave e técnicas banidas para promover
+                        clareza e controle de fluxo simples.</p>
+                    <div class="comparison-grid">
+                        <div class="code-block bad">
+                            <div class="code-label">
+                                ESTRUTURAS BANIDAS
+                                <span class="status-badge">Fail</span>
+                            </div>
+                            <pre><code><k>for</k> (<k>int</k> i = <n>0</n>; i &lt; <n>10</n>; i++) { ... }
+<k>switch</k> (n) { <k>case</k> <n>1</n>: ... }
+<k>do</k> { ... } <k>while</k> (x);</code></pre>
+                        </div>
+                        <div class="code-block good">
+                            <div class="code-label">
+                                EQUIVALENTES OK
+                                <span class="status-badge">Success</span>
+                            </div>
+                            <pre><code><k>while</k> (i &lt; <n>10</n>)
 {
-	int		i;
-	char	str[argc];         // VLA (proibido)
-	i = argc &gt; 5 ? 0 : 1;      // ternário (proibido)
-	for (i = 0; i &lt; argc; i++) // for (proibido)
-		(void)argv[i];
-	return (0);
-}</code></pre>
-                </div>
-
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — while + sem ternário + sem VLA</div>
-                    <pre><code>int	main(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (i &lt; argc)
-	{
-		(void)argv[i];
-		i++;
-	}
-	return (0);
-}</code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>9) Comments (comentários)</h2>
-            <ul>
-                <li>Comentários não podem estar dentro do corpo da função. :contentReference[oaicite:41]{index=41}</li>
-                <li>Comentários devem estar no fim da linha, ou em linha própria.
-                    :contentReference[oaicite:42]{index=42}</li>
-                <li>Recomendado (*): comentários em inglês e úteis. :contentReference[oaicite:43]{index=43}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — comentário dentro do corpo</div>
-                    <pre><code>int	sum(int a, int b)
-{
-	/* adds two numbers */  // proibido dentro da função
-	return (a + b);
-}</code></pre>
-                </div>
-
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — comentário fora, ou fim de linha</div>
-                    <pre><code>/* sum: add two integers and return the result */
-int	sum(int a, int b)
-{
-	return (a + b); /* simple arithmetic */
-}</code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>10) Files</h2>
-            <ul>
-                <li>Proibido incluir <code>.c</code> dentro de <code>.c</code>. :contentReference[oaicite:44]{index=44}
-                </li>
-                <li>No máximo <strong>5 definições de função</strong> por arquivo <code>.c</code>.
-                    :contentReference[oaicite:45]{index=45}</li>
-            </ul>
-
-            <div class="grid" style="margin-top:14px;">
-                <div class="bad">
-                    <div class="label"><span class="pill">Erro</span> — inclui .c</div>
-                    <pre><code>#include "other.c"  // proibido</code></pre>
-                </div>
-
-                <div class="good">
-                    <div class="label"><span class="pill">Ok</span> — inclui header</div>
-                    <pre><code>#include "ft_math.h"</code></pre>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>11) Makefile (checklist)</h2>
-            <ul>
-                <li>Regras obrigatórias: <code>$(NAME)</code>, <code>all</code>, <code>clean</code>,
-                    <code>fclean</code>, <code>re</code>. :contentReference[oaicite:46]{index=46}
-                </li>
-                <li><code>all</code> deve ser a regra padrão (rodar ao digitar apenas <code>make</code>).
-                    :contentReference[oaicite:47]{index=47}</li>
-                <li>Não pode relinkar sem necessidade (senão é considerado não-funcional).
-                    :contentReference[oaicite:48]{index=48}</li>
-                <li>Sem <code>*.c</code>, <code>*.o</code> etc.: todos os arquivos devem ser listados explicitamente.
-                    :contentReference[oaicite:49]{index=49}</li>
-            </ul>
-
-            <div class="good" style="margin-top:14px;">
-                <div class="label"><span class="pill">Ok</span> — mini-exemplo (didático)</div>
-                <pre><code>NAME = myprog
-
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-
-SRCS = main.c ft_math.c
-OBJS = $(SRCS:.c=.o)
-
-all: $(NAME)
-
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-
-clean:
-	rm -f $(OBJS)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all</code></pre>
-            </div>
-
-            <p class="note">
-                Nota: o PDF diz que Makefiles não são checados pela norminette, mas são checados na avaliação.
-                :contentReference[oaicite:50]{index=50}
-            </p>
-        </section>
-
-        <section>
-            <h2>Exemplo final: “passa na norma” (arquivo .c pequeno)</h2>
-            <p class="note">
-                Abaixo um exemplo bem simples, obedecendo: return com parênteses, no máximo 5 variáveis,
-                sem comentários dentro da função, while ao invés de for, estilo de chaves e espaçamento.
-                Ajuste a indentação para TAB real no seu editor.
-            </p>
-
-            <div class="good" style="margin-top:14px;">
-                <div class="label"><span class="pill">Ok</span> — exemplo completo</div>
-                <pre><code>/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: login &lt;login@student.42...&gt;                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/11 00:00:00 by login              #+#    #+#             */
-/*   Updated: 2026/01/11 00:00:00 by login             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include &lt;unistd.h&gt;
-
-static int	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write(1, &amp;str[i], 1);
-		i++;
-	}
-	return (i);
+	...
+	i++;
 }
 
-int	main(void)
-{
-	ft_putstr("Hello, Norm!\n");
-	return (0);
-}</code></pre>
-            </div>
-        </section>
-    </main>
+<k>if</k> (n == <n>1</n>) { ... }</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <footer>
-        Baseado em “The Norm — Version 4.1” (42). Consulte o PDF oficial para detalhes e exceções.
-    </footer>
+            <section id="comments" class="doc-section">
+                <h2>9) Comments (Comentários)</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li><strong>Proibido:</strong> comentários dentro do corpo da função.</li>
+                        <li>Posição: Fim da linha ou linha própria.</li>
+                        <li>Idioma preferencial: Inglês.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="files" class="doc-section">
+                <h2>10) Files</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li>Não inclua arquivos <code>.c</code> em outros arquivos <code>.c</code>.</li>
+                        <li>Máximo de <strong>5 funções</strong> por arquivo.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="makefile" class="doc-section">
+                <h2>11) Makefile</h2>
+                <div class="info-card">
+                    <ul class="rules-list">
+                        <li>Regras obrigatórias: <code>all</code>, <code>clean</code>, <code>fclean</code>,
+                            <code>re</code> e <code>$(NAME)</code>.
+                        </li>
+                        <li>Relink: seu Makefile <strong>não pode</strong> compilar novamente se nada mudou.</li>
+                        <li>Fontes: Listagem explícita (nada de <code>*.c</code>).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="complete-example" class="doc-section">
+                <h2>Exemplo Final Complacente</h2>
+                <div class="code-block good">
+                    <div class="code-label">PRODUÇÃO (PASS)</div>
+                    <pre><code><c>#include &lt;unistd.h&gt;</c>
+
+<k>static</k> <k>int</k>	<f>ft_putstr</f>(<k>char</k> *str)
+{
+	<k>int</k>	i;
+
+	i = <n>0</n>;
+	<k>while</k> (str[i] != <s>'\0'</s>)
+	{
+		<f>write</f>(<n>1</n>, &amp;str[i], <n>1</n>);
+		i++;
+	}
+	<k>return</k> (i);
+}
+
+<k>int</k>	<f>main</f>(<k>void</k>)
+{
+	<f>ft_putstr</f>(<s>"Hello, Norm!\n"</s>);
+	<k>return</k> (<n>0</n>);
+}</code></pre>
+                </div>
+            </section>
+
+            <footer>
+                <p>&copy; 2026. Criado para estudantes da 42 Network. Baseado na Norma 4.1.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Active link handling on scroll
+        const sections = document.querySelectorAll('.doc-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
