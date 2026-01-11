@@ -1,0 +1,51 @@
+# .editorconfig
+# C (42 Norm style) — base de formatação/whitespace
+# Obs: Algumas regras (chaves, espaços em operadores, 25 linhas por função etc.)
+# não podem ser forçadas via EditorConfig; use norminette/linters para validar.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Evitar linhas vazias com espaços/tabs (trim_trailing_whitespace ajuda)
+
+# -------------------------
+# C / Headers
+# -------------------------
+[*.{c,h}]
+# Norm: TAB real, largura visual 4
+indent_style = tab
+indent_size = 4
+tab_width = 4
+
+# Ajuda editores a mostrar "régua" de 80 colunas (quando suportado)
+max_line_length = 80
+
+# Recomendação: não quebrar automaticamente linhas (cada editor trata diferente)
+# (deixe o editor em "soft wrap" se quiser visualizar sem inserir quebras)
+# No EditorConfig não há "hard wrap" padrão.
+
+# -------------------------
+# Makefile (Make exige TAB em receitas)
+# -------------------------
+[Makefile]
+indent_style = tab
+indent_size = 4
+tab_width = 4
+
+# -------------------------
+# Scripts / docs auxiliares
+# -------------------------
+[*.{md,txt}]
+indent_style = space
+indent_size = 2
+max_line_length = 80
+
+[*.{yml,yaml,json}]
+indent_style = space
+indent_size = 2
+max_line_length = 80
