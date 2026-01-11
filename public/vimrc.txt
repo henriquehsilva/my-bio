@@ -1,0 +1,242 @@
+" ============================================================
+" HenriqueSilva.dev - Modern .vimrc (C/C++ + Python + Polyglot)
+" Vim 8+ | Needs: node (for coc), ripgrep (rg), fzf (optional)
+" ============================================================
+
+" ---------- Basics ----------
+set nocompatible
+filetype plugin indent on
+syntax on
+set encoding=utf-8
+set hidden
+set mouse=a
+set updatetime=300
+set timeoutlen=400
+set ttimeoutlen=10
+set signcolumn=yes
+set termguicolors
+
+" ============================================================
+" Clipboard (macOS-friendly)
+" - If Vim has clipboard support, use system clipboard by default
+" ============================================================
+if has('clipboard')
+  set clipboard=unnamedplus
+endif
+
+" ---------- UI / Editing ----------
+set number
+set relativenumber
+set cursorline
+set ruler
+set showcmd
+set showmatch
+set nowrap
+set linebreak
+set scrolloff=6
+set sidescrolloff=6
+set splitright
+set splitbelow
+set wildmenu
+set wildmode=longest:full,full
+set completeopt=menuone,noinsert,noselect
+
+" ---------- Indentation (global, neutral) ----------
+" Deixe o EditorConfig e/ou FileType sobrescreverem por projeto.
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set noexpandtab
+set smartindent
+
+" ---------- Search ----------
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" ---------- Performance / Files ----------
+set lazyredraw
+set synmaxcol=240
+set nobackup
+set nowritebackup
+set noswapfile
+set undofile
+set undodir=~/.vim/undo//
+set directory=~/.vim/tmp//
+
+" Create dirs if missing (avoids warnings/errors on startup)
+if !isdirectory(expand('~/.vim/undo'))
+  call mkdir(expand('~/.vim/undo'), 'p')
+endif
+if !isdirectory(expand('~/.vim/tmp'))
+  call mkdir(expand('~/.vim/tmp'), 'p')
+endif
+
+" ---------- Leader ----------
+let mapleader=" "
+nnoremap <leader>h :nohlsearch<CR>
+
+" ============================================================
+" Plugins (vim-plug)
+" ============================================================
+call plug#begin('~/.vim/plugged')
+
+" --- Core UX ---
+Plug 'sickill/vim-monokai'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+
+" --- Navigation / Search ---
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" --- Git ---
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
+" --- Editing helpers ---
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
+
+" --- Syntax / Code ---
+Plug 'sheerun/vim-polyglot'
+
+" --- LSP/Autocomplete/Snippets (CoC) ---
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" --- NERDTree Devicons Syntax Highlight ---
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" --- EditorConfig ---
+Plug 'editorconfig/editorconfig-vim'
+
+call plug#end()
+
+" ============================================================
+" Theme
+" ============================================================
+set background=dark
+colorscheme monokai
+
+" Airline theme must be set AFTER plugins are loaded
+" NOTE: 'monokai' is NOT an airline theme name anymore; use base16_monokai.
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'base16_monokai'
+
+" ============================================================
+" NERDTree
+" ============================================================
+nnoremap <leader>e :NERDTreeToggle<CR>
+let g:NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI=1
+
+" ============================================================
+" FZF (uses ripgrep if installed)
+" ============================================================
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>/ :Rg<Space>
+
+" ============================================================
+" GitGutter
+" ============================================================
+let g:gitgutter_map_keys = 0
+nnoremap ]c :GitGutterNextHunk<CR>
+nnoremap [c :GitGutterPrevHunk<CR>
+
+" ============================================================
+" Better defaults per filetype (C/C++ & Python)
+" - C/C++: tabs reais, 4 colunas (alinha com Norm)
+" - Python: spaces, 4 colunas
+" Obs: Se existir .editorconfig, ele pode sobrescrever isso.
+" ============================================================
+augroup ft_settings
+  autocmd!
+  autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+  autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+augroup END
+
+" ============================================================
+" CoC (LSP + Autocomplete)
+" ============================================================
+" Tab/Shift-Tab apenas para navegar no menu do autocomplete quando visível
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>ca <Plug>(coc-codeaction)
+
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
+
+nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+
+" Format (when supported by LSP)
+nnoremap <leader>fm :call CocActionAsync('format')<CR>
+
+" Quickfix: list errors/warnings
+nnoremap <leader>qf :CocList diagnostics<CR>
+
+" Status line integration
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Reduce hit-enter prompts
+set shortmess+=c
+
+" ============================================================
+" Quality-of-life mappings
+" ============================================================
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qa!<CR>
+
+" Keep selection when indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Better window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Devicons in NERDTree
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" ============================================================
+" Copy/Paste (macOS)
+" - Se você tem +clipboard: clipboard=unnamedplus já resolve.
+" - Fallback: pbcopy para copiar seleção (mesmo sem +clipboard)
+" ============================================================
+
+" Paste from system clipboard (Normal)
+nnoremap <silent> <leader>v "+p
+
+" Paste from system clipboard (Insert)
+inoremap <silent> <leader>v <C-r>+
+
+" Copy selection explicitly to system clipboard (Visual)
+vnoremap <silent> <leader>c "+y
+
+" HARD fallback: copy ONLY the visual selection via pbcopy
+" Use: select with v/V then press Space+C
+vnoremap <silent> <leader>C :'<,'>w !pbcopy<CR><CR>
+
+" Optional: Alt mappings (only if terminal sends <M-...>)
+vnoremap <silent> <M-c> "+y
+vnoremap <silent> <M-x> "+d
+nnoremap <silent> <M-v> "+p
+inoremap <silent> <M-v> <C-r>+
