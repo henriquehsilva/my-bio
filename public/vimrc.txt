@@ -18,10 +18,38 @@ set termguicolors
 
 " ============================================================
 " Clipboard (macOS-friendly)
-" - If Vim has clipboard support, use system clipboard by default
+" - If Vim has +clipboard: use system clipboard automatically
+" - If NOT: sync via pbcopy/pbpaste while keeping native y/p
 " ============================================================
 if has('clipboard')
   set clipboard=unnamedplus
+endif
+
+if executable('pbcopy') && executable('pbpaste')
+
+  " Copy yanks to macOS clipboard (keeps y/yw/yy/yap... intact)
+  augroup mac_clipboard_yank
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call system('pbcopy', getreg('"')) | endif
+  augroup END
+
+  " Helper: refresh unnamed register from macOS clipboard
+  function! s:MacPasteToUnnamed() abort
+    let l:clip = system('pbpaste')
+    " Remove trailing newline that pbpaste often includes (optional)
+    if l:clip =~ "\n$"
+      let l:clip = substitute(l:clip, "\n$", "", "")
+    endif
+    call setreg('"', l:clip)
+  endfunction
+
+  " Make p/P paste from macOS clipboard (keeps behavior "like p", just syncs first)
+  nnoremap <silent> p :call <SID>MacPasteToUnnamed()<CR>p
+  nnoremap <silent> P :call <SID>MacPasteToUnnamed()<CR>P
+
+  " In Visual mode, keep replacement paste behavior consistent
+  xnoremap <silent> p :call <SID>MacPasteToUnnamed()<CR>p
+  xnoremap <silent> P :call <SID>MacPasteToUnnamed()<CR>P
 endif
 
 " ---------- UI / Editing ----------
@@ -80,6 +108,13 @@ nnoremap <leader>h :nohlsearch<CR>
 " ============================================================
 " Plugins (vim-plug)
 " ============================================================
+" Bootstrap vim-plug if missing (needed to load editorconfig-vim)
+if empty(glob('~/.vim/autoload/plug.vim'))
+  echohl WarningMsg
+  echom "vim-plug not found. Install it to load plugins (incl. editorconfig-vim)."
+  echohl None
+endif
+
 call plug#begin('~/.vim/plugged')
 
 " --- Core UX ---
@@ -124,7 +159,6 @@ set background=dark
 colorscheme monokai
 
 " Airline theme must be set AFTER plugins are loaded
-" NOTE: 'monokai' is NOT an airline theme name anymore; use base16_monokai.
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16_monokai'
 
@@ -151,21 +185,24 @@ nnoremap [c :GitGutterPrevHunk<CR>
 
 " ============================================================
 " Better defaults per filetype (C/C++ & Python)
-" - C/C++: tabs reais, 4 colunas (alinha com Norm)
-" - Python: spaces, 4 colunas
-" Obs: Se existir .editorconfig, ele pode sobrescrever isso.
 " ============================================================
 augroup ft_settings
   autocmd!
   autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+  autocmd FileType c,cpp setlocal list listchars=tab:>\ ,trail:·
 augroup END
+
+" Fallback: if editorconfig isn't loaded, keep C/C++ on tabs.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+endif
 
 " ============================================================
 " CoC (LSP + Autocomplete)
 " ============================================================
-" Tab/Shift-Tab apenas para navegar no menu do autocomplete quando visível
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" TAB: se menu do autocomplete estiver visível, navega; senão insere TAB REAL
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<C-v>\<Tab>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
 
@@ -180,17 +217,9 @@ nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
-
-" Format (when supported by LSP)
 nnoremap <leader>fm :call CocActionAsync('format')<CR>
-
-" Quickfix: list errors/warnings
 nnoremap <leader>qf :CocList diagnostics<CR>
-
-" Status line integration
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Reduce hit-enter prompts
 set shortmess+=c
 
 " ============================================================
@@ -200,11 +229,9 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa!<CR>
 
-" Keep selection when indenting
 vnoremap < <gv
 vnoremap > >gv
 
-" Better window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -217,25 +244,13 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 " ============================================================
-" Copy/Paste (macOS)
-" - Se você tem +clipboard: clipboard=unnamedplus já resolve.
-" - Fallback: pbcopy para copiar seleção (mesmo sem +clipboard)
+" Copy/Paste helpers (keep; these don't override y/p anymore)
 " ============================================================
-
-" Paste from system clipboard (Normal)
 nnoremap <silent> <leader>v "+p
-
-" Paste from system clipboard (Insert)
 inoremap <silent> <leader>v <C-r>+
-
-" Copy selection explicitly to system clipboard (Visual)
 vnoremap <silent> <leader>c "+y
-
-" HARD fallback: copy ONLY the visual selection via pbcopy
-" Use: select with v/V then press Space+C
 vnoremap <silent> <leader>C :'<,'>w !pbcopy<CR><CR>
 
-" Optional: Alt mappings (only if terminal sends <M-...>)
 vnoremap <silent> <M-c> "+y
 vnoremap <silent> <M-x> "+d
 nnoremap <silent> <M-v> "+p
