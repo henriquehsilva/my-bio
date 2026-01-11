@@ -39,4 +39,18 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  @keyframes gradient-spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-gradient-spin {
+    animation: gradient-spin 4s linear infinite;
+  }
 }
