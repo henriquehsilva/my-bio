@@ -83,7 +83,7 @@ export default function Hero() {
           Henrique Silva
         </h1>
         <p className="text-xl md:text-2xl font-light text-gray-200 mb-8 text-shadow max-w-3xl mx-auto leading-relaxed">
-          Senior Software Engineer | AI & Data Science Student
+          Programmer | AI & Data Science Student
         </p>
         <a
           href="https://www.linkedin.com/in/henriquesilvadev"
