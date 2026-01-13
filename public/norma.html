@@ -329,42 +329,6 @@
             font-size: 0.85rem;
         }
 
-        /* Video Player Styling */
-        .video-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            margin-top: 40px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 8px;
-            border: 1px solid var(--border);
-            position: relative;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .video-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            padding: 1px;
-            background: linear-gradient(135deg, var(--accent), transparent, var(--bad));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        .norma-video {
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            object-fit: cover;
-            background: #000;
-        }
-
 
         /* Resource Navbar - Scrollable on mobile */
         .resource-navbar {
@@ -496,20 +460,7 @@
                 font-size: 0.95rem;
             }
 
-            .video-wrapper {
-                margin-top: 60px;
-                border-radius: 32px;
-                padding: 12px;
-            }
 
-            .video-wrapper::before {
-                border-radius: 32px;
-                padding: 2px;
-            }
-
-            .norma-video {
-                border-radius: 20px;
-            }
 
 
             .resource-navbar {
@@ -606,12 +557,6 @@
                 <p>O guia definitivo de regras e padrões de codificação para projetos em C na 42. Escrito
                     profissionalmente, baseado na Versão 4.1.</p>
 
-                <div class="video-wrapper">
-                    <video class="norma-video" controls autoplay playsinline>
-                        <source src="norma.mp4" type="video/mp4">
-                        Seu navegador não suporta o player de vídeo.
-                    </video>
-                </div>
             </header>
 
             <section id="naming" class="doc-section">
