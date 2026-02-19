@@ -1,0 +1,42 @@
+[
+  {
+    "id": "placeholder-1",
+    "imageUrl": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "caption": "Street photography vibes.",
+    "timestamp": "2025-12-18T12:00:00.000Z",
+    "mediaType": "IMAGE",
+    "permalink": "https://www.instagram.com/p/placeholder1/"
+  },
+  {
+    "id": "placeholder-2",
+    "imageUrl": "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "caption": "Workspace setup, minimal and clean.",
+    "timestamp": "2025-12-12T12:00:00.000Z",
+    "mediaType": "IMAGE",
+    "permalink": "https://www.instagram.com/p/placeholder2/"
+  },
+  {
+    "id": "placeholder-3",
+    "imageUrl": "https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "caption": "Late-night coding session.",
+    "timestamp": "2025-12-05T12:00:00.000Z",
+    "mediaType": "IMAGE",
+    "permalink": "https://www.instagram.com/p/placeholder3/"
+  },
+  {
+    "id": "placeholder-4",
+    "imageUrl": "https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "caption": "Morning coffee + code.",
+    "timestamp": "2025-11-28T12:00:00.000Z",
+    "mediaType": "IMAGE",
+    "permalink": "https://www.instagram.com/p/placeholder4/"
+  },
+  {
+    "id": "placeholder-5",
+    "imageUrl": "https://images.pexels.com/photos/4974920/pexels-photo-4974920.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    "caption": "Notes from today’s build.",
+    "timestamp": "2025-11-20T12:00:00.000Z",
+    "mediaType": "IMAGE",
+    "permalink": "https://www.instagram.com/p/placeholder5/"
+  }
+]

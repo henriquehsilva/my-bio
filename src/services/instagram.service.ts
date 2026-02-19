@@ -1,52 +1,33 @@
 import type { InstagramPost } from '../types';
 
 export async function getLatestInstagramPosts(count: number = 5): Promise<InstagramPost[]> {
-  const accessToken = import.meta.env.VITE_INSTAGRAM_ACCESS_TOKEN;
+  const staticPosts = await loadFromStaticJson(count);
+  if (staticPosts.length > 0) return staticPosts;
 
-  if (!accessToken) {
-    return Array.from({ length: count }, (_, i) => ({
-      id: `placeholder-${i}`,
-      imageUrl: `https://images.pexels.com/photos/${[
-        '5380664',
-        '5483077',
-        '3861969',
-        '4974920',
-        '5926382'
-      ][i]}/pexels-photo.jpeg?auto=compress&cs=tinysrgb&w=1920`,
-      caption: `Placeholder post ${i + 1}. Connect Instagram API to display your real content.`,
-      timestamp: new Date(Date.now() - i * 86400000).toISOString(),
-      mediaType: i === 1 ? 'VIDEO' : 'IMAGE',
-      videoUrl: i === 1 ? 'https://videos.pexels.com/video-files/855564/855564-hd_1920_1080_30fps.mp4' : undefined,
-      permalink: 'https://instagram.com'
-    }));
-  }
+  return buildPlaceholders(count, 'Unable to load Instagram content.');
+}
 
+async function loadFromStaticJson(count: number): Promise<InstagramPost[]> {
   try {
-    const response = await fetch(
-      `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,thumbnail_url,permalink&access_token=${accessToken}&limit=${count}`
-    );
-
-    if (!response.ok) throw new Error('Failed to fetch Instagram posts');
-
+    const response = await fetch('/instagram.json', { cache: 'no-store' });
+    if (!response.ok) return [];
     const data = await response.json();
-    return data.data.map((post: any) => ({
-      id: post.id,
-      imageUrl: post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url,
-      caption: post.caption || '',
-      timestamp: post.timestamp,
-      mediaType: post.media_type,
-      videoUrl: post.media_type === 'VIDEO' ? post.media_url : undefined,
-      permalink: post.permalink
-    }));
-  } catch (error) {
-    console.error('Error fetching Instagram posts:', error);
-    return Array.from({ length: count }, (_, i) => ({
-      id: `error-${i}`,
-      imageUrl: `https://images.pexels.com/photos/5380664/pexels-photo.jpeg?auto=compress&cs=tinysrgb&w=1920`,
-      caption: 'Unable to load Instagram content.',
-      timestamp: new Date().toISOString(),
-      mediaType: 'IMAGE',
-      permalink: 'https://instagram.com'
-    }));
+    if (!Array.isArray(data)) return [];
+    return data.slice(0, count);
+  } catch {
+    return [];
   }
+}
+
+function buildPlaceholders(count: number, caption: string): InstagramPost[] {
+  const ids = ['5380664', '5483077', '3861969', '4974920', '5926382'];
+  return Array.from({ length: count }, (_, i) => ({
+    id: `placeholder-${i}`,
+    imageUrl: `https://images.pexels.com/photos/${ids[i % ids.length]}/pexels-photo.jpeg?auto=compress&cs=tinysrgb&w=1920`,
+    caption,
+    timestamp: new Date(Date.now() - i * 86400000).toISOString(),
+    mediaType: i === 1 ? 'VIDEO' : 'IMAGE',
+    videoUrl: i === 1 ? 'https://videos.pexels.com/video-files/855564/855564-hd_1920_1080_30fps.mp4' : undefined,
+    permalink: 'https://instagram.com'
+  }));
 }
