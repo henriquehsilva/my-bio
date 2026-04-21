@@ -25,7 +25,7 @@ export default function Hero() {
           Henrique Silva
         </h1>
         <p className="text-white/50 text-sm sm:text-base font-light mb-8 tracking-widest uppercase">
-          software developer
+          cadete 42 são paulo
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3">
