@@ -4,7 +4,7 @@ import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
 import type { Components } from 'react-markdown';
 import { usePost, usePosts } from '../hooks/usePost';
-import type { ReactNode } from 'react';
+import { isValidElement } from 'react';
 
 function formatDate(dateStr: string) {
   return new Date(dateStr + 'T12:00:00').toLocaleDateString('pt-BR', {
@@ -81,18 +81,31 @@ const mdComponents: Components = {
       </code>
     );
   },
-  pre: ({ children }) => (
-    <div className="monokai-block group relative my-6 rounded-lg overflow-hidden border border-[#2a2a2a]">
-      <div className="monokai-topbar flex items-center gap-1.5 px-4 py-2.5 bg-[#1e1c1a] border-b border-[#2a2a2a]">
-        <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-        <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-        <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+  pre: ({ children }) => {
+    let lang = '';
+    if (isValidElement(children)) {
+      const cls = (children.props as { className?: string }).className ?? '';
+      const match = cls.match(/language-(\w+)/);
+      lang = match ? match[1] : '';
+    }
+    return (
+      <div className="monokai-block my-7 rounded-xl overflow-hidden border border-[#1e1e1e] shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+        <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#161412] border-b border-[#1e1e1e]">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+          {lang && (
+            <span className="ml-auto font-mono text-[10px] text-[#444] tracking-widest uppercase select-none">
+              {lang}
+            </span>
+          )}
+        </div>
+        <pre className="overflow-x-auto text-[0.8rem] leading-[1.75] p-5 bg-[#1a1814] m-0">
+          {children}
+        </pre>
       </div>
-      <pre className="overflow-x-auto text-sm leading-relaxed p-4 sm:p-5 bg-[#272822] m-0">
-        {children}
-      </pre>
-    </div>
-  ),
+    );
+  },
   table: ({ children }) => (
     <div className="overflow-x-auto my-6">
       <table className="w-full text-sm border-collapse">
@@ -132,9 +145,6 @@ const mdComponents: Components = {
   ),
 };
 
-function ReadingProgress() {
-  return null;
-}
 
 export default function PostPage() {
   const { slug } = useParams<{ slug: string }>();

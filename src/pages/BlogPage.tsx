@@ -14,39 +14,35 @@ function formatDate(dateStr: string) {
 function PostCard({ post }: { post: PostMeta }) {
   return (
     <Link to={`/blog/${post.slug}`} className="block group focus:outline-none">
-      <article className="notebook-card relative py-6 pl-8 pr-4 sm:pr-6 transition-all duration-300">
-        <div className="notebook-margin-line" />
-
-        <div className="flex flex-wrap items-center gap-3 mb-3">
-          <time className="font-mono text-xs text-[#6b6b6b] tracking-widest uppercase">
+      <article className="py-8 border-b border-[#111] transition-colors duration-200">
+        <div className="flex items-center gap-2.5 mb-3">
+          <time className="font-mono text-[11px] text-[#3a3a3a] tracking-wider">
             {formatDate(post.date)}
           </time>
-          <span className="text-[#3a3a3a] text-xs font-mono">·</span>
-          <span className="font-mono text-xs text-[#6b6b6b]">
+          <span className="text-[#222] text-xs">·</span>
+          <span className="font-mono text-[11px] text-[#3a3a3a]">
             {post.readingTime} min
           </span>
         </div>
 
-        <h2 className="text-lg sm:text-xl font-semibold text-[#e8e8e8] mb-2 leading-snug group-hover:text-white transition-colors duration-200">
+        <h2 className="text-base sm:text-lg font-medium text-[#bbb] mb-2.5 leading-snug group-hover:text-white transition-colors duration-200">
           {post.title}
         </h2>
 
-        <p className="text-sm text-[#888] leading-relaxed mb-4">
+        <p className="text-sm text-[#484848] leading-relaxed mb-4">
           {post.excerpt}
         </p>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {post.tags.map(tag => (
             <span
               key={tag}
-              className="text-xs px-2 py-0.5 rounded font-mono text-[#6b6b6b] bg-[#1e1e1e] border border-[#2a2a2a]"
+              className="font-mono text-[10px] px-2 py-0.5 text-[#383838] border border-[#1a1a1a] rounded-sm tracking-wide"
             >
-              #{tag}
+              {tag}
             </span>
           ))}
         </div>
-
-        <div className="notebook-card-indicator" />
       </article>
     </Link>
   );
@@ -54,15 +50,14 @@ function PostCard({ post }: { post: PostMeta }) {
 
 function SkeletonCard() {
   return (
-    <div className="notebook-card relative py-6 pl-8 pr-4 sm:pr-6 animate-pulse">
-      <div className="notebook-margin-line opacity-30" />
-      <div className="h-3 bg-[#222] rounded w-28 mb-4" />
-      <div className="h-5 bg-[#222] rounded w-3/4 mb-3" />
-      <div className="h-4 bg-[#1e1e1e] rounded w-full mb-2" />
-      <div className="h-4 bg-[#1e1e1e] rounded w-5/6 mb-4" />
+    <div className="py-8 border-b border-[#111] animate-pulse">
+      <div className="h-2.5 bg-[#1a1a1a] rounded w-24 mb-4" />
+      <div className="h-5 bg-[#1a1a1a] rounded w-3/4 mb-3" />
+      <div className="h-4 bg-[#141414] rounded w-full mb-2" />
+      <div className="h-4 bg-[#141414] rounded w-5/6 mb-4" />
       <div className="flex gap-2">
-        <div className="h-5 bg-[#1e1e1e] rounded w-16" />
-        <div className="h-5 bg-[#1e1e1e] rounded w-20" />
+        <div className="h-4 bg-[#141414] rounded w-14" />
+        <div className="h-4 bg-[#141414] rounded w-16" />
       </div>
     </div>
   );
@@ -145,7 +140,7 @@ export default function BlogPage() {
         )}
 
         {/* Post list */}
-        <div className="space-y-2">
+        <div className="border-t border-[#111]">
           {loading ? (
             <>
               <SkeletonCard />

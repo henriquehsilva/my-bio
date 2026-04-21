@@ -4,7 +4,6 @@ const socialLinks = [
   { label: 'Instagram', href: 'https://www.instagram.com/henriquesilvadev/' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/henriquesilvadev' },
   { label: 'GitHub', href: 'https://github.com/henriquehsilva' },
-  { label: 'Calendly', href: 'https://calendly.com/henriquesilvadev/mentoria-1-1' },
 ];
 
 export default function Hero() {

@@ -58,55 +58,14 @@
 
 /* ─── Blog / Notebook styles ─────────────────────────────── */
 
-.notebook-card {
-  position: relative;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
-
-.notebook-card:hover {
-  background-color: #111;
-}
-
-.notebook-margin-line {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(255, 59, 48, 0.15);
-  border-radius: 2px;
-  transition: background-color 0.2s ease;
-}
-
-.notebook-card:hover .notebook-margin-line {
-  background: rgba(255, 59, 48, 0.5);
-}
-
-.notebook-card-indicator {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: transparent;
-  transition: background-color 0.2s ease;
-}
-
-.notebook-card:hover .notebook-card-indicator {
-  background: #555;
-}
-
 /* ─── Monokai — highlight.js theme ───────────────────────── */
 
 .hljs {
   background: transparent;
-  color: #f8f8f2;
-  font-size: 0.875rem;
+  color: #cdc9bf;
+  font-size: 0.8rem;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .hljs-comment,
@@ -196,20 +155,20 @@
 /* ─── Scrollbar for code blocks ──────────────────────────── */
 
 .monokai-block pre::-webkit-scrollbar {
-  height: 6px;
+  height: 4px;
 }
 
 .monokai-block pre::-webkit-scrollbar-track {
-  background: #1e1c1a;
+  background: transparent;
 }
 
 .monokai-block pre::-webkit-scrollbar-thumb {
-  background: #3a3a3a;
-  border-radius: 3px;
+  background: #2e2e2e;
+  border-radius: 2px;
 }
 
 .monokai-block pre::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #444;
 }
 
 /* ─── Post content typography refinements ────────────────── */
