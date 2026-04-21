@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -22,11 +22,17 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
 }
 
 @layer utilities {
   .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
   }
 
   .reveal {
@@ -41,16 +47,201 @@
   }
 
   @keyframes gradient-spin {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
 
   .animate-gradient-spin {
     animation: gradient-spin 4s linear infinite;
   }
+}
+
+/* ─── Blog / Notebook styles ─────────────────────────────── */
+
+.notebook-card {
+  position: relative;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.notebook-card:hover {
+  background-color: #111;
+}
+
+.notebook-margin-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 59, 48, 0.15);
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.notebook-card:hover .notebook-margin-line {
+  background: rgba(255, 59, 48, 0.5);
+}
+
+.notebook-card-indicator {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.notebook-card:hover .notebook-card-indicator {
+  background: #555;
+}
+
+/* ─── Monokai — highlight.js theme ───────────────────────── */
+
+.hljs {
+  background: transparent;
+  color: #f8f8f2;
+  font-size: 0.875rem;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  line-height: 1.7;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #75715e;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-meta,
+.hljs-deletion {
+  color: #f92672;
+}
+
+.hljs-string,
+.hljs-doctag,
+.hljs-regexp {
+  color: #e6db74;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id,
+.hljs-addition {
+  color: #a6e22e;
+  font-weight: 500;
+}
+
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-symbol,
+.hljs-variable.language_ {
+  color: #66d9ef;
+}
+
+.hljs-number,
+.hljs-literal {
+  color: #ae81ff;
+}
+
+.hljs-params,
+.hljs-attr,
+.hljs-attribute {
+  color: #fd971f;
+}
+
+.hljs-variable,
+.hljs-template-variable {
+  color: #f8f8f2;
+}
+
+.hljs-class .hljs-title,
+.hljs-title.class_ {
+  color: #66d9ef;
+  font-weight: 500;
+}
+
+.hljs-function .hljs-title,
+.hljs-title.function_ {
+  color: #a6e22e;
+}
+
+.hljs-tag {
+  color: #f92672;
+}
+
+.hljs-name {
+  color: #f92672;
+}
+
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #a6e22e;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* ─── Scrollbar for code blocks ──────────────────────────── */
+
+.monokai-block pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+.monokai-block pre::-webkit-scrollbar-track {
+  background: #1e1c1a;
+}
+
+.monokai-block pre::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 3px;
+}
+
+.monokai-block pre::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ─── Post content typography refinements ────────────────── */
+
+.post-content > *:first-child {
+  margin-top: 0 !important;
+}
+
+.post-content ol {
+  counter-reset: item;
+  padding-left: 0;
+}
+
+.post-content ol > li {
+  counter-increment: item;
+}
+
+.post-content ol > li::before {
+  content: counter(item) '.';
+  color: #ff3b30;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  margin-right: 0.75rem;
+  min-width: 1.5rem;
+  flex-shrink: 0;
+}
+
+.post-content ol > li > span {
+  flex: 1;
+}
+
+/* Table row hover */
+.post-content tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
 }

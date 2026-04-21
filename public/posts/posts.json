@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "introducao-python",
+    "title": "Introdução ao Python 3",
+    "date": "2025-03-10",
+    "tags": ["python", "programação", "iniciante"],
+    "excerpt": "Anotações sobre os conceitos fundamentais do Python 3 — tipos de dados, estruturas de controle, funções e muito mais.",
+    "readingTime": 8
+  },
+  {
+    "slug": "git-na-pratica",
+    "title": "Git na Prática",
+    "date": "2025-02-20",
+    "tags": ["git", "workflow", "ferramentas"],
+    "excerpt": "Comandos essenciais do Git que uso no dia a dia. Desde o básico até rebase interativo e recuperação de commits perdidos.",
+    "readingTime": 6
+  },
+  {
+    "slug": "vim-essencial",
+    "title": "Vim: Comandos Essenciais",
+    "date": "2025-01-15",
+    "tags": ["vim", "terminal", "produtividade"],
+    "excerpt": "Os comandos do Vim que mais uso. Depois de anos resistindo, finalmente entendi por que os programadores amam esse editor.",
+    "readingTime": 5
+  }
+]
