@@ -1,34 +1,39 @@
-import { Github } from 'lucide-react';
+import { Github, ArrowUpRight } from 'lucide-react';
 
 export default function PythonCourse() {
-    return (
-        <section id="python-course" className="py-20 px-6 reveal">
-            <div className="max-w-4xl mx-auto">
-                <div className="inline-block mb-6">
-                    <span className="text-xs font-light tracking-widest uppercase text-gray-400 border border-gray-700 px-4 py-2 rounded-full">
-                        Featured Course
-                    </span>
-                </div>
+  return (
+    <section id="python-course" className="py-16 sm:py-24 px-4 sm:px-6 reveal">
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-10 sm:mb-14">
+          <p className="text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 mb-2">Educação</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Featured Course</h2>
+        </div>
 
-                <div className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-8 hover:border-gray-700 transition-all duration-300">
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                        Curso de Python – Aprenda a Programar
-                    </h3>
-                    <p className="text-xl font-light leading-relaxed mb-8 text-gray-300">
-                        Bem-vindo ao Curso de Python – Aprenda a Programar! Este é um repositório educacional e colaborativo desenhado para guiar você desde os primeiros passos na programação até conceitos intermediários de desenvolvimento em Python, com foco em boas práticas, legibilidade e resolução de problemas reais.
-                    </p>
-
-                    <a
-                        href="https://github.com/henriquesilvadev/curso-python-aprenda-a-programar"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-gray-200 transition-colors"
-                    >
-                        <Github className="w-5 h-5" />
-                        View on GitHub
-                    </a>
-                </div>
+        <a
+          href="https://github.com/henriquesilvadev/curso-python-aprenda-a-programar"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block bg-white/[0.03] border border-white/8 rounded-2xl p-6 sm:p-8 hover:border-white/20 transition-all duration-300"
+        >
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-yellow-400/10 border border-yellow-400/20 rounded-xl flex items-center justify-center shrink-0">
+                <Github className="w-5 h-5 text-yellow-400" />
+              </div>
+              <span className="text-xs font-semibold tracking-widest uppercase text-gray-500">Open Source</span>
             </div>
-        </section>
-    );
+            <ArrowUpRight className="w-5 h-5 text-gray-600 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-200 shrink-0" />
+          </div>
+
+          <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-white transition-colors">
+            Curso de Python – Aprenda a Programar
+          </h3>
+
+          <p className="text-base text-gray-400 leading-relaxed">
+            Repositório educacional e colaborativo para guiar você desde os primeiros passos na programação até conceitos intermediários em Python, com foco em boas práticas e resolução de problemas reais.
+          </p>
+        </a>
+      </div>
+    </section>
+  );
 }

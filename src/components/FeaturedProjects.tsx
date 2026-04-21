@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getFeaturedProjects } from '../services/github.service';
 import type { GitHubProject } from '../types';
+import { ArrowRight } from 'lucide-react';
 
 export default function FeaturedProjects() {
   const [projects, setProjects] = useState<GitHubProject[]>([]);
@@ -17,21 +18,18 @@ export default function FeaturedProjects() {
         setLoading(false);
       }
     };
-
     fetchProjects();
   }, []);
 
   if (loading) {
     return (
-      <section id="featured-projects" className="py-32 px-6 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="animate-pulse">
-            <div className="h-8 w-64 bg-gray-800 rounded mb-12" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="h-64 bg-gray-800 rounded-2xl" />
-              ))}
-            </div>
+      <section id="featured-projects" className="py-16 sm:py-24 px-4 sm:px-6 bg-black">
+        <div className="max-w-7xl mx-auto animate-pulse">
+          <div className="h-7 w-48 bg-gray-800/60 rounded mb-10" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="h-56 bg-gray-800/40 rounded-2xl" />
+            ))}
           </div>
         </div>
       </section>
@@ -39,68 +37,58 @@ export default function FeaturedProjects() {
   }
 
   return (
-    <section id="featured-projects" className="py-32 px-6 bg-black reveal">
+    <section id="featured-projects" className="py-16 sm:py-24 px-4 sm:px-6 bg-black reveal">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl md:text-6xl font-bold mb-16 tracking-tight">Featured Projects</h2>
+        <div className="flex items-end justify-between mb-10 sm:mb-14">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 mb-2">Open Source</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Featured Projects</h2>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project, index) => (
-            <div
+            <a
               key={project.id}
-              className="bg-gradient-to-br from-gray-900/50 to-black border border-gray-800 rounded-2xl p-8 hover:border-gray-600 hover:transform hover:-translate-y-2 transition-all duration-300 group"
-              style={{ animationDelay: `${index * 100}ms` }}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block bg-white/[0.03] border border-white/8 rounded-2xl p-6 hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
+              style={{ transitionDelay: `${index * 60}ms` }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="text-xl font-bold text-gray-100 leading-tight flex-1 pr-4">
+              <div className="flex items-start justify-between mb-4 gap-3">
+                <h3 className="text-base font-semibold text-gray-100 leading-snug">
                   {project.name}
                 </h3>
-                <span className="text-xs font-light text-gray-500 uppercase tracking-wide whitespace-nowrap">
+                <span className="shrink-0 text-[10px] font-medium text-gray-500 uppercase tracking-wider bg-white/5 px-2 py-1 rounded-md">
                   {project.language}
                 </span>
               </div>
 
-              <p className="text-sm font-light leading-relaxed text-gray-400 mb-6 line-clamp-3">
+              <p className="text-sm text-gray-400 leading-relaxed mb-5 line-clamp-3">
                 {project.description}
               </p>
 
-              <div className="flex items-center gap-6 mb-6 text-sm text-gray-500 border-t border-gray-800 pt-4">
-                <span className="font-light">{project.stars.toLocaleString()} Stars</span>
-                <span className="font-light">{project.forks.toLocaleString()} Forks</span>
+              <div className="flex items-center justify-between border-t border-white/6 pt-4">
+                <div className="flex items-center gap-4 text-xs text-gray-500">
+                  <span>{project.stars.toLocaleString()} Stars</span>
+                  <span>{project.forks.toLocaleString()} Forks</span>
+                </div>
+                <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
               </div>
-
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-sm font-light text-gray-300 hover:text-white transition-colors relative group"
-              >
-                Open on GitHub
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
-              </a>
-            </div>
+            </a>
           ))}
         </div>
-        <div className="mt-16 text-center">
+
+        <div className="mt-10 sm:mt-14 text-center">
           <a
-            href="https://github.com/henriquesilvadev"
+            href="https://github.com/henriquehsilva"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition-colors"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-100 transition-colors"
           >
-            See all projects on GitHub
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
+            Ver todos os projetos
+            <ArrowRight className="w-4 h-4" />
           </a>
         </div>
       </div>

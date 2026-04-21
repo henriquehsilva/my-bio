@@ -18,17 +18,16 @@ export default function LatestInstagram() {
         setLoading(false);
       }
     };
-
     fetchPosts();
   }, []);
 
   if (loading) {
     return (
-      <section id="latest-instagram" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="animate-pulse grid grid-cols-2 md:grid-cols-4 gap-4">
+      <section id="latest-instagram" className="py-16 sm:py-24 px-4 sm:px-6 bg-black">
+        <div className="max-w-6xl mx-auto animate-pulse">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="aspect-square bg-gray-800 rounded-xl" />
+              <div key={i} className="aspect-square bg-gray-800/40 rounded-xl" />
             ))}
           </div>
         </div>
@@ -37,58 +36,57 @@ export default function LatestInstagram() {
   }
 
   return (
-    <section id="latest-instagram" className="py-20 px-6 reveal">
+    <section id="latest-instagram" className="py-16 sm:py-24 px-4 sm:px-6 bg-black reveal">
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-end justify-between mb-8 sm:mb-12">
           <div>
-            <span className="text-xs font-light tracking-widest uppercase text-gray-400 border border-gray-700 px-4 py-2 rounded-full">
-              Instagram
-            </span>
-            <h2 className="text-3xl font-bold mt-6 text-white">Latest Shots</h2>
+            <p className="text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 mb-2">Social</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Latest Shots</h2>
           </div>
 
           <a
             href="https://www.instagram.com/henriquesilvadev/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors group"
+            className="flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors"
           >
-            <Instagram className="w-5 h-5" />
-            <span>@henriquesilvadev</span>
-            <span className="w-0 h-px bg-white transition-all duration-300 group-hover:w-full hidden group-hover:block" />
+            <Instagram className="w-4 h-4" />
+            <span className="hidden sm:inline">@henriquesilvadev</span>
           </a>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {posts.map((post) => (
             <a
               key={post.id}
-              href={post.id.startsWith('placeholder') ? 'https://www.instagram.com/henriquesilvadev/' : `https://www.instagram.com/p/${post.id}`} // Fallback link for placeholders
+              href={
+                post.id.startsWith('placeholder')
+                  ? 'https://www.instagram.com/henriquesilvadev/'
+                  : `https://www.instagram.com/p/${post.id}`
+              }
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block aspect-square rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-gray-600 transition-all duration-300"
+              className="group relative block aspect-square rounded-xl overflow-hidden bg-gray-900 border border-white/6 hover:border-white/20 transition-all duration-300"
             >
-              <div className="w-full h-full">
-                {post.mediaType === 'VIDEO' && post.videoUrl ? (
-                  <video
-                    src={post.videoUrl}
-                    poster={post.imageUrl}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                ) : (
-                  <img
-                    src={post.imageUrl}
-                    alt={post.caption}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                )}
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="text-sm font-light text-white line-clamp-2">
+              {post.mediaType === 'VIDEO' && post.videoUrl ? (
+                <video
+                  src={post.videoUrl}
+                  poster={post.imageUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <img
+                  src={post.imageUrl}
+                  alt={post.caption}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <p className="text-xs text-white line-clamp-2 leading-relaxed">
                   {post.caption}
                 </p>
               </div>

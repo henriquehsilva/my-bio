@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getLatestYouTubeVideos, YOUTUBE_PLAYLISTS } from '../services/youtube.service';
 import type { YouTubeVideo } from '../types';
+import { Play, X } from 'lucide-react';
 
 export default function WatchingNow() {
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
@@ -18,91 +19,75 @@ export default function WatchingNow() {
         setLoading(false);
       }
     };
-
     fetchVideos();
   }, []);
 
   if (loading) {
     return (
-      <section id="watching-now" className="py-32 px-6 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="animate-pulse">
-            <div className="h-8 w-48 bg-gray-800 rounded mb-12" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="h-64 bg-gray-800 rounded-2xl" />
-              ))}
-            </div>
+      <section id="watching-now" className="py-16 sm:py-24 px-4 sm:px-6 bg-black">
+        <div className="max-w-7xl mx-auto animate-pulse">
+          <div className="h-7 w-48 bg-gray-800/60 rounded mb-10" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="aspect-video bg-gray-800/40 rounded-2xl" />
+            ))}
           </div>
         </div>
       </section>
     );
   }
 
-  const handleVideoClick = (videoId: string) => {
-    setSelectedVideo(videoId);
-  };
-
-  const closeModal = () => {
-    setSelectedVideo(null);
-  };
-
   return (
     <>
-      <section id="watching-now" className="py-32 px-6 bg-black reveal">
+      <section id="watching-now" className="py-16 sm:py-24 px-4 sm:px-6 bg-black reveal">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16 tracking-tight">Curso de Python</h2>
+          <div className="mb-10 sm:mb-14">
+            <p className="text-xs font-semibold tracking-[0.15em] uppercase text-gray-500 mb-2">YouTube</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Curso de Python</h2>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
             {videos.map((video, index) => {
-              const formattedDate = new Date(video.publishedAt).toLocaleDateString('en-US', {
+              const formattedDate = new Date(video.publishedAt).toLocaleDateString('pt-BR', {
                 month: 'short',
                 day: 'numeric',
-                year: 'numeric'
+                year: 'numeric',
               });
 
               return (
-                <div
+                <button
                   key={video.id}
-                  className="group cursor-pointer"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                  onClick={() => handleVideoClick(video.id)}
+                  className="group text-left"
+                  style={{ transitionDelay: `${index * 60}ms` }}
+                  onClick={() => setSelectedVideo(video.id)}
                 >
-                  <div className="relative aspect-video mb-4 overflow-hidden rounded-xl border border-gray-800 group-hover:border-gray-600 transition-all duration-300">
+                  <div className="relative aspect-video mb-3 overflow-hidden rounded-xl border border-white/8 group-hover:border-white/20 transition-all duration-300">
                     <img
                       src={video.thumbnail}
                       alt={video.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                      <div className="w-16 h-16 border-2 border-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <div className="w-0 h-0 border-t-8 border-t-transparent border-l-12 border-l-white border-b-8 border-b-transparent ml-1" />
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-white/20 transition-all duration-300">
+                        <Play className="w-5 h-5 fill-white text-white ml-0.5" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="px-2">
-                    <h3 className="text-lg font-medium text-gray-100 mb-2 line-clamp-2 group-hover:text-white transition-colors">
-                      {video.title}
-                    </h3>
+                  <h3 className="text-sm font-medium text-gray-200 mb-1.5 line-clamp-2 group-hover:text-white transition-colors">
+                    {video.title}
+                  </h3>
 
-                    <div className="flex items-center gap-4 text-sm text-gray-400">
-                      <span className="font-light">{formattedDate}</span>
-                      {video.views && (
-                        <>
-                          <span className="w-1 h-1 bg-gray-600 rounded-full" />
-                          <span className="font-light">{video.views.toLocaleString()} views</span>
-                        </>
-                      )}
-                      {video.likes && (
-                        <>
-                          <span className="w-1 h-1 bg-gray-600 rounded-full" />
-                          <span className="font-light">{video.likes.toLocaleString()} likes</span>
-                        </>
-                      )}
-                    </div>
+                  <div className="flex items-center gap-3 text-xs text-gray-500">
+                    <span>{formattedDate}</span>
+                    {video.views && (
+                      <>
+                        <span className="w-1 h-1 bg-gray-600 rounded-full" />
+                        <span>{video.views.toLocaleString()} views</span>
+                      </>
+                    )}
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -111,31 +96,29 @@ export default function WatchingNow() {
             href={`https://www.youtube.com/playlist?list=${YOUTUBE_PLAYLISTS.WATCHING_NOW}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-sm font-light text-gray-300 hover:text-white transition-colors relative group"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-white transition-colors group"
           >
-            Watch playlist on YouTube
-            <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
+            Ver playlist completa no YouTube
+            <span className="w-0 group-hover:w-4 overflow-hidden transition-all duration-200">→</span>
           </a>
         </div>
       </section>
 
       {selectedVideo && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6"
-          onClick={closeModal}
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setSelectedVideo(null)}
         >
           <div className="relative w-full max-w-5xl aspect-video" onClick={(e) => e.stopPropagation()}>
             <button
-              onClick={closeModal}
-              className="absolute -top-12 right-0 text-white hover:text-gray-400 transition-colors"
+              onClick={() => setSelectedVideo(null)}
+              className="absolute -top-10 right-0 text-white/60 hover:text-white transition-colors p-1"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="w-6 h-6" />
             </button>
             <iframe
               src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
-              title="YouTube video player"
+              title="YouTube video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full rounded-xl"
