@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import type { Components } from 'react-markdown';
 import { usePost, usePosts } from '../hooks/usePost';
 import { isValidElement } from 'react';
+import Giscus from '@giscus/react';
 
 function formatDate(dateStr: string) {
   return new Date(dateStr + 'T12:00:00').toLocaleDateString('pt-BR', {
@@ -234,8 +235,26 @@ export default function PostPage() {
               </ReactMarkdown>
             </div>
 
+            {/* Comments */}
+            <div className="mt-16 pt-8 border-t border-[#1e1e1e]">
+              <Giscus
+                repo="henriquehsilva/my-bio"
+                repoId="R_kgDOOQcUDg"
+                category="General"
+                categoryId="DIC_kwDOOQcUDs4C7rba"
+                mapping="pathname"
+                strict="0"
+                reactionsEnabled="1"
+                emitMetadata="0"
+                inputPosition="bottom"
+                theme="noborder_dark"
+                lang="pt"
+                loading="lazy"
+              />
+            </div>
+
             {/* Post footer */}
-            <footer className="mt-16 pt-8 border-t border-[#1e1e1e]">
+            <footer className="mt-12 pt-8 border-t border-[#1e1e1e]">
               <Link
                 to="/blog"
                 className="inline-flex items-center gap-2 font-mono text-sm text-[#555] hover:text-white transition-colors"
