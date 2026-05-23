@@ -39,12 +39,14 @@ export default function Hero() {
               {label}
             </a>
           ))}
-          <Link
-            to="/blog"
+          <a
+            href="https://publish.obsidian.md/henriquesilvadev"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-xs sm:text-sm font-medium tracking-wide uppercase border border-white/30 px-5 py-2.5 rounded-full hover:bg-white hover:text-black transition-all duration-300"
           >
             Caderno
-          </Link>
+          </a>
         </div>
       </div>
     </section>
