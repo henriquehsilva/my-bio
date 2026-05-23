@@ -161,13 +161,15 @@ export default function PostPage() {
       {/* Sticky header */}
       <header className="sticky top-0 z-20 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-[#1e1e1e]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <Link
-            to="/blog"
+          <a
+            href="https://publish.obsidian.md/henriquesilvadev"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-mono text-sm text-[#666] hover:text-white transition-colors duration-200 flex items-center gap-2"
           >
             <span>←</span>
             <span>caderno</span>
-          </Link>
+          </a>
           {meta && (
             <span className="font-mono text-xs text-[#444]">
               {meta.readingTime} min de leitura

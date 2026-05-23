@@ -84,13 +84,18 @@ export default function BlogPage() {
             <span>←</span>
             <span>voltar</span>
           </Link>
-          <div className="flex items-center gap-2.5">
+          <a
+            href="https://publish.obsidian.md/henriquesilvadev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 text-[#ccc] hover:text-white transition-colors duration-200"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-[#666]">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
             </svg>
-            <span className="text-sm font-medium tracking-wide text-[#ccc]">caderno</span>
-          </div>
+            <span className="text-sm font-medium tracking-wide">caderno</span>
+          </a>
         </div>
       </header>
 
