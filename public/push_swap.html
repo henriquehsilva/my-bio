@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>push_swap — Resumo do Subject v1.1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --fg: #0a0a0a;
+      --muted: #555555;
+      --border: #d0d0d0;
+      --border-strong: #000000;
+      --code-bg: #f0f0f0;
+      --sidebar-w: 260px;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── layout ── */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── sidebar ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .sidebar-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      padding: 0.3rem 0.6rem;
+      border-left: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 1.4;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      color: var(--fg);
+      border-left-color: var(--fg);
+    }
+
+    .sidebar a.sub {
+      padding-left: 1.2rem;
+      font-size: 0.77rem;
+    }
+
+    /* ── main ── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 3rem 4rem 6rem;
+      max-width: 860px;
+    }
+
+    /* ── header ── */
+    .page-header {
+      border-bottom: 2px solid var(--border-strong);
+      padding-bottom: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .page-header .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header h1 code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+    }
+
+    .callout {
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--border-strong);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 1rem;
+    }
+
+    .callout strong { color: var(--fg); }
+
+    /* ── section ── */
+    .section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.75rem 0 0.75rem;
+    }
+
+    h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 1.25rem 0 0.5rem;
+      color: var(--fg);
+    }
+
+    p {
+      font-size: 0.92rem;
+      color: var(--fg);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── checklist ── */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .checklist li::before {
+      content: '□';
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: -0.05em;
+      color: var(--muted);
+    }
+
+    /* ── table ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    th {
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid var(--border-strong);
+      padding: 0.5rem 0.75rem;
+    }
+
+    td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    td code, th code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      background: var(--code-bg);
+      padding: 0.1em 0.35em;
+      border-radius: 2px;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* ── code block ── */
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      padding: 1.1rem 1.25rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--fg);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      background: var(--code-bg);
+      padding: 0.1em 0.35em;
+      border-radius: 2px;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: inherit;
+    }
+
+    /* ── strategy cards ── */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .strategy-card {
+      border: 1px solid var(--border-strong);
+      padding: 1rem 1.1rem;
+    }
+
+    .strategy-card .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .strategy-card .name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .strategy-card .complexity {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      margin-top: 0.2rem;
+    }
+
+    .strategy-card .desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.5;
+    }
+
+    /* ── adaptive thresholds ── */
+    .threshold-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border-strong);
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    .threshold-row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.86rem;
+    }
+
+    .threshold-row:last-child { border-bottom: none; }
+
+    .threshold-range {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      width: 200px;
+      flex-shrink: 0;
+      padding: 0.65rem 1rem;
+      border-right: 1px solid var(--border);
+      color: var(--fg);
+    }
+
+    .threshold-method {
+      padding: 0.65rem 1rem;
+      color: var(--muted);
+    }
+
+    /* ── benchmark ── */
+    .bench-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .bench-card {
+      border: 1px solid var(--border);
+      padding: 1rem 1.1rem;
+    }
+
+    .bench-card .bench-input {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .bench-tier {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.83rem;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bench-tier:last-child { border-bottom: none; }
+
+    .bench-tier .tier-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .bench-tier .tier-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+    }
+
+    /* ── ops reference ── */
+    .ops-table td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── warning box ── */
+    .warning {
+      border: 1px solid var(--border-strong);
+      padding: 0.85rem 1.1rem;
+      font-size: 0.85rem;
+      background: var(--code-bg);
+      margin: 1rem 0;
+    }
+
+    .warning .warn-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── footer ── */
+    .page-footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { padding: 2rem 1.5rem 4rem; }
+      .strategy-grid, .bench-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .page-header h1 { font-size: 1.5rem; }
+      .page-header h1 code { font-size: 1.35rem; }
+    }
+
+    /* ── print ── */
+    @media print {
+      .sidebar { display: none; }
+      .main { padding: 1rem; }
+      pre { white-space: pre-wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ── sidebar ── -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-title">push_swap v1.1</div>
+    <a href="#visao-geral">0. Visão geral</a>
+    <a href="#grupo">1. Projeto em grupo</a>
+    <a href="#common">2. Common Instructions</a>
+    <a href="#regras">3. Regras do jogo</a>
+    <a href="#ops" class="sub">Operações</a>
+    <a href="#algoritmos">4. Requisitos de algoritmo</a>
+    <a href="#disorder" class="sub">Disorder</a>
+    <a href="#estrategias" class="sub">4 Estratégias</a>
+    <a href="#programa">5. O programa push_swap</a>
+    <a href="#seletores" class="sub">Seletores</a>
+    <a href="#bench-flag" class="sub">Modo --bench</a>
+    <a href="#benchmark">6. Benchmark</a>
+    <a href="#readme">7. README.md</a>
+    <a href="#checker">8. Bonus: checker</a>
+    <a href="#submissao">9. Submissão</a>
+    <a href="#checklist">Checklist</a>
+  </nav>
+
+  <!-- ── main ── -->
+  <main class="main">
+
+    <!-- header -->
+    <header class="page-header">
+      <div class="label">42 Project — Subject v1.1</div>
+      <h1><code>push_swap</code> — Resumo do Subject</h1>
+      <div class="callout">
+        <strong>Atenção:</strong> Este subject é a versão <strong>modificada</strong> do push_swap (v1.1).
+        Ele é <strong>bem diferente</strong> do push_swap clássico da 42 — exige
+        <strong>4 estratégias de ordenação</strong>, métrica de <strong>disorder</strong>,
+        seletores de estratégia, modo <code>--bench</code> e é <strong>projeto em dupla</strong>.
+        Não se baseie em tutoriais do push_swap antigo.
+      </div>
+    </header>
+
+    <!-- 0 -->
+    <section class="section" id="visao-geral">
+      <div class="section-header">
+        <span class="section-num">00</span>
+        <h2>Visão geral</h2>
+      </div>
+      <p>
+        Escrever um programa em C chamado <code>push_swap</code> que, dado um conjunto
+        de inteiros em uma pilha <code>a</code> (sem duplicatas), <strong>calcula e imprime
+        na saída padrão a menor sequência possível de operações</strong> (em linguagem
+        push_swap) que ordena <code>a</code> em ordem crescente, usando duas pilhas
+        (<code>a</code> e <code>b</code>) e um conjunto limitado de moves.
+      </p>
+      <p>
+        O foco pedagógico é <strong>complexidade algorítmica medida em número de
+        operações push_swap geradas</strong> — não na complexidade teórica de um
+        algoritmo clássico de array.
+      </p>
+    </section>
+
+    <!-- 1 -->
+    <section class="section" id="grupo">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Projeto em grupo (obrigatório)</h2>
+      </div>
+      <ul class="checklist">
+        <li>Feito por <strong>exatamente 2 learners</strong>.</li>
+        <li>Ambos contribuem de forma significativa e <strong>entendem todos os algoritmos</strong>.</li>
+        <li><code>README.md</code> indica claramente a contribuição de cada um.</li>
+        <li>Ambos presentes na defesa, capazes de explicar <strong>qualquer parte</strong> do código.</li>
+        <li>Os logins dos dois aparecem no repositório.</li>
+      </ul>
+    </section>
+
+    <!-- 2 -->
+    <section class="section" id="common">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Common Instructions (regras gerais da 42)</h2>
+      </div>
+      <ul class="checklist">
+        <li>Escrito em <strong>C</strong>.</li>
+        <li>Respeita a <strong>Norm</strong> (inclui arquivos bonus; erro de norma = <strong>0</strong>).</li>
+        <li><strong>Sem</strong> crashes inesperados (segfault, bus error, double free…). Se crashar = projeto não-funcional = <strong>0</strong>.</li>
+        <li><strong>Zero vazamentos de memória</strong> — tudo que é alocado no heap deve ser liberado.</li>
+        <li><strong>Makefile</strong> compila com <code>-Wall -Wextra -Werror</code> usando <code>cc</code>, e <strong>não faz relink desnecessário</strong>.</li>
+        <li>Makefile contém pelo menos: <code>$(NAME)</code>, <code>all</code>, <code>clean</code>, <code>fclean</code>, <code>re</code>.</li>
+        <li>Bonus em arquivos <code>_bonus.{c,h}</code> com regra <code>bonus</code> no Makefile (mandatory e bonus avaliados separadamente).</li>
+        <li>Se usar <code>libft</code>: copiar fontes + Makefile dela numa pasta <code>libft</code>; o Makefile do projeto compila a lib e depois o projeto.</li>
+        <li>Submeter no repositório Git designado (só o que está no Git é avaliado).</li>
+        <li>Se o Deepthought avaliar, roda <strong>após</strong> as peer-evaluations; qualquer erro interrompe a avaliação.</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="section" id="regras">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>As regras do jogo</h2>
+      </div>
+      <p>Duas pilhas: <code>a</code> e <code>b</code>.</p>
+      <p><strong>Início:</strong> <code>a</code> com inteiros aleatórios (positivos e/ou negativos, sem duplicatas); <code>b</code> vazia.</p>
+      <p><strong>Objetivo:</strong> ordenar <code>a</code> em <strong>ordem crescente</strong> (menor no topo).</p>
+
+      <h3 id="ops">Operações disponíveis (11)</h3>
+      <div class="table-wrap">
+        <table class="ops-table">
+          <thead>
+            <tr><th>Op</th><th>Significado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>sa</code></td><td>swap dos 2 primeiros de <code>a</code> (nada se ≤1 elemento)</td></tr>
+            <tr><td><code>sb</code></td><td>swap dos 2 primeiros de <code>b</code></td></tr>
+            <tr><td><code>ss</code></td><td><code>sa</code> + <code>sb</code> simultâneos</td></tr>
+            <tr><td><code>pa</code></td><td>push: topo de <code>b</code> → topo de <code>a</code> (nada se <code>b</code> vazia)</td></tr>
+            <tr><td><code>pb</code></td><td>push: topo de <code>a</code> → topo de <code>b</code> (nada se <code>a</code> vazia)</td></tr>
+            <tr><td><code>ra</code></td><td>rotate <code>a</code>: todos sobem 1; primeiro vira último</td></tr>
+            <tr><td><code>rb</code></td><td>rotate <code>b</code></td></tr>
+            <tr><td><code>rr</code></td><td><code>ra</code> + <code>rb</code> simultâneos</td></tr>
+            <tr><td><code>rra</code></td><td>reverse rotate <code>a</code>: todos descem 1; último vira primeiro</td></tr>
+            <tr><td><code>rrb</code></td><td>reverse rotate <code>b</code></td></tr>
+            <tr><td><code>rrr</code></td><td><code>rra</code> + <code>rrb</code> simultâneos</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="section" id="algoritmos">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Requisitos de algoritmo</h2>
+      </div>
+      <p>
+        Para forçar entendimento de complexidade (tempo <strong>e</strong> espaço), você deve
+        implementar <strong>4 estratégias distintas</strong> e o programa deve
+        <strong>escolher a estratégia em runtime</strong> conforme a configuração da entrada.
+      </p>
+
+      <h3>Modelo de complexidade</h3>
+      <ul class="checklist">
+        <li>As estratégias analisam a entrada em C e <strong>geram a sequência de operações</strong> push_swap.</li>
+        <li>A saída de cada estratégia é a sequência de operações que ordena a pilha.</li>
+        <li><strong>A classe de complexidade declarada deve refletir o custo em número de operações push_swap geradas</strong> — não a complexidade teórica de um algoritmo clássico baseado em array.</li>
+      </ul>
+
+      <h3 id="disorder">Métrica de disorder (obrigatória)</h3>
+      <p>
+        <code>disorder</code> ∈ [0, 1]: o quão longe <code>a</code> está de ordenada.
+        <code>0</code> = já ordenada · <code>1</code> = pior ordem possível.
+        Conta <strong>inversões</strong> (par onde um número maior vem antes de um menor)
+        sobre o total de pares.
+      </p>
+      <pre><code>function compute_disorder(stack a):
+    mistakes = 0
+    total_pairs = 0
+    for i from 0 to size(a)-1:
+        for j from i+1 to size(a)-1:
+            total_pairs += 1
+            if a[i] > a[j]:
+                mistakes += 1
+    return mistakes / total_pairs</code></pre>
+      <ul class="checklist">
+        <li>Calcular o disorder <strong>antes</strong> de qualquer move.</li>
+      </ul>
+
+      <h3 id="estrategias">As 4 estratégias obrigatórias</h3>
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <span class="tag">Estratégia 1</span>
+          <div class="name">Simple</div>
+          <div class="complexity">O(n²)</div>
+          <div class="desc">Insertion / Selection / Bubble adaptados, ou min/max extraction. Pelo menos uma implementação.</div>
+        </div>
+        <div class="strategy-card">
+          <span class="tag">Estratégia 2</span>
+          <div class="name">Medium</div>
+          <div class="complexity">O(n√n)</div>
+          <div class="desc">Chunk-based (dividir em √n chunks), block partitioning, bucket sort com √n baldes, range-based.</div>
+        </div>
+        <div class="strategy-card">
+          <span class="tag">Estratégia 3</span>
+          <div class="name">Complex</div>
+          <div class="complexity">O(n log n)</div>
+          <div class="desc">Radix (LSD/MSD), merge com duas pilhas, quicksort com particionamento por pilha, heap, BIT.</div>
+        </div>
+        <div class="strategy-card">
+          <span class="tag">Estratégia 4</span>
+          <div class="name">Adaptive</div>
+          <div class="complexity">design próprio</div>
+          <div class="desc">Escolhe o método interno conforme o disorder medido. Técnicas livres, respeitando os alvos por regime.</div>
+        </div>
+      </div>
+
+      <h4>Thresholds do Adaptive</h4>
+      <div class="threshold-list">
+        <div class="threshold-row">
+          <div class="threshold-range">disorder &lt; 0.2</div>
+          <div class="threshold-method">método <strong>O(n²)</strong></div>
+        </div>
+        <div class="threshold-row">
+          <div class="threshold-range">0.2 ≤ disorder &lt; 0.5</div>
+          <div class="threshold-method">método <strong>O(n√n)</strong></div>
+        </div>
+        <div class="threshold-row">
+          <div class="threshold-range">disorder ≥ 0.5</div>
+          <div class="threshold-method">método <strong>O(n log n)</strong></div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>Documentar no README: <strong>racional dos thresholds</strong>, técnicas usadas em cada regime e um <strong>argumento de complexidade</strong> (upper bounds) de tempo e espaço no modelo push_swap.</li>
+      </ul>
+    </section>
+
+    <!-- 5 -->
+    <section class="section" id="programa">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>O programa <code>push_swap</code></h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Nome</td><td><code>push_swap</code></td></tr>
+            <tr><td>Arquivos</td><td><code>Makefile</code>, <code>*.h</code>, <code>*.c</code></td></tr>
+            <tr><td>Makefile</td><td><code>NAME</code>, <code>all</code>, <code>clean</code>, <code>fclean</code>, <code>re</code></td></tr>
+            <tr><td>Argumentos</td><td>stack <code>a</code>: lista de inteiros (primeiro arg = topo)</td></tr>
+            <tr><td>Funções externas</td><td><code>read</code>, <code>write</code>, <code>malloc</code>, <code>free</code>, <code>exit</code>, <code>ft_printf</code> (ou equivalente seu)</td></tr>
+            <tr><td>Libft</td><td>Autorizada</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="seletores">Regras do programa</h3>
+      <ul class="checklist">
+        <li>Makefile <strong>não relinka</strong>.</li>
+        <li><strong>Variáveis globais proibidas.</strong></li>
+        <li>Recebe a stack <code>a</code> como lista de inteiros (1º argumento = topo da pilha).</li>
+        <li>Imprime a <strong>menor</strong> lista de operações possível.</li>
+        <li>Operações separadas por <code>\n</code> <strong>e nada mais</strong>.</li>
+        <li>A classe de complexidade declarada para cada algoritmo deve ser <strong>válida nesse modelo</strong>.</li>
+        <li>A seleção de estratégia funciona para <strong>toda entrada válida</strong>, independente de tamanho ou disorder.</li>
+        <li><strong>Sem parâmetros</strong> → não imprime nada e devolve o prompt.</li>
+        <li><strong>Erro</strong> → imprime <code>Error\n</code> no <strong>stderr</strong>. Casos: argumentos não-inteiros, inteiros fora do range, duplicatas.</li>
+        <li>O binário <strong>embute as 4 estratégias</strong>; nome da estratégia + classe de complexidade disponíveis no modo <code>--bench</code>.</li>
+      </ul>
+
+      <h4>Seletores de estratégia (opcionais na linha de comando)</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Flag</th><th>Comportamento</th></tr></thead>
+          <tbody>
+            <tr><td><code>--simple</code></td><td>Força O(n²)</td></tr>
+            <tr><td><code>--medium</code></td><td>Força O(n√n)</td></tr>
+            <tr><td><code>--complex</code></td><td>Força O(n log n)</td></tr>
+            <tr><td><code>--adaptive</code></td><td>Força o adaptativo — <strong>default</strong> se nenhum seletor for dado</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="bench-flag">Modo <code>--bench</code></h3>
+      <p>Após ordenar, exibir <strong>no stderr</strong> (somente quando a flag está presente):</p>
+      <ul class="checklist">
+        <li><code>disorder</code> em %, com 2 casas decimais.</li>
+        <li>Nome da estratégia usada + sua classe de complexidade teórica.</li>
+        <li>Total de operações.</li>
+        <li>Contagem de <strong>cada tipo</strong> de operação: <code>sa sb ss pa pb ra rb rr rra rrb rrr</code>.</li>
+      </ul>
+      <div class="warning">
+        <div class="warn-label">Convenção</div>
+        Linhas <code>[bench] ...</code> vão pro <strong>stderr</strong>; o stream de operações continua no <strong>stdout</strong>.
+        Permite: <code>push_swap --bench ... 2&gt; bench.txt | checker ...</code>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="section" id="benchmark">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>Benchmark de performance</h2>
+      </div>
+      <div class="bench-grid">
+        <div class="bench-card">
+          <div class="bench-input">100 números aleatórios</div>
+          <div class="bench-tier">
+            <span class="tier-label">Passa</span>
+            <span class="tier-val">&lt; 2 000 ops</span>
+          </div>
+          <div class="bench-tier">
+            <span class="tier-label">Bom</span>
+            <span class="tier-val">&lt; 1 500 ops</span>
+          </div>
+          <div class="bench-tier">
+            <span class="tier-label">Excelente</span>
+            <span class="tier-val">&lt; 700 ops</span>
+          </div>
+        </div>
+        <div class="bench-card">
+          <div class="bench-input">500 números aleatórios</div>
+          <div class="bench-tier">
+            <span class="tier-label">Passa</span>
+            <span class="tier-val">&lt; 12 000 ops</span>
+          </div>
+          <div class="bench-tier">
+            <span class="tier-label">Bom</span>
+            <span class="tier-val">&lt; 8 000 ops</span>
+          </div>
+          <div class="bench-tier">
+            <span class="tier-label">Excelente</span>
+            <span class="tier-val">&lt; 5 500 ops</span>
+          </div>
+        </div>
+      </div>
+      <ul class="checklist">
+        <li>Verificado na avaliação <strong>com o checker fornecido</strong>.</li>
+      </ul>
+    </section>
+
+    <!-- 7 -->
+    <section class="section" id="readme">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2>Requisitos do <code>README.md</code></h2>
+      </div>
+      <p>Na raiz do repositório. Deve conter pelo menos:</p>
+      <ul class="checklist">
+        <li><strong>Primeira linha em itálico</strong>, exatamente: <em>This project has been created as part of the 42 curriculum by &lt;login1&gt;[, &lt;login2&gt;[, ...]].</em></li>
+        <li>Seção <strong>Description</strong> (objetivo + visão geral).</li>
+        <li>Seção <strong>Instructions</strong> (compilação, instalação e/ou execução).</li>
+        <li>Seção <strong>Resources</strong> (referências clássicas + <strong>descrição de como a IA foi usada</strong>: quais tarefas e quais partes do projeto).</li>
+        <li><strong>Explicação detalhada e justificativa</strong> dos algoritmos escolhidos.</li>
+        <li>Documentação das contribuições de <strong>cada um dos 2 learners</strong>.</li>
+        <li>(Se aplicável) seções extras: exemplos de uso, lista de features, escolhas técnicas.</li>
+      </ul>
+      <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted)">Idioma: inglês recomendado, ou o idioma principal do campus (PT-BR ok).</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="section" id="checker">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2>Bonus — programa <code>checker</code></h2>
+      </div>
+      <div class="warning">
+        <div class="warn-label">Atenção</div>
+        O bonus <strong>só é avaliado se o mandatory estiver perfeito</strong> (totalmente completo, sem erros, <strong>todos os benchmarks validados sem exceção</strong>). Falhou algum requisito do mandatory → bonus <strong>não é avaliado</strong>.
+      </div>
+
+      <div class="table-wrap" style="margin-top:1rem">
+        <table>
+          <thead><tr><th>Item</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Nome</td><td><code>checker</code></td></tr>
+            <tr><td>Arquivos</td><td><code>*.h</code>, <code>*.c</code></td></tr>
+            <tr><td>Makefile</td><td>regra <code>bonus</code></td></tr>
+            <tr><td>Funções externas</td><td><code>read</code>, <code>write</code>, <code>malloc</code>, <code>free</code>, <code>exit</code>, <code>ft_printf</code> (ou equivalente seu)</td></tr>
+            <tr><td>Libft</td><td>Autorizada</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Comportamento do <code>checker</code></h3>
+      <ul class="checklist">
+        <li>Recebe a stack <code>a</code> como argumento (1º arg = topo). Sem argumento → para e não imprime nada.</li>
+        <li>Lê operações do <strong>stdin</strong>, cada uma seguida de <code>\n</code>; após ler todas, executa na pilha.</li>
+        <li>Se ao final <code>a</code> ordenada <strong>e</strong> <code>b</code> vazia → imprime <code>OK\n</code> no <strong>stdout</strong>.</li>
+        <li>Em qualquer outro caso → imprime <code>KO\n</code> no <strong>stdout</strong>.</li>
+        <li>Erro → <code>Error\n</code> no <strong>stderr</strong>. Casos: args não-inteiros, maiores que int, duplicatas, instrução inexistente e/ou mal formatada.</li>
+        <li>Gerenciar erros é obrigatório; o parsing dos argumentos é livre.</li>
+      </ul>
+    </section>
+
+    <!-- 9 -->
+    <section class="section" id="submissao">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2>Submissão e peer-evaluation</h2>
+      </div>
+      <ul class="checklist">
+        <li>Tudo no repositório Git (só o que está lá é avaliado; conferir nomes dos arquivos).</li>
+        <li>Ambos os learners listados como contribuidores.</li>
+        <li>README documenta a contribuição de cada um.</li>
+        <li>Ambos presentes na defesa; cada um capaz de explicar/defender <strong>qualquer parte</strong>.</li>
+        <li>Estar preparado para uma <strong>modificação rápida</strong> durante a avaliação (pequena mudança de comportamento/feature, poucos minutos) — serve pra verificar entendimento real.</li>
+      </ul>
+    </section>
+
+    <!-- checklist -->
+    <section class="section" id="checklist">
+      <div class="section-header">
+        <span class="section-num">✓</span>
+        <h2>Checklist-resumo de entrega</h2>
+      </div>
+
+      <h3>Mandatory</h3>
+      <ul class="checklist">
+        <li><code>push_swap</code> com 4 estratégias embutidas + seleção em runtime</li>
+        <li>Seletores <code>--simple</code>, <code>--medium</code>, <code>--complex</code>, <code>--adaptive</code> (default)</li>
+        <li>Métrica de disorder calculada antes dos moves</li>
+        <li>Adaptive respeitando os thresholds 0.2 / 0.5</li>
+        <li>Modo <code>--bench</code> (stderr) com disorder %, estratégia, total e contagem por op</li>
+        <li>Tratamento de erros (<code>Error\n</code> no stderr)</li>
+        <li>Sem globais, sem leaks, sem crash, Norm ok, Makefile sem relink</li>
+        <li>Bater os alvos de performance (100 e 500 números)</li>
+        <li><code>README.md</code> completo (incl. justificativa de algoritmos, uso de IA, contribuições da dupla)</li>
+      </ul>
+
+      <h3>Bonus <span style="font-weight:400; color:var(--muted); font-size:0.85em">(só se mandatory perfeito)</span></h3>
+      <ul class="checklist">
+        <li><code>checker</code> (OK/KO/Error) + regra <code>bonus</code> no Makefile</li>
+      </ul>
+    </section>
+
+    <footer class="page-footer">
+      push_swap v1.1 — resumo não-oficial do subject · gerado em 2026
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // Highlight active sidebar link on scroll
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = [];
+  links.forEach(l => {
+    const id = l.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) sections.push({ el, link: l });
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const item = sections.find(s => s.el === e.target);
+      if (item) item.link.classList.toggle('active', e.isIntersecting);
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => obs.observe(s.el));
+</script>
+
+</body>
+</html>
