@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>push_swap · guia de avaliação</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#0a0a0a;
+    --ink-soft:#5b5b5b;
+    --ink-faint:#9a9a9a;
+    --line:#e7e7e4;
+    --code-bg:#f7f7f5;
+    --code-line:#e2e2de;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- sticky header / progress ---------- */
+  header{
+    position:sticky;top:0;z-index:10;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--ink);
+  }
+  .head-inner{
+    max-width:760px;margin:0 auto;padding:14px 24px 12px;
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  }
+  .brand{
+    font-family:var(--mono);font-weight:700;font-size:15px;
+    letter-spacing:.02em;
+  }
+  .brand .underscore{color:var(--ink-faint);}
+  .brand-sub{
+    font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.16em;
+  }
+  .head-meta{margin-left:auto;display:flex;align-items:center;gap:14px;}
+  .counter{
+    font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+    white-space:nowrap;font-variant-numeric:tabular-nums;
+  }
+  .counter b{color:var(--ink);}
+  .reset{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-soft);
+    background:none;border:none;cursor:pointer;padding:4px 2px;
+    border-bottom:1px solid transparent;
+  }
+  .reset:hover{color:var(--ink);border-bottom-color:var(--ink);}
+  .progress-track{height:2px;background:var(--line);}
+  .progress-fill{
+    height:100%;width:0%;background:var(--ink);
+    transition:width .35s cubic-bezier(.22,.61,.36,1);
+  }
+
+  /* ---------- layout ---------- */
+  main{max-width:760px;margin:0 auto;padding:0 24px 120px;}
+
+  .intro{padding:46px 0 30px;border-bottom:1px solid var(--line);}
+  .intro h1{
+    font-family:var(--mono);font-size:30px;font-weight:700;
+    letter-spacing:-.01em;margin:0 0 14px;line-height:1.1;
+  }
+  .intro p{margin:0;color:var(--ink-soft);max-width:60ch;font-size:15px;}
+  .intro .tag{
+    display:inline-block;font-family:var(--mono);font-size:11px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);
+    margin-bottom:18px;
+  }
+
+  /* ---------- section ---------- */
+  section{padding:38px 0;border-bottom:1px solid var(--line);}
+  .sec-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;}
+  .sec-num{
+    font-family:var(--mono);font-size:13px;font-weight:700;
+    color:var(--ink-faint);padding-top:5px;width:30px;flex:none;
+    font-variant-numeric:tabular-nums;
+  }
+  .sec-title h2{
+    font-family:var(--mono);font-size:19px;font-weight:700;margin:0;
+    letter-spacing:-.005em;
+  }
+  .sec-title .sec-desc{margin:5px 0 0;color:var(--ink-soft);font-size:14px;}
+
+  .sec-body{padding-left:46px;}
+  @media(max-width:560px){.sec-body{padding-left:0;}}
+
+  /* ---------- checklist items ---------- */
+  ul.check{list-style:none;margin:0 0 4px;padding:0;}
+  ul.check li{margin:0;}
+  .item{
+    display:flex;gap:11px;align-items:flex-start;
+    padding:8px 0;cursor:pointer;
+  }
+  .item input{
+    appearance:none;-webkit-appearance:none;
+    width:17px;height:17px;flex:none;margin:3px 0 0;
+    border:1.5px solid var(--ink);border-radius:3px;
+    background:var(--bg);cursor:pointer;position:relative;
+    transition:background .12s ease;
+  }
+  .item input:checked{background:var(--ink);}
+  .item input:checked::after{
+    content:"";position:absolute;left:4.5px;top:1px;
+    width:4px;height:9px;border:solid var(--bg);
+    border-width:0 2px 2px 0;transform:rotate(42deg);
+  }
+  .item input:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+  .item span{font-size:15px;transition:color .15s ease,opacity .15s ease;}
+  .item input:checked + span{color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:1px;}
+  .item code{
+    font-family:var(--mono);font-size:13px;
+    background:var(--code-bg);border:1px solid var(--code-line);
+    padding:.5px 5px;border-radius:4px;white-space:nowrap;
+  }
+
+  /* ---------- command block ---------- */
+  .cmd{
+    margin:16px 0 8px;border:1px solid var(--ink);border-radius:8px;
+    overflow:hidden;background:var(--code-bg);
+  }
+  .cmd-bar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:7px 10px 7px 12px;border-bottom:1px solid var(--code-line);
+    background:var(--bg);
+  }
+  .cmd-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-faint);
+  }
+  .copy{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+    color:var(--ink-soft);background:none;border:1px solid var(--code-line);
+    border-radius:5px;padding:4px 8px;cursor:pointer;
+    transition:color .12s ease,border-color .12s ease,background .12s ease;
+  }
+  .copy:hover{color:var(--ink);border-color:var(--ink);}
+  .copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px;}
+  .copy svg{width:13px;height:13px;display:block;}
+  .copy.copied{color:var(--ink);border-color:var(--ink);background:var(--bg);}
+  pre{
+    margin:0;padding:13px 14px;overflow-x:auto;
+    font-family:var(--mono);font-size:13px;line-height:1.7;
+    color:var(--ink);
+  }
+  pre::-webkit-scrollbar{height:7px;}
+  pre::-webkit-scrollbar-thumb{background:var(--ink-faint);border-radius:4px;}
+
+  .note{
+    margin:14px 0 0;padding:12px 14px;border-left:2px solid var(--ink);
+    background:var(--code-bg);font-size:14px;color:var(--ink-soft);
+  }
+  .note b{color:var(--ink);font-weight:600;}
+
+  /* ---------- footer ---------- */
+  footer{
+    max-width:760px;margin:0 auto;padding:40px 24px 0;
+    font-family:var(--mono);font-size:12px;color:var(--ink-faint);
+    text-align:center;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <span class="brand">push<span class="underscore">_</span>swap</span>
+    <span class="brand-sub">guia de avaliação</span>
+    <div class="head-meta">
+      <span class="counter"><b id="done">0</b> / <span id="total">0</span> verificados</span>
+      <button class="reset" id="reset" type="button">limpar</button>
+    </div>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="fill"></div></div>
+</header>
+
+<main>
+
+  <div class="intro">
+    <span class="tag">42 são paulo · push_swap v1.1 · em dupla</span>
+    <h1>Roteiro de peer-evaluation</h1>
+    <p>Esta versão é diferente da clássica: além de contar operações, você valida <b>4 estratégias</b>, métrica de <b>disorder</b>, seletores em runtime, modo <b>--bench</b> e o <b>checker</b>. Siga na ordem. Copie cada comando direto no terminal.</p>
+  </div>
+
+  <!-- 00 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">00</span>
+      <div class="sec-title">
+        <h2>Setup — helpers</h2>
+        <p class="sec-desc">Cole no topo do terminal antes de tudo. Poupa digitação no resto do roteiro.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash · helpers</span><button class="copy" type="button">COPIAR</button></div>
+<pre># gera N inteiros aleatorios SEM duplicatas (com negativos)
+gen() { python3 -c "import random,sys; n=int(sys.argv[1]); print(' '.join(map(str, random.sample(range(-2147483648,2147483647), n))))" "$1"; }
+
+# atalho de correcao: roda push_swap e valida com o checker
+chk() { ARG="$1"; ./push_swap $ARG | ./checker $ARG; }</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <div class="sec-title">
+        <h2>Git, dupla e estrutura</h2>
+        <p class="sec-desc">Pré-requisito. Sem isso, o resto não conta.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Repo roda só com o que está versionado (nada de arquivo local fora do git).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Dois logins aparecem como contribuidores.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span><code>README.md</code> na raiz, primeira linha em itálico exata, contribuição de cada um descrita.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Ambos presentes; cada um sabe explicar qualquer parte (peça pro A explicar o código do B).</span></label></li>
+      </ul>
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>git log --format='%an' | sort -u</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <div class="sec-title">
+        <h2>Compilação</h2>
+        <p class="sec-desc">O <code>make &amp;&amp; make</code> é o teste decisivo de relink.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>make &amp;&amp; make        # 2a vez NAO pode relinkar -> "Nothing to be done"
+make clean &amp;&amp; make fclean &amp;&amp; make re
+make bonus          # mandatory e bonus avaliados separados
+norminette          # erro de norma = 0, inclusive nos *_bonus</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Compila com <code>-Wall -Wextra -Werror</code> (confira no Makefile, não só na saída).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Sem relink (<code>make &amp;&amp; make</code> diz "Nothing to be done").</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Regras <code>all clean fclean re</code> presentes; bonus em <code>*_bonus.{c,h}</code> com regra <code>bonus</code>.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Nenhuma variável global.</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <div class="sec-title">
+        <h2>Tratamento de erro</h2>
+        <p class="sec-desc"><code>Error\n</code> vai no <b>stderr</b> — nunca no stdout.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>./push_swap                  # nada, volta pro prompt, exit 0
+./push_swap ""               # Error
+./push_swap "  "             # Error
+./push_swap 1 2 2 3          # duplicata -> Error
+./push_swap 1 2 abc          # nao-inteiro -> Error
+./push_swap 2147483648       # &gt; INT_MAX -> Error
+./push_swap -2147483649      # &lt; INT_MIN -> Error
+./push_swap 1 2 3 2&gt;/dev/null  # Error NAO pode estar no stdout</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Sem argumento → não imprime nada (nem <code>Error</code>).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Não-inteiro, fora do range de int e duplicata → <code>Error</code>.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span><code>Error</code> sai no <b>stderr</b>, não no stdout.</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <div class="sec-title">
+        <h2>Casos-base e pequenos</h2>
+        <p class="sec-desc">A saída são só operações por <code>\n</code>, nada mais.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>./push_swap 0                 # nada (ja ordenado)
+./push_swap 2 1               # sa
+./push_swap 1 2 3             # ja ordenado -> nada
+./push_swap 5 1 4 3 2 | ./checker 5 1 4 3 2   # OK
+./push_swap 3 2 1 | cat -A    # confere: sem espacos/linhas extras</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Já ordenado / 1 elemento → zero operações.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Saída são só operações separadas por <code>\n</code>, sem nada a mais.</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <div class="sec-title">
+        <h2>Seletores de estratégia</h2>
+        <p class="sec-desc">O coração da v1.1. Valide TODAS com o checker, não só conte ops.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>ARG=$(gen 100)
+for s in --simple --medium --complex --adaptive; do
+  echo -n "$s -&gt; "; ./push_swap $s $ARG | ./checker $ARG
+done
+./push_swap $ARG | ./checker $ARG    # sem flag = adaptive (default)</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span><code>--simple</code>, <code>--medium</code>, <code>--complex</code>, <code>--adaptive</code> todos retornam <code>OK</code>.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Default = adaptive (sem flag bate com <code>--adaptive</code>).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Cada estratégia funciona em qualquer tamanho (teste 5, 100, 500).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>No defense: mostram onde a classe de complexidade é declarada e por que vale no modelo push_swap (ops geradas), não no array clássico.</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <div class="sec-title">
+        <h2>Disorder e thresholds do adaptive</h2>
+        <p class="sec-desc">Deve trocar de método em 0.2 e 0.5.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre># quase ordenado -> disorder baixo -> O(n^2)
+./push_swap --bench $(seq 1 100 | tr '\n' ' ') 2&gt;&amp;1 &gt;/dev/null
+# invertido -> disorder ~1 -> O(n log n)
+./push_swap --bench $(seq 100 -1 1 | tr '\n' ' ') 2&gt;&amp;1 &gt;/dev/null</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Disorder em % coerente (ordenado ≈ 0.00%, invertido ≈ 100.00%).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Adaptive escolhe o método certo por faixa (<code>&lt;0.2</code>, <code>0.2–0.5</code>, <code>≥0.5</code>).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Disorder é calculado <b>antes</b> dos moves (confirme no código).</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <div class="sec-title">
+        <h2>Modo --bench e o teste do pipe</h2>
+        <p class="sec-desc">Bench no <b>stderr</b>, ops no <b>stdout</b>. Erro nº1 das duplas.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>ARG=$(gen 100)
+./push_swap --bench $ARG 2&gt; bench.txt | ./checker $ARG   # tem que dar OK limpo
+cat bench.txt</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span><code>bench.txt</code> tem: disorder %, estratégia + classe de complexidade, total de ops, e contagem por op (<code>sa sb ss pa pb ra rb rr rra rrb rrr</code>).</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>O <code>OK</code> saiu limpo → bench não vazou no stdout.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Soma das contagens por op == total de ops.</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <div class="sec-title">
+        <h2>Performance</h2>
+        <p class="sec-desc">Pior caso sobre muitas execuções, no modo default (adaptive).</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash · pior caso</span><button class="copy" type="button">COPIAR</button></div>
+<pre># 100 numeros: pior caso em 200 execucoes
+worst=0; for i in $(seq 200); do n=$(./push_swap $(gen 100) | wc -l); ((n&gt;worst)) &amp;&amp; worst=$n; done; echo "max100=$worst"
+# 500 numeros
+worst=0; for i in $(seq 200); do n=$(./push_swap $(gen 500) | wc -l); ((n&gt;worst)) &amp;&amp; worst=$n; done; echo "max500=$worst"</pre>
+      </div>
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash · correção em massa</span><button class="copy" type="button">COPIAR</button></div>
+<pre>for i in $(seq 200); do ARG=$(gen 100); r=$(./push_swap $ARG | ./checker $ARG); [ "$r" != "OK" ] &amp;&amp; echo "FALHOU: $ARG"; done; echo "fim"</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>100 aleatórios: <code>&lt; 2000</code> passa · <code>&lt; 1500</code> bom · <code>&lt; 700</code> excelente.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>500 aleatórios: <code>&lt; 12000</code> passa · <code>&lt; 8000</code> bom · <code>&lt; 5500</code> excelente.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Nenhuma das execuções gera saída inválida (loop de correção sem "FALHOU").</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">09</span>
+      <div class="sec-title">
+        <h2>Memória e crash</h2>
+        <p class="sec-desc">Zero leaks em todos os caminhos: sucesso, erro e sem-args.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>ARG=$(gen 100)
+valgrind --leak-check=full --show-leak-kinds=all ./push_swap $ARG &gt;/dev/null
+valgrind ./push_swap 1 2 abc        # erro tambem nao pode vazar
+valgrind ./push_swap                # sem args tambem
+./push_swap $(gen 500) &gt;/dev/null; echo $?   # sem segfault em entrada grande</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Zero leaks no sucesso, no erro e no sem-args.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Nenhum segfault / bus error / double free.</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">10</span>
+      <div class="sec-title">
+        <h2>Bonus — checker</h2>
+        <p class="sec-desc">Só avaliado se o mandatory estiver perfeito.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <div class="cmd">
+        <div class="cmd-bar"><span class="cmd-label">bash</span><button class="copy" type="button">COPIAR</button></div>
+<pre>ARG="3 2 1"
+./push_swap $ARG | ./checker $ARG           # OK
+echo -e "sa\npb\nlol" | ./checker $ARG      # Error (instrucao inexistente) no stderr
+./checker                                    # sem arg -> nada
+echo "" | ./checker 3 2 1                    # KO (nao ordenou)
+echo -e "pb\npb\npb" | ./checker 3 2 1       # KO (b nao vazia no fim)</pre>
+      </div>
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Lê ops do <b>stdin</b>, executa, imprime <code>OK\n</code>/<code>KO\n</code> no <b>stdout</b>.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span><code>Error\n</code> no <b>stderr</b> para op inexistente/malformada e mesmos erros de arg.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span><code>b</code> não-vazia no fim → <code>KO</code>.</span></label></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">11</span>
+      <div class="sec-title">
+        <h2>Teste de modificação</h2>
+        <p class="sec-desc">Exigido pelo subject. Pega quem entendeu de quem copiou.</p>
+      </div>
+    </div>
+    <div class="sec-body">
+      <ul class="check">
+        <li><label class="item"><input type="checkbox"><span>Peça uma mudança pequena e cronometre poucos minutos. Ex.: <code>--bench</code> imprimir o tempo em ms.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Ou: flag <code>--quiet</code> que suprime as ops mas mantém o bench.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Ou: inverter o critério de um threshold do adaptive e mostrar o efeito no bench.</span></label></li>
+        <li><label class="item"><input type="checkbox"><span>Os dois conseguem mexer no código um do outro sem travar.</span></label></li>
+      </ul>
+      <div class="note">
+        <b>Lembrete de avaliador:</b> o erro nº1 nesta versão é focar só no número de ops e esquecer disorder + seleção em runtime + bench encanado. Bata forte nas seções 05, 06 e 07 — é onde a v1.1 separa entendimento de cópia.
+      </div>
+    </div>
+  </section>
+
+  <footer>push_swap · 42 são paulo · marque conforme avança · o estado se mantém durante a sessão</footer>
+
+</main>
+
+<script>
+  // ---- copy buttons ----
+  const clip = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  document.querySelectorAll('.copy').forEach(btn=>{
+    btn.insertAdjacentHTML('afterbegin', clip);
+    const code = btn.closest('.cmd').querySelector('pre').textContent;
+    btn.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(code);
+      }catch(e){
+        const ta=document.createElement('textarea');
+        ta.value=code; document.body.appendChild(ta); ta.select();
+        try{document.execCommand('copy');}catch(_){}
+        document.body.removeChild(ta);
+      }
+      btn.classList.add('copied');
+      btn.innerHTML = check + 'COPIADO';
+      clearTimeout(btn._t);
+      btn._t = setTimeout(()=>{
+        btn.classList.remove('copied');
+        btn.innerHTML = clip + 'COPIAR';
+      }, 1600);
+    });
+  });
+
+  // ---- progress ----
+  const boxes = Array.from(document.querySelectorAll('.item input'));
+  const done = document.getElementById('done');
+  const total = document.getElementById('total');
+  const fill = document.getElementById('fill');
+  total.textContent = boxes.length;
+
+  function update(){
+    const n = boxes.filter(b=>b.checked).length;
+    done.textContent = n;
+    fill.style.width = (n / boxes.length * 100) + '%';
+  }
+  boxes.forEach(b=>b.addEventListener('change', update));
+
+  document.getElementById('reset').addEventListener('click', ()=>{
+    boxes.forEach(b=>b.checked=false); update();
+  });
+
+  update();
+</script>
+</body>
+</html>
