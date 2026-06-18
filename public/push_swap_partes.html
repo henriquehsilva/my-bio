@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Push_swap — Partes do Projeto</title>
+<style>
+    body {
+        background: #ffffff;
+        color: #000000;
+        font-family: Georgia, 'Times New Roman', serif;
+        max-width: 720px;
+        margin: 60px auto;
+        padding: 0 20px;
+        line-height: 1.6;
+    }
+    h1 {
+        font-size: 28px;
+        border-bottom: 3px solid #000000;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+    h2 {
+        font-size: 20px;
+        margin-top: 40px;
+        border-bottom: 1px solid #000000;
+        padding-bottom: 6px;
+    }
+    p {
+        font-size: 16px;
+    }
+    ul {
+        font-size: 16px;
+    }
+    li {
+        margin-bottom: 6px;
+    }
+    code {
+        background: #000000;
+        color: #ffffff;
+        padding: 2px 6px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+    }
+    hr {
+        border: none;
+        border-top: 1px solid #000000;
+        margin: 40px 0;
+    }
+    .footer-note {
+        font-style: italic;
+        font-size: 15px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Push_swap — Partes do Projeto</h1>
+
+<p>O push_swap é composto por várias partes. Vamos por etapas:</p>
+
+<h2>1. Parsing e Validação da Entrada</h2>
+<p>Receber os argumentos, validar se são inteiros, verificar duplicatas e limites de <code>INT_MIN</code>/<code>INT_MAX</code>. É a porta de entrada do programa — sem isso nada funciona.</p>
+
+<h2>2. Estrutura de Dados</h2>
+<p>Definir como representar as pilhas <code>a</code> e <code>b</code>. A escolha mais comum é lista encadeada ou array. Essa decisão impacta todo o resto.</p>
+
+<h2>3. Operações</h2>
+<p>Implementar as 11 operações obrigatórias:</p>
+<ul>
+    <li><code>sa</code>, <code>sb</code>, <code>ss</code> → swap</li>
+    <li><code>pa</code>, <code>pb</code> → push</li>
+    <li><code>ra</code>, <code>rb</code>, <code>rr</code> → rotate</li>
+    <li><code>rra</code>, <code>rrb</code>, <code>rrr</code> → reverse rotate</li>
+</ul>
+<p>Cada operação imprime seu nome no stdout.</p>
+
+<h2>4. Algoritmo de Ordenação</h2>
+<p>A parte mais complexa — ordenar a pilha usando o menor número de operações possível. Geralmente dividido por tamanho:</p>
+<ul>
+    <li><strong>2 a 3 elementos</strong> → casos simples hardcoded</li>
+    <li><strong>4 a 5 elementos</strong> → lógica específica</li>
+    <li><strong>100 elementos</strong> → algoritmo eficiente</li>
+    <li><strong>500 elementos</strong> → algoritmo otimizado</li>
+</ul>
+
+<h2>5. Verificação de Ordenação</h2>
+<p>Checar se a pilha está ordenada para saber quando parar.</p>
+
+<hr>
+
+<h2>Por onde começar?</h2>
+<p><strong>Parsing → Estrutura → Operações → Verificação → Algoritmo</strong></p>
+<p class="footer-note">Nessa ordem você sempre tem uma base testável antes de avançar.</p>
+
+</body>
+</html>
