@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Implementando o --adaptative (estratégia padrão)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    margin: 0;
+    padding: 3rem 1.5rem 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 840px;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3, h4 {
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    margin: 0 0 1.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #000000;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    margin: 2.75rem 0 1rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid #cccccc;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin: 2rem 0 0.75rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  code {
+    font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, monospace;
+    background: #f2f2f2;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
+    font-size: 0.88em;
+    color: #000000;
+  }
+
+  pre {
+    background: #f7f7f7;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin: 0 0 1.25rem;
+  }
+
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    white-space: pre;
+    color: #000000;
+  }
+
+  blockquote {
+    margin: 0 0 1.25rem;
+    padding: 0.6rem 1.1rem;
+    border-left: 4px solid #000000;
+    background: #f5f5f5;
+    color: #000000;
+  }
+
+  blockquote p {
+    margin: 0;
+  }
+
+  blockquote p + p {
+    margin-top: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  th, td {
+    border: 1px solid #000000;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    background: #000000;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  tr:nth-child(even) td {
+    background: #f5f5f5;
+  }
+
+  ul, ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-color: #999999;
+  }
+
+  a:hover {
+    text-decoration-color: #000000;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #cccccc;
+    margin: 2.5rem 0;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Implementando o <code>--adaptative</code> (estratégia padrão)</h1>
+
+<p>Pelo subject, <code>adaptive</code> não é só mais um selector ao lado de <code>--simple</code> /
+<code>--medium</code> / <code>--complex</code>: é o <strong>comportamento padrão quando nenhum selector é
+passado</strong>. Ele mede o disorder da pilha <code>a</code> antes de qualquer operação e
+despacha para uma das três estratégias de acordo com faixas fixas.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Faixa</th>
+      <th>Disorder</th>
+      <th>Estratégia obrigatória</th>
+      <th>Complexidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Low</td>
+      <td><code>&lt; 0.2</code></td>
+      <td><code>sort_simple</code> (já existe)</td>
+      <td>O(n²)</td>
+    </tr>
+    <tr>
+      <td>Medium</td>
+      <td><code>&gt;= 0.2</code> e <code>&lt; 0.5</code></td>
+      <td><code>sort_medium</code> (a implementar)</td>
+      <td>O(n·√n)</td>
+    </tr>
+    <tr>
+      <td>High</td>
+      <td><code>&gt;= 0.5</code></td>
+      <td><code>sort_complex</code> (já existe)</td>
+      <td>O(n log n)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+<p><strong>Ponto crítico do subject</strong>: o disorder tem que ser calculado antes de
+qualquer <code>sa</code>/<code>pb</code>/<code>ra</code>/etc. Nenhuma operação pode acontecer entre "receber
+a pilha" e "medir o disorder".</p>
+</blockquote>
+
+<h2>Passo 1 — <code>compute_disorder()</code> (já implementado, não mexe)</h2>
+
+<p><a href="../compute_disorder.c">compute_disorder.c</a> já usa exatamente a fórmula do
+subject — inversões sobre total de pares:</p>
+
+<pre><code>double	compute_disorder(t_stack *a)
+{
+	t_node	*i;
+	t_node	*j;
+	int		mistakes;
+	int		total_pairs;
+
+	if (!a || a-&gt;size &lt; 2)
+		return (0.0);
+	mistakes = 0;
+	total_pairs = 0;
+	i = a-&gt;top;
+	while (i)
+	{
+		j = i-&gt;next;
+		while (j)
+		{
+			total_pairs++;
+			if (i-&gt;value &gt; j-&gt;value)
+				mistakes++;
+			j = j-&gt;next;
+		}
+		i = i-&gt;next;
+	}
+	return ((double)mistakes / (double)total_pairs);
+}
+</code></pre>
+
+<p><code>sort_adaptative</code> vai chamar essa função como a <strong>primeira coisa que faz</strong>,
+antes de tocar em qualquer operação de pilha — isso garante o ponto crítico
+acima dentro da própria função, independente de quem a chama.</p>
+
+<h2>Passo 2 — thresholds em <code>push_swap.h</code></h2>
+
+<p>Junto dos outros defines de estratégia (<code>QS_A</code>, <code>QS_DESC</code>):</p>
+
+<pre><code># define QS_A		1
+# define QS_DESC	2
+
+# define DISORDER_LOW	0.2
+# define DISORDER_MED	0.5
+</code></pre>
+
+<h2>Passo 3 — <code>sort_medium</code> (faixa intermediária, O(n·√n))</h2>
+
+<p>Ainda não existe <code>sort_medium.c</code>. A técnica clássica pra essa faixa é o
+"chunk sort" (algoritmo Turco): dividir o intervalo de valores em
+<code>⌈√n⌉</code> baldes, empurrar cada elemento pra <code>b</code> respeitando a ordem dos
+baldes, depois devolver pra <code>a</code>. Isso mantém cada elemento sendo
+"revisitado" cerca de <code>√n</code> vezes em vez de <code>n</code> (simple) ou <code>log n</code> níveis de
+partição (complex):</p>
+
+<pre><code>#include "push_swap.h"
+
+static int	chunk_of(int value, int min, int range, int chunks)
+{
+	if (range &lt;= 0)
+		return (0);
+	return (((value - min) * chunks) / (range + 1));
+}
+
+void	sort_medium(t_stack *a, t_stack *b)
+{
+	int	chunks;
+	int	current;
+
+	if (is_sorted(a))
+		return ;
+	chunks = 1;
+	while (chunks * chunks &lt; a-&gt;size)
+		chunks++;
+	current = 0;
+	while (current &lt; chunks &amp;&amp; b-&gt;size &lt; a-&gt;size)
+	{
+		while (a-&gt;size &amp;&amp; chunk_of(a-&gt;top-&gt;value, /* min */ 0,
+				/* range */ 0, chunks) &lt;= current)
+			op_push(a, b, 1);
+		current++;
+	}
+	while (b-&gt;size)
+		op_push_back(a, b, 1);
+}
+</code></pre>
+
+<blockquote>
+<p>Esse esqueleto ainda precisa: (1) calcular <code>min</code>/<code>max</code> reais da pilha antes
+do loop (uma varredura O(n), não estraga a complexidade); (2) decidir a
+ordem de reinserção em <code>a</code> conforme o balde (hoje <code>op_push_back</code> só devolve
+na ordem que saiu de <code>b</code>, não necessariamente ordenada). É a parte que
+falta prototipar/testar — trate como ponto de partida, não como algoritmo
+pronto.</p>
+</blockquote>
+
+<p>Declarar em <code>push_swap.h</code>:</p>
+
+<pre><code>void				sort_simple(t_stack *a, t_stack *b);
+void				sort_medium(t_stack *a, t_stack *b);
+void				sort_complex(t_stack *a, t_stack *b);
+void				sort_adaptative(t_stack *a, t_stack *b);
+</code></pre>
+
+<h2>Passo 4 — <code>sort_adaptative</code>, o dispatcher</h2>
+
+<pre><code>#include "push_swap.h"
+
+void	sort_adaptative(t_stack *a, t_stack *b)
+{
+	double	disorder;
+
+	if (is_sorted(a))
+		return ;
+	disorder = compute_disorder(a);
+	if (disorder &lt; DISORDER_LOW)
+		sort_simple(a, b);
+	else if (disorder &lt; DISORDER_MED)
+		sort_medium(a, b);
+	else
+		sort_complex(a, b);
+}
+</code></pre>
+
+<p><code>compute_disorder</code> já é O(n²), então chamá-la aqui de novo (além da chamada
+que <code>main.c</code> já faz para o <code>--bench</code>) não piora a complexidade assintótica —
+o gargalo real é a estratégia escolhida depois, não essa medição.</p>
+
+<h2>Passo 5 — tornar <code>adaptative</code> o default em <code>strategies.c</code></h2>
+
+<p>Coloca a entrada <code>--adaptative</code> <strong>primeiro</strong> no array: como
+<code>get_default_strategy()</code> retorna <code>&amp;get_strategies()[0]</code>, isso já faz dela o
+comportamento padrão sem precisar mexer em <code>parse_flags.c</code> nem em
+<code>get_default_strategy()</code>. <code>--simple</code>/<code>--medium</code>/<code>--complex</code> continuam
+disponíveis como override explícito (útil pra calibrar e pro <code>--bench</code>
+comparar regimes isolados):</p>
+
+<pre><code>void	sort_simple(t_stack *a, t_stack *b);
+void	sort_medium(t_stack *a, t_stack *b);
+void	sort_complex(t_stack *a, t_stack *b);
+void	sort_adaptative(t_stack *a, t_stack *b);
+
+static const t_strategy	*get_strategies(void)
+{
+	static const t_strategy	strategies[] = {
+	{"--adaptative", "Adaptative", "O(n^2) / O(n*sqrt(n)) / O(n log n)", \
+		sort_adaptative},
+	{"--simple", "Simple", "O(n^2)", sort_simple},
+	{"--medium", "Medium", "O(n*sqrt(n))", sort_medium},
+	{"--complex", "Complex", "O(n log n)", sort_complex},
+	{NULL, NULL, NULL, NULL}
+	};
+
+	return (strategies);
+}
+</code></pre>
+
+<h2>Passo 6 — Makefile</h2>
+
+<p>Adicionar os dois arquivos novos à <code>SRC</code> (<code>sort_adaptative.c</code> já está lá):</p>
+
+<pre><code>SRC				= main.c \
+				  ... \
+				  sort_complex.c \
+				  sort_medium.c \
+				  sort_adaptative.c
+</code></pre>
+
+<h2>Passo 7 — o que documentar no README</h2>
+
+<p>O subject pede uma justificativa por escrito. Rascunho pronto pra colar:</p>
+
+<p><strong>Por que 0.2 e 0.5?</strong><br>
+Numa permutação uniformemente aleatória, o valor esperado do disorder
+(fração de pares invertidos) tende a 0.5 — é o "centro" estatístico da
+bagunça. <code>&lt; 0.2</code> marca uma pilha visivelmente quase ordenada, onde o custo
+de <code>sort_simple</code> é dominado pelo número real de elementos fora do lugar, não
+pelo pior caso O(n²). <code>&gt;= 0.5</code> marca uma pilha tão ou mais embaralhada que a
+média de uma aleatória — é onde o particionamento de <code>sort_complex</code> compensa
+de forma consistente, independente da estrutura interna. A faixa do meio é a
+zona de transição onde nem o custo quadrático do simple nem o overhead
+recursivo do quicksort são a melhor escolha.</p>
+
+<p><strong>Técnica por regime:</strong></p>
+<ul>
+  <li>Low → <code>sort_simple</code>: passes de "achar o menor / rotacionar pro topo",
+    barato porque poucos elementos estão fora do lugar.</li>
+  <li>Medium → <code>sort_medium</code>: chunk sort (baldes de tamanho ≈ <code>√n</code> por faixa de
+    valor), evita tanto o quadrático do simple quanto o overhead de recursão
+    do quicksort.</li>
+  <li>High → <code>sort_complex</code>: quicksort via <code>partition()</code> alternando <code>a</code>/<code>b</code>
+    (já implementado em <a href="../sort_complex.c">sort_complex.c</a>).</li>
+</ul>
+
+<p><strong>Argumento de complexidade:</strong></p>
+<ul>
+  <li><code>sort_simple</code>: cada elemento pode exigir até O(n) rotações para chegar à
+    posição final → O(n²) no pior caso.</li>
+  <li><code>sort_medium</code>: <code>√n</code> baldes, cada elemento é comparado/movido O(√n) vezes
+    (uma vez por fronteira de balde) → O(n·√n).</li>
+  <li><code>sort_complex</code>: profundidade de recursão O(log n) com particionamento
+    O(n) por nível (pivô = mediana da pilha) → O(n log n).</li>
+</ul>
+
+</div>
+</body>
+</html>
